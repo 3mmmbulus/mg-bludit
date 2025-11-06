@@ -2,7 +2,7 @@
 	"plugin-data":
 	{
 		"name": "API",
-		"description": "Schnittstelle, für den Datenaustausch mit Bludit über das HTTP-Protokoll. Informationen zur Verwendung des Plugins unter <a href=\"https://docs.bludit.com/en/api/introduction\">API Introduction</a>."
+		"description": "Schnittstelle, für den Datenaustausch mit Maigewan über das HTTP-Protokoll. Informationen zur Verwendung des Plugins unter <a href=\"https://docs.maigewan.com/en/api/introduction\">API Introduction</a>."
 	},
 	"api-token": "API-Token",
 	"amount-of-pages": "Anzahl Seiten",

@@ -1,26 +1,26 @@
 <?php
 
 /*
- * Bludit
- * https://www.bludit.com
+ * Maigewan
+ * https://www.maigewan.com
  * Author Diego Najar
- * Bludit is opensource software licensed under the MIT license.
+ * Maigewan is opensource software licensed under the MIT license.
 */
 
-// Check if Bludit is installed
+// Check if Maigewan is installed
 if (!file_exists('mgw-content/databases/site.php')) {
 	$base = dirname($_SERVER['SCRIPT_NAME']);
 	$base = rtrim($base, '/');
 	$base = rtrim($base, '\\'); // Workaround for Windows Servers
 	header('Location:'.$base.'/install.php');
-	exit('<a href="./install.php">Install Bludit first.</a>');
+	exit('<a href="./install.php">Install Maigewan first.</a>');
 }
 
 // Load time init
 $loadTime = microtime(true);
 
 // Security constant
-define('BLUDIT', true);
+define('MAIGEWAN', true);
 
 // Directory separator
 define('DS', DIRECTORY_SEPARATOR);

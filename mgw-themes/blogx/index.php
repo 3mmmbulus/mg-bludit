@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<!-- Load Bludit Plugins: Site Body Begin -->
+	<!-- Load Maigewan Plugins: Site Body Begin -->
 	<?php Theme::plugins('siteBodyBegin'); ?>
 
 	<!-- Navbar -->
@@ -18,7 +18,7 @@
 			<!-- Blog Posts -->
 			<div class="col-md-9">
 			<?php
-				// Bludit content are pages
+				// Maigewan content are pages
 				// But if you order the content by date
 				// These pages works as posts
 
@@ -46,14 +46,14 @@
 
 	<!-- Javascript -->
 	<?php
-		// Include Jquery file from Bludit Core
+		// Include Jquery file from Maigewan Core
 		echo Theme::jquery();
 
-		// Include javascript Bootstrap file from Bludit Core
+		// Include javascript Bootstrap file from Maigewan Core
 		echo Theme::jsBootstrap();
 	?>
 
-	<!-- Load Bludit Plugins: Site Body End -->
+	<!-- Load Maigewan Plugins: Site Body End -->
 	<?php Theme::plugins('siteBodyEnd'); ?>
 
 </body>

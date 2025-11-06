@@ -1,9 +1,9 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
 class Session {
 
 	private static $started = false;
-	private static $sessionName = 'BLUDIT-KEY';
+	private static $sessionName = 'MAIGEWAN-KEY';
 
 	public static function start($path, $secure)
 	{

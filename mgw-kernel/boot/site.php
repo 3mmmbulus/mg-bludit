@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
 // Load plugins rules
 include(PATH_RULES.'60.plugins.php');

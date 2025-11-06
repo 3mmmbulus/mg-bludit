@@ -45,7 +45,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<!-- Load Bludit Plugins: Page Begin -->
+					<!-- Load Maigewan Plugins: Page Begin -->
 					<?php Theme::plugins('pageBegin'); ?>
 
 					<!-- Page title -->
@@ -76,7 +76,7 @@
 						<small class="color-blue"><?php echo $page->date() ?></small>
 					<?php endif ?>
 
-					<!-- Load Bludit Plugins: Page End -->
+					<!-- Load Maigewan Plugins: Page End -->
 					<?php Theme::plugins('pageEnd'); ?>
 				</div>
 			</div>

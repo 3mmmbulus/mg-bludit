@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
 echo 'var HTML_PATH_ROOT = "'.HTML_PATH_ROOT.'";'.PHP_EOL;
 echo 'var HTML_PATH_ADMIN_ROOT = "'.HTML_PATH_ADMIN_ROOT.'";'.PHP_EOL;
@@ -6,8 +6,8 @@ echo 'var HTML_PATH_ADMIN_THEME = "'.HTML_PATH_ADMIN_THEME.'";'.PHP_EOL;
 echo 'var HTML_PATH_CORE_IMG = "'.HTML_PATH_CORE_IMG.'";'.PHP_EOL;
 echo 'var HTML_PATH_UPLOADS = "'.HTML_PATH_UPLOADS.'";'.PHP_EOL;
 echo 'var HTML_PATH_UPLOADS_THUMBNAILS = "'.HTML_PATH_UPLOADS_THUMBNAILS.'";'.PHP_EOL;
-echo 'var BLUDIT_VERSION = "'.BLUDIT_VERSION.'";'.PHP_EOL;
-echo 'var BLUDIT_BUILD = "'.BLUDIT_BUILD.'";'.PHP_EOL;
+echo 'var MAIGEWAN_VERSION = "'.MAIGEWAN_VERSION.'";'.PHP_EOL;
+echo 'var MAIGEWAN_BUILD = "'.MAIGEWAN_BUILD.'";'.PHP_EOL;
 echo 'var DOMAIN = "'.DOMAIN.'";'.PHP_EOL;
 echo 'var DOMAIN_BASE = "'.DOMAIN_BASE.'";'.PHP_EOL;
 echo 'var DOMAIN_PAGES = "'.DOMAIN_PAGES.'";'.PHP_EOL;

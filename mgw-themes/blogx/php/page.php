@@ -1,7 +1,7 @@
 <!-- Post -->
 <div class="card my-5 border-0">
 
-	<!-- Load Bludit Plugins: Page Begin -->
+	<!-- Load Maigewan Plugins: Page Begin -->
 	<?php Theme::plugins('pageBegin'); ?>
 
 	<!-- Cover image -->
@@ -25,7 +25,7 @@
 
 	</div>
 
-	<!-- Load Bludit Plugins: Page End -->
+	<!-- Load Maigewan Plugins: Page End -->
 	<?php Theme::plugins('pageEnd'); ?>
 
 </div>

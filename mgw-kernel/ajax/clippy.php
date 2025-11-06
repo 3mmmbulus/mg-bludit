@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 header('Content-Type: application/json');
 
 // $_GET

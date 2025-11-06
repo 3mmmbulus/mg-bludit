@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
 class dbJSON {
 
@@ -66,7 +66,7 @@ class dbJSON {
 	{
 		$data = '';
 		if ($this->firstLine) {
-			$data  = "<?php defined('BLUDIT') or die('Bludit CMS.'); ?>".PHP_EOL;
+			$data  = "<?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>".PHP_EOL;
 		}
 
 		// Serialize database

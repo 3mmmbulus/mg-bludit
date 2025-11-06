@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.'); ?>
+<?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
 {
     "position": 1,
     "toolbar1": "formatselect bold italic forecolor backcolor removeformat | bullist numlist table | blockquote alignleft aligncenter alignright | link unlink pagebreak image code",

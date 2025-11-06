@@ -1,10 +1,10 @@
 <?php
 
 /*
- * Bludit
- * https://www.bludit.com
+ * Maigewan
+ * https://www.maigewan.com
  * Author Diego Najar
- * Bludit is opensource software licensed under the MIT license.
+ * Maigewan is opensource software licensed under the MIT license.
 */
 
 // Check PHP version
@@ -31,12 +31,12 @@ if ($modulesRequiredExit) {
 	echo 'PHP modules missing:';
 	echo $modulesRequiredMissing;
 	echo '';
-	echo '<a href="https://docs.bludit.com/en/getting-started/requirements">Please read Bludit requirements</a>.';
+	echo '<a href="https://docs.maigewan.com/en/getting-started/requirements">Please read Maigewan requirements</a>.';
 	exit(0);
 }
 
 // Security constant
-define('BLUDIT', true);
+define('MAIGEWAN', true);
 
 // Directory separator
 define('DS', DIRECTORY_SEPARATOR);
@@ -74,7 +74,7 @@ if (!empty($_SERVER['HTTPS'])) {
 }
 
 // Base URL
-// Change the base URL or leave it empty if you want to Bludit try to detect the base URL.
+// Change the base URL or leave it empty if you want to Maigewan try to detect the base URL.
 $base = '';
 
 if (!empty($_SERVER['DOCUMENT_ROOT']) && !empty($_SERVER['SCRIPT_NAME']) && empty($base)) {
@@ -190,7 +190,7 @@ function getLanguageList()
 	return $tmp;
 }
 
-// Check if Bludit is installed
+// Check if Maigewan is installed
 function alreadyInstalled()
 {
 	return file_exists(PATH_DATABASES . 'site.php');
@@ -255,7 +255,7 @@ RewriteRule ^(.*) index.php [PT,L]
 	return $output;
 }
 
-// Install Bludit
+// Install Maigewan
 function install($adminPassword, $timezone)
 {
 	global $L;
@@ -318,7 +318,7 @@ function install($adminPassword, $timezone)
 	// Create files
 	// ============================================================================
 
-	$dataHead = "<?php defined('BLUDIT') or die('Bludit CMS.'); ?>" . PHP_EOL;
+	$dataHead = "<?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>" . PHP_EOL;
 
 	$data = array();
 	$slugs = array();
@@ -359,7 +359,7 @@ function install($adminPassword, $timezone)
 
 	// File site.php
 
-	// If Bludit is not installed inside a folder, the URL doesn't need finish with /
+	// If Maigewan is not installed inside a folder, the URL doesn't need finish with /
 	// Example (root): https://domain.com
 	// Example (inside a folder): https://domain.com/folder/
 	if (HTML_PATH_ROOT == '/') {
@@ -368,9 +368,9 @@ function install($adminPassword, $timezone)
 		$siteUrl = PROTOCOL . DOMAIN . HTML_PATH_ROOT;
 	}
 	$data = array(
-		'title' => 'BLUDIT',
-		'slogan' => $L->get('welcome-to-bludit'),
-		'description' => $L->get('congratulations-you-have-successfully-installed-your-bludit'),
+		'title' => 'MAIGEWAN',
+		'slogan' => $L->get('welcome-to-maigewan'),
+		'description' => $L->get('congratulations-you-have-successfully-installed-your-maigewan'),
 		'footer' => 'Copyright © ' . Date::current('Y'),
 		'itemsPerPage' => 6,
 		'language' => $L->currentLanguage(),
@@ -388,10 +388,10 @@ function install($adminPassword, $timezone)
 		'emailFrom' => 'no-reply@' . DOMAIN,
 		'orderBy' => 'date',
 		'currentBuild' => '0',
-		'twitter' => 'https://twitter.com/bludit',
-		'facebook' => 'https://www.facebook.com/bluditcms',
+		'twitter' => 'https://twitter.com/maigewan',
+		'facebook' => 'https://www.facebook.com/maigewancms',
 		'codepen' => '',
-		'github' => 'https://github.com/bludit',
+		'github' => 'https://github.com/maigewan',
 		'instagram' => '',
 		'gitlab' => '',
 		'linkedin' => '',
@@ -444,7 +444,7 @@ function install($adminPassword, $timezone)
 	$data = array(
 		array(
 			'date' => $currentDate,
-			'dictionaryKey' => 'welcome-to-bludit',
+			'dictionaryKey' => 'welcome-to-maigewan',
 			'notes' => '',
 			'idExecution' => uniqid(),
 			'method' => 'POST',
@@ -576,7 +576,7 @@ function redirect($url)
 // ============================================================================
 
 if (alreadyInstalled()) {
-	$errorText = 'Bludit is already installed ;)';
+	$errorText = 'Maigewan is already installed ;)';
 	error_log('[ERROR] ' . $errorText, 0);
 	exit($errorText);
 }
@@ -603,7 +603,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 
 <head>
-	<title><?php echo $L->get('Bludit Installer') ?></title>
+	<title><?php echo $L->get('Maigewan Installer') ?></title>
 	<meta charset="<?php echo CHARSET ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="robots" content="noindex,nofollow">
@@ -613,7 +613,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="mgw-kernel/css/bootstrap.min.css?version=<?php echo time() ?>">
-	<link rel="stylesheet" type="text/css" href="mgw-kernel/admin/themes/booty/css/bludit.css?version=<?php echo time() ?>">
+	<link rel="stylesheet" type="text/css" href="mgw-kernel/admin/themes/booty/css/maigewan.css?version=<?php echo time() ?>">
 
 	<!-- Javascript -->
 	<script charset="utf-8" src="mgw-kernel/js/jquery.min.js?version=<?php echo time() ?>"></script>
@@ -625,7 +625,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<div class="container">
 		<div class="row justify-content-md-center pt-5">
 			<div class="col-md-4 pt-5">
-				<h1 class="text-center mb-5 mt-5 font-weight-normal text-uppercase" style="color: #555;"><?php echo $L->get('Bludit Installer') ?></h1>
+				<h1 class="text-center mb-5 mt-5 font-weight-normal text-uppercase" style="color: #555;"><?php echo $L->get('Maigewan Installer') ?></h1>
 				<?php
 				$system = checkSystem();
 				if (!empty($system)) {

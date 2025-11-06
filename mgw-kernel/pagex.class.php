@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
 class Page
 {
@@ -539,7 +539,7 @@ class Page
 
 	// Returns relative time (e.g. "1 minute ago")
 	// Based on http://stackoverflow.com/a/18602474
-	// Modified for Bludit
+	// Modified for Maigewan
 	// $complete = false : short version
 	// $complete = true  : full version
 	public function relativeTime($complete = false)

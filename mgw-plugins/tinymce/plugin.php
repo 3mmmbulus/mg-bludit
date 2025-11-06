@@ -104,19 +104,19 @@ class pluginTinymce extends Plugin
 <script>
 
 	// Insert an image in the editor at the cursor position
-	// Function required for Bludit
+	// Function required for Maigewan
 	function editorInsertMedia(filename) {
 		tinymce.activeEditor.insertContent("<img src=\""+filename+"\" alt=\"\">");
 	}
 
 	// Insert a linked image in the editor at the cursor position
-	// Function required for Bludit
+	// Function required for Maigewan
 	function editorInsertLinkedMedia(filename, link) {
 		tinymce.activeEditor.insertContent("<a href=\""+link+"\"><img src=\""+filename+"\" alt=\"\"></a>");
 	}
 
 	// Returns the content of the editor
-	// Function required for Bludit
+	// Function required for Maigewan
 	function editorGetContent() {
 		return tinymce.get('jseditor').getContent();
 	}

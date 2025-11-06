@@ -145,7 +145,7 @@ class pluginRSS extends Plugin
 			// Print the XML
 			echo $doc->saveXML();
 
-			// Stop Bludit execution
+			// Stop Maigewan execution
 			exit(0);
 		}
 	}

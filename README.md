@@ -1,6 +1,6 @@
 # Maigewan CMS
 
-基于 Bludit 3.16.2 的内容管理系统，专为 PHP 8.0+ 优化。
+基于 Maigewan 3.16.2 的内容管理系统，专为 PHP 8.0+ 优化。
 
 ## 🚀 特性
 
@@ -28,8 +28,8 @@
 ### 方法 1: 克隆仓库
 
 ```bash
-git clone https://github.com/3mmmbulus/mg-bludit.git
-cd mg-bludit
+git clone https://github.com/3mmmbulus/mg-maigewan.git
+cd mg-maigewan
 ```
 
 ### 方法 2: 下载 ZIP
@@ -81,7 +81,7 @@ php php83_compatibility_test.php
 ## 📁 目录结构
 
 ```
-mg-bludit/
+mg-maigewan/
 ├── bl-content/          # 内容和数据库
 │   ├── databases/       # JSON 数据库文件
 │   ├── pages/           # 页面内容
@@ -98,7 +98,7 @@ mg-bludit/
 ## 🔄 版本信息
 
 - **Maigewan CMS 版本**: 1.0.0
-- **基于**: Bludit 3.16.2 (Valencia)
+- **基于**: Maigewan 3.16.2 (Valencia)
 - **发布日期**: 2025-11-07
 - **PHP 兼容性**: 8.0+
 
@@ -123,12 +123,12 @@ mg-bludit/
 
 ## 📄 许可证
 
-基于原 Bludit 项目的 MIT 许可证。
+基于原 Maigewan 项目的 MIT 许可证。
 
 ## 🔗 相关链接
 
-- [问题反馈](https://github.com/3mmmbulus/mg-bludit/issues)
-- [原始 Bludit 项目](https://github.com/bludit/bludit)
+- [问题反馈](https://github.com/3mmmbulus/mg-maigewan/issues)
+- [原始 Maigewan 项目](https://github.com/maigewan/maigewan)
 
 ## 💡 支持
 

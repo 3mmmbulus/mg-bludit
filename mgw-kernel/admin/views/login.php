@@ -1,4 +1,4 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
 echo '<h1 class="text-center mb-3 mt-3 font-weight-normal" style="color: #555;">' . $site->title() . '</h1>';
 
@@ -34,4 +34,4 @@ echo '
 
 echo '</form>';
 
-echo '<p class="mt-3 text-right">' . $L->g('Powered by Bludit') . ((defined('BLUDIT_PRO')) ? ' PRO' : '') . '</p>';
+echo '<p class="mt-3 text-right">' . $L->g('Powered by Maigewan') . ((defined('MAIGEWAN_PRO')) ? ' PRO' : '') . '</p>';

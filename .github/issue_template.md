@@ -6,7 +6,7 @@ Complete here.
 ### Steps to reproduce the problem
 Complete here.
 
-### Bludit version
+### Maigewan version
 Complete here.
 
 ### PHP version

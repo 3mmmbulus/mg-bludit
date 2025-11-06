@@ -23,7 +23,7 @@ mgw-content/workspaces/*
 
 # Development tools
 dbgenerator.php
-bl-content-migrator
+mgw-content-migrator
 
 # Unused plugins
 mgw-plugins/timemachine
@@ -37,7 +37,7 @@ mgw-plugins/domain-migrator/
 mgw-plugins/tail-writer/
 
 # Pro version
-mgw-kernel/bludit.pro.php
+mgw-kernel/maigewan.pro.php
 
 # Unused themes
 mgw-kernel/admin/themes/gris
@@ -69,8 +69,8 @@ error_log
 *.old
 
 # Backup directory
-bludit-3.0/
-bludit-backup-*.tar.gz
+maigewan-3.0/
+maigewan-backup-*.tar.gz
 
 # Test files
 php83_compatibility_test.php
