@@ -127,7 +127,6 @@ mg-bludit/
 
 ## 🔗 相关链接
 
-- [官方文档](https://docs.bludit.com)
 - [问题反馈](https://github.com/3mmmbulus/mg-bludit/issues)
 - [原始 Bludit 项目](https://github.com/bludit/bludit)
 

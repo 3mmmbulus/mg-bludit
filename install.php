@@ -43,9 +43,9 @@ define('DS', DIRECTORY_SEPARATOR);
 
 // PHP paths
 define('PATH_ROOT',		__DIR__ . DS);
-define('PATH_CONTENT',		PATH_ROOT . 'bl-content' . DS);
-define('PATH_KERNEL',		PATH_ROOT . 'bl-kernel' . DS);
-define('PATH_LANGUAGES',	PATH_ROOT . 'bl-languages' . DS);
+define('PATH_CONTENT',		PATH_ROOT . 'mgw-content' . DS);
+define('PATH_KERNEL',		PATH_ROOT . 'mgw-kernel' . DS);
+define('PATH_LANGUAGES',	PATH_ROOT . 'mgw-languages' . DS);
 define('PATH_UPLOADS',		PATH_CONTENT . 'uploads' . DS);
 define('PATH_TMP',		PATH_CONTENT . 'tmp' . DS);
 define('PATH_PAGES',		PATH_CONTENT . 'pages' . DS);
@@ -213,7 +213,7 @@ RewriteEngine on
 RewriteBase ' . HTML_PATH_ROOT . '
 
 # Deny direct access to the next directories
-RewriteRule ^bl-content/(databases|workspaces|pages|tmp)/.*$ - [R=404,L]
+RewriteRule ^mgw-content/(databases|workspaces|pages|tmp)/.*$ - [R=404,L]
 
 # All URL process by index.php
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -247,7 +247,7 @@ RewriteRule ^(.*) index.php [PT,L]
 
 	// Check if the directory content is writeable.
 	if (!is_writable(PATH_CONTENT)) {
-		$errorText = 'Writing test failure, check directory "bl-content" permissions.';
+		$errorText = 'Writing test failure, check directory "mgw-content" permissions.';
 		error_log('[ERROR] ' . $errorText, 0);
 		array_push($output, $errorText);
 	}
@@ -609,16 +609,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<meta name="robots" content="noindex,nofollow">
 
 	<!-- Favicon -->
-	<link rel="icon" type="image/png" href="bl-kernel/img/favicon.png?version=<?php echo time() ?>">
+	<link rel="icon" type="image/png" href="mgw-kernel/img/favicon.png?version=<?php echo time() ?>">
 
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="bl-kernel/css/bootstrap.min.css?version=<?php echo time() ?>">
-	<link rel="stylesheet" type="text/css" href="bl-kernel/admin/themes/booty/css/bludit.css?version=<?php echo time() ?>">
+	<link rel="stylesheet" type="text/css" href="mgw-kernel/css/bootstrap.min.css?version=<?php echo time() ?>">
+	<link rel="stylesheet" type="text/css" href="mgw-kernel/admin/themes/booty/css/bludit.css?version=<?php echo time() ?>">
 
 	<!-- Javascript -->
-	<script charset="utf-8" src="bl-kernel/js/jquery.min.js?version=<?php echo time() ?>"></script>
-	<script charset="utf-8" src="bl-kernel/js/bootstrap.bundle.min.js?version=<?php echo time() ?>"></script>
-	<script charset="utf-8" src="bl-kernel/js/jstz.min.js?version=<?php echo time() ?>"></script>
+	<script charset="utf-8" src="mgw-kernel/js/jquery.min.js?version=<?php echo time() ?>"></script>
+	<script charset="utf-8" src="mgw-kernel/js/bootstrap.bundle.min.js?version=<?php echo time() ?>"></script>
+	<script charset="utf-8" src="mgw-kernel/js/jstz.min.js?version=<?php echo time() ?>"></script>
 </head>
 
 <body class="login">

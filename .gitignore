@@ -10,56 +10,56 @@ Thumbs.db
 .vscode/
 
 # Content and user data (keep structure, ignore content)
-bl-content/databases/*.php
-bl-content/pages/*
-bl-content/tmp/*
-bl-content/uploads/*
-bl-content/workspaces/*
-!bl-content/.keep
-!bl-content/pages/.gitkeep
-!bl-content/tmp/.gitkeep
-!bl-content/uploads/.gitkeep
-!bl-content/workspaces/.gitkeep
+mgw-content/databases/*.php
+mgw-content/pages/*
+mgw-content/tmp/*
+mgw-content/uploads/*
+mgw-content/workspaces/*
+!mgw-content/.keep
+!mgw-content/pages/.gitkeep
+!mgw-content/tmp/.gitkeep
+!mgw-content/uploads/.gitkeep
+!mgw-content/workspaces/.gitkeep
 
 # Development tools
 dbgenerator.php
 bl-content-migrator
 
 # Unused plugins
-bl-plugins/timemachine
-bl-plugins/timemachine-x
-bl-plugins/discovery
-bl-plugins/updater
-bl-plugins/medium-editor
-bl-plugins/quill
-bl-plugins/yandex-metrica/
-bl-plugins/domain-migrator/
-bl-plugins/tail-writer/
+mgw-plugins/timemachine
+mgw-plugins/timemachine-x
+mgw-plugins/discovery
+mgw-plugins/updater
+mgw-plugins/medium-editor
+mgw-plugins/quill
+mgw-plugins/yandex-metrica/
+mgw-plugins/domain-migrator/
+mgw-plugins/tail-writer/
 
 # Pro version
-bl-kernel/bludit.pro.php
+mgw-kernel/bludit.pro.php
 
 # Unused themes
-bl-kernel/admin/themes/gris
-bl-themes/docs
-bl-themes/typerite
-bl-themes/docsx
-bl-themes/editorial
-bl-themes/mediumish
-bl-themes/clean-blog
-bl-themes/grayscale
-bl-themes/massively
-bl-themes/hyperspace
-bl-themes/striped
-bl-themes/log
-bl-themes/micro
-bl-themes/tagg
-bl-themes/small
-bl-themes/future-imperfect
-bl-themes/social-network
+mgw-kernel/admin/themes/gris
+mgw-themes/docs
+mgw-themes/typerite
+mgw-themes/docsx
+mgw-themes/editorial
+mgw-themes/mediumish
+mgw-themes/clean-blog
+mgw-themes/grayscale
+mgw-themes/massively
+mgw-themes/hyperspace
+mgw-themes/striped
+mgw-themes/log
+mgw-themes/micro
+mgw-themes/tagg
+mgw-themes/small
+mgw-themes/future-imperfect
+mgw-themes/social-network
 
 # Debug and logs
-bl-content/debug.txt
+mgw-content/debug.txt
 *.log
 error_log
 
@@ -70,10 +70,10 @@ error_log
 
 # Backup directory
 bludit-3.0/
+bludit-backup-*.tar.gz
 
 # Test files
 php83_compatibility_test.php
-1.sh
 
 # Temporary files
 *.tmp

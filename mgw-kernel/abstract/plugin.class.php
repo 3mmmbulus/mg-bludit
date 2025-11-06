@@ -8,11 +8,11 @@ class Plugin
 	public $directoryName;
 
 	// (string) Absolute database filename and path
-	// Ex: /www/bludit/bl-content/plugins/sitemap/db.php
+	// Ex: /www/bludit/mgw-content/plugins/sitemap/db.php
 	public $filenameDb;
 
 	// (string) Absolute metadata filename and path
-	// Ex: /www/bludit/bl-plugins/sitemap/metadata.json
+	// Ex: /www/bludit/mgw-plugins/sitemap/metadata.json
 	public $filenameMetadata;
 
 	// (array) Plugin metadata
