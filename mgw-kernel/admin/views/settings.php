@@ -126,7 +126,7 @@ echo Bootstrap::formInputHidden(array(
 			var homepage = $("#jshomepage").select2({
 				placeholder: "<?php $L->p('Start typing to see a list of suggestions.') ?>",
 				allowClear: true,
-				theme: "bootstrap4",
+				theme: "bootstrap5",
 				minimumInputLength: 2,
 				ajax: {
 					url: HTML_PATH_ADMIN_ROOT + "ajax/get-published",
@@ -174,7 +174,7 @@ echo Bootstrap::formInputHidden(array(
 			var homepage = $("#jspageNotFound").select2({
 				placeholder: "<?php $L->p('Start typing to see a list of suggestions.') ?>",
 				allowClear: true,
-				theme: "bootstrap4",
+				theme: "bootstrap5",
 				minimumInputLength: 2,
 				ajax: {
 					url: HTML_PATH_ADMIN_ROOT + "ajax/get-published",
@@ -558,9 +558,9 @@ echo Bootstrap::formInputHidden(array(
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 col-sm-12 p-0 pr-2">
-				<div class="custom-file">
-					<input id="jssiteLogoInputFile" class="custom-file-input" type="file" name="inputFile">
-					<label for="jssiteLogoInputFile" class="custom-file-label"><?php $L->p('Upload image'); ?></label>
+				<div class="mb-3">
+					<label for="jssiteLogoInputFile" class="form-label"><?php $L->p('Upload image'); ?></label>
+					<input id="jssiteLogoInputFile" class="form-control" type="file" name="inputFile">
 				</div>
 				<button id="jsbuttonRemoveLogo" type="button" class="btn btn-primary w-100 mt-4 mb-4"><i class="fa fa-trash"></i><?php $L->p('Remove logo') ?></button>
 			</div>

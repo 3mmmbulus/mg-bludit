@@ -217,7 +217,7 @@ echo Bootstrap::formInputHidden(array(
 					var parent = $("#jsparent").select2({
 						placeholder: "",
 						allowClear: true,
-						theme: "bootstrap4",
+						theme: "bootstrap5",
 						minimumInputLength: 2,
 						ajax: {
 							url: HTML_PATH_ADMIN_ROOT + "ajax/get-published",

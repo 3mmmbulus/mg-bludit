@@ -651,11 +651,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<form id="jsformInstaller" method="post" action="" autocomplete="off">
 						<input type="hidden" name="timezone" id="jstimezone" value="UTC">
 
-						<div class="form-group">
+						<div class="mb-3">
 							<input type="text" dir="auto" value="admin" class="form-control form-control-lg" id="jsusername" name="username" placeholder="Username" disabled>
 						</div>
 
-						<div class="form-group mb-0">
+						<div class="mb-0">
 							<input type="password" class="form-control form-control-lg" id="jspassword" name="password" placeholder="<?php $L->p('Password') ?>">
 						</div>
 
@@ -664,7 +664,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<label class="form-check-label" for="jsshowPassword"><?php $L->p('Show password') ?></label>
 						</div>
 
-						<div class="form-group mt-4">
+						<div class="mt-4 mb-3">
 							<button type="submit" class="btn btn-primary btn-lg mr-2 w-100" name="install"><?php $L->p('Install') ?></button>
 						</div>
 					</form>
@@ -682,7 +682,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							?>
 						</select>
 
-						<div class="form-group mt-4">
+						<div class="mt-4 mb-3">
 							<button type="submit" class="btn btn-primary btn-lg mr-2 w-100"><?php $L->p('Next') ?></button>
 						</div>
 					</form>

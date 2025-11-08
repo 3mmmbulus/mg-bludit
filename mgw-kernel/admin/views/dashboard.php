@@ -54,7 +54,7 @@
                             placeholder: "<?php $L->p('Start typing to see a list of suggestions') ?>",
                             allowClear: true,
                             width: "100%",
-                            theme: "bootstrap4",
+                            theme: "bootstrap5",
                             minimumInputLength: 2,
                             dropdownParent: "#jsclippyContainer",
                             language: {

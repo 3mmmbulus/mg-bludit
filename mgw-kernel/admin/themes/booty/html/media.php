@@ -29,9 +29,9 @@ $numberOfPages = count($listOfFilesByPage);
 
 		<!-- Form and Input file -->
 		<form name="maigewanFormUpload" id="jsmaigewanFormUpload" enctype="multipart/form-data">
-			<div class="custom-file">
-				<input type="file" class="custom-file-input" id="jsimages" name="images[]" multiple>
-				<label class="custom-file-label" for="jsimages"><?php $L->p('Choose images to upload'); ?></label>
+			<div class="mb-3">
+				<label for="jsimages" class="form-label"><?php $L->p('Choose images to upload'); ?></label>
+				<input type="file" class="form-control" id="jsimages" name="images[]" multiple>
 			</div>
 		</form>
 

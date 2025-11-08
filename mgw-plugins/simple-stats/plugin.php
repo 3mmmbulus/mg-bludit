@@ -231,8 +231,8 @@ EOF;
 		$html .= '
 		<nav>
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-		    <a class="nav-item nav-link active" id="nav-stats-chart-tab" data-toggle="tab" href="#nav-stats-chart" role="tab" aria-controls="nav-stats-chart" aria-selected="true">' . $data['tabTitleChart'] . '</a>
-		    <a class="nav-item nav-link" id="nav-stats-table-tab" data-toggle="tab" href="#nav-stats-table" role="tab" aria-controls="nav-stats-table" aria-selected="false">' . $data['tabTitleTable'] . '</a>
+		    <a class="nav-item nav-link active" id="nav-stats-chart-tab" data-bs-toggle="tab" href="#nav-stats-chart" role="tab" aria-controls="nav-stats-chart" aria-selected="true">' . $data['tabTitleChart'] . '</a>
+		    <a class="nav-item nav-link" id="nav-stats-table-tab" data-bs-toggle="tab" href="#nav-stats-table" role="tab" aria-controls="nav-stats-table" aria-selected="false">' . $data['tabTitleTable'] . '</a>
 		  </div>
 		</nav>
 		<div class="tab-content my-2" id="nav-tabContent">
