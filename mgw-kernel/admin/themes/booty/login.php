@@ -13,7 +13,9 @@
   <!-- CSS -->
   <?php
   echo Theme::cssBootstrap();
+  echo Theme::cssBootstrapIcons();
   echo Theme::css(array(
+    'bootstrap5-compat.css',
     'maigewan.css',
     'maigewan.bootstrap.css'
   ), DOMAIN_ADMIN_THEME_CSS);
@@ -23,6 +25,7 @@
   <?php
   echo Theme::jquery();
   echo Theme::jsBootstrap();
+  echo Theme::js('bootstrap5-compat.js', DOMAIN_CORE_JS, null);
   ?>
 
   <!-- Plugins -->

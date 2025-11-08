@@ -13,14 +13,14 @@
 <!-- TABS -->
 <nav class="mb-3">
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
-		<a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="nav-general" aria-selected="false"><?php $L->p('General') ?></a>
-		<a class="nav-item nav-link" id="nav-advanced-tab" data-toggle="tab" href="#advanced" role="tab" aria-controls="nav-advanced" aria-selected="false"><?php $L->p('Advanced') ?></a>
-		<a class="nav-item nav-link" id="nav-seo-tab" data-toggle="tab" href="#seo" role="tab" aria-controls="nav-seo" aria-selected="false"><?php $L->p('SEO') ?></a>
-		<a class="nav-item nav-link" id="nav-social-tab" data-toggle="tab" href="#social" role="tab" aria-controls="nav-social" aria-selected="false"><?php $L->p('Social Networks') ?></a>
-		<a class="nav-item nav-link" id="nav-images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="nav-images" aria-selected="false"><?php $L->p('Images') ?></a>
-		<a class="nav-item nav-link" id="nav-language-tab" data-toggle="tab" href="#language" role="tab" aria-controls="nav-language" aria-selected="false"><?php $L->p('Language') ?></a>
-		<a class="nav-item nav-link" id="nav-custom-fields-tab" data-toggle="tab" href="#custom-fields" role="tab" aria-controls="nav-custom-fields" aria-selected="false"><?php $L->p('Custom fields') ?></a>
-		<a class="nav-item nav-link" id="nav-logo-tab" data-toggle="tab" href="#logo" role="tab" aria-controls="nav-logo" aria-selected="false"><?php $L->p('Logo') ?></a>
+		<a class="nav-item nav-link active" id="nav-general-tab" data-bs-toggle="tab" href="#general" role="tab" aria-controls="nav-general" aria-selected="false"><?php $L->p('General') ?></a>
+		<a class="nav-item nav-link" id="nav-advanced-tab" data-bs-toggle="tab" href="#advanced" role="tab" aria-controls="nav-advanced" aria-selected="false"><?php $L->p('Advanced') ?></a>
+		<a class="nav-item nav-link" id="nav-seo-tab" data-bs-toggle="tab" href="#seo" role="tab" aria-controls="nav-seo" aria-selected="false"><?php $L->p('SEO') ?></a>
+		<a class="nav-item nav-link" id="nav-social-tab" data-bs-toggle="tab" href="#social" role="tab" aria-controls="nav-social" aria-selected="false"><?php $L->p('Social Networks') ?></a>
+		<a class="nav-item nav-link" id="nav-images-tab" data-bs-toggle="tab" href="#images" role="tab" aria-controls="nav-images" aria-selected="false"><?php $L->p('Images') ?></a>
+		<a class="nav-item nav-link" id="nav-language-tab" data-bs-toggle="tab" href="#language" role="tab" aria-controls="nav-language" aria-selected="false"><?php $L->p('Language') ?></a>
+		<a class="nav-item nav-link" id="nav-custom-fields-tab" data-bs-toggle="tab" href="#custom-fields" role="tab" aria-controls="nav-custom-fields" aria-selected="false"><?php $L->p('Custom fields') ?></a>
+		<a class="nav-item nav-link" id="nav-logo-tab" data-bs-toggle="tab" href="#logo" role="tab" aria-controls="nav-logo" aria-selected="false"><?php $L->p('Logo') ?></a>
 	</div>
 </nav>
 
@@ -601,14 +601,22 @@ echo Bootstrap::formInputHidden(array(
 
 <script>
 	// Open current tab after refresh page
-	$(function() {
-		$('a[data-toggle="tab"]').on('click', function(e) {
-			window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+	document.addEventListener('DOMContentLoaded', function() {
+		// Save active tab on click
+		document.querySelectorAll('a[data-bs-toggle="tab"]').forEach(function(tabEl) {
+			tabEl.addEventListener('click', function(e) {
+				window.localStorage.setItem('activeTab', e.target.getAttribute('href'));
+			});
 		});
+		
+		// Restore active tab on page load
 		var activeTab = window.localStorage.getItem('activeTab');
 		if (activeTab) {
-			$('#nav-tab a[href="' + activeTab + '"]').tab('show');
-			//window.localStorage.removeItem("activeTab");
+			var tabElement = document.querySelector('#nav-tab a[href="' + activeTab + '"]');
+			if (tabElement) {
+				var tab = new bootstrap.Tab(tabElement);
+				tab.show();
+			}
 		}
 	});
 </script>

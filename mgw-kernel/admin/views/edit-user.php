@@ -13,10 +13,10 @@
 <!-- TABS -->
 <nav class="mb-3">
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
-		<a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php $L->p('Profile') ?></a>
-		<a class="nav-item nav-link" id="nav-picture-tab" data-toggle="tab" href="#picture" role="tab" aria-controls="nav-picture" aria-selected="false"><?php $L->p('Profile picture') ?></a>
-		<a class="nav-item nav-link" id="nav-security-tab" data-toggle="tab" href="#security" role="tab" aria-controls="nav-security" aria-selected="false"><?php $L->p('Security') ?></a>
-		<a class="nav-item nav-link" id="nav-social-tab" data-toggle="tab" href="#social" role="tab" aria-controls="nav-social" aria-selected="false"><?php $L->p('Social Networks') ?></a>
+		<a class="nav-item nav-link active" id="nav-profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php $L->p('Profile') ?></a>
+		<a class="nav-item nav-link" id="nav-picture-tab" data-bs-toggle="tab" href="#picture" role="tab" aria-controls="nav-picture" aria-selected="false"><?php $L->p('Profile picture') ?></a>
+		<a class="nav-item nav-link" id="nav-security-tab" data-bs-toggle="tab" href="#security" role="tab" aria-controls="nav-security" aria-selected="false"><?php $L->p('Security') ?></a>
+		<a class="nav-item nav-link" id="nav-social-tab" data-bs-toggle="tab" href="#social" role="tab" aria-controls="nav-social" aria-selected="false"><?php $L->p('Social Networks') ?></a>
 	</div>
 </nav>
 
@@ -103,9 +103,9 @@ echo Bootstrap::formInputHidden(array(
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-sm-12 p-0 pr-2">
-					<div class="custom-file">
-						<input type="file" class="custom-file-input" id="jsprofilePictureInputFile" name="profilePictureInputFile">
-						<label class="custom-file-label" for="jsprofilePictureInputFile"><?php $L->p('Upload image'); ?></label>
+					<div class="mb-3">
+						<label for="jsprofilePictureInputFile" class="form-label"><?php $L->p('Upload image'); ?></label>
+						<input type="file" class="form-control" id="jsprofilePictureInputFile" name="profilePictureInputFile">
 					</div>
 					<!-- <button id="jsbuttonRemovePicture" type="button" class="btn btn-primary w-100 mt-4 mb-4"><i class="fa fa-trash"></i> Remove picture</button> -->
 				</div>
@@ -150,7 +150,7 @@ echo Bootstrap::formInputHidden(array(
 		echo Bootstrap::formTitle(array('title' => $L->g('Password')));
 
 		echo '
-		<div class="form-group">
+		<div class="mb-3">
 			<a href="' . HTML_PATH_ADMIN_ROOT . 'user-password/' . $user->username() . '" class="btn btn-primary mr-2">' . $L->g('Change password') . '</a>
 		</div>
 		';
@@ -179,7 +179,7 @@ echo Bootstrap::formInputHidden(array(
 
 			if ($user->enabled()) {
 				echo '
-				<div class="form-group row">
+				<div class="mb-3 row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
 					<button type="submit" class="btn btn-warning mr-2" id="jsdisableUser" name="disableUser">' . $L->g('Disable user') . '</button>
@@ -302,15 +302,22 @@ echo Bootstrap::formInputHidden(array(
 
 <script>
 	// Open current tab after refresh page
-	$(function() {
-		$('a[data-toggle="tab"]').on('click', function(e) {
-			window.localStorage.setItem('activeTab', $(e.target).attr('href'));
-			console.log($(e.target).attr('href'));
+	document.addEventListener('DOMContentLoaded', function() {
+		// Save active tab on click
+		document.querySelectorAll('a[data-bs-toggle="tab"]').forEach(function(tabEl) {
+			tabEl.addEventListener('click', function(e) {
+				window.localStorage.setItem('activeTab', e.target.getAttribute('href'));
+			});
 		});
+		
+		// Restore active tab on page load
 		var activeTab = window.localStorage.getItem('activeTab');
 		if (activeTab) {
-			$('#nav-tab a[href="' + activeTab + '"]').tab('show');
-			//window.localStorage.removeItem("activeTab");
+			var tabElement = document.querySelector('#nav-tab a[href="' + activeTab + '"]');
+			if (tabElement) {
+				var tab = new bootstrap.Tab(tabElement);
+				tab.show();
+			}
 		}
 	});
 </script>

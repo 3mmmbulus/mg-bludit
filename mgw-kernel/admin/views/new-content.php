@@ -43,7 +43,7 @@ echo Bootstrap::formInputHidden(array(
 <!-- TOOLBAR -->
 <div id="jseditorToolbar" class="mb-1">
 	<div id="jseditorToolbarRight" class="btn-group btn-group-sm float-right" role="group" aria-label="Toolbar right">
-		<button type="button" class="btn btn-light" id="jsmediaManagerOpenModal" data-toggle="modal" data-target="#jsmediaManagerModal"><span class="fa fa-image"></span> <?php $L->p('Images') ?></button>
+		<button type="button" class="btn btn-light" id="jsmediaManagerOpenModal" data-bs-toggle="modal" data-bs-target="#jsmediaManagerModal"><span class="fa fa-image"></span> <?php $L->p('Images') ?></button>
 		<button type="button" class="btn btn-light" id="jsoptionsSidebar" style="z-index:30"><span class="fa fa-cog"></span> <?php $L->p('Options') ?></button>
 	</div>
 
@@ -71,12 +71,12 @@ echo Bootstrap::formInputHidden(array(
 <div id="jseditorSidebar">
 	<nav>
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-link active show" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="general"><?php $L->p('General') ?></a>
-			<a class="nav-link" id="nav-advanced-tab" data-toggle="tab" href="#nav-advanced" role="tab" aria-controls="advanced"><?php $L->p('Advanced') ?></a>
+			<a class="nav-link active show" id="nav-general-tab" data-bs-toggle="tab" href="#nav-general" role="tab" aria-controls="general"><?php $L->p('General') ?></a>
+			<a class="nav-link" id="nav-advanced-tab" data-bs-toggle="tab" href="#nav-advanced" role="tab" aria-controls="advanced"><?php $L->p('Advanced') ?></a>
 			<?php if (!empty($site->customFields())) : ?>
-				<a class="nav-link" id="nav-custom-tab" data-toggle="tab" href="#nav-custom" role="tab" aria-controls="custom"><?php $L->p('Custom') ?></a>
+				<a class="nav-link" id="nav-custom-tab" data-bs-toggle="tab" href="#nav-custom" role="tab" aria-controls="custom"><?php $L->p('Custom') ?></a>
 			<?php endif ?>
-			<a class="nav-link" id="nav-seo-tab" data-toggle="tab" href="#nav-seo" role="tab" aria-controls="seo"><?php $L->p('SEO') ?></a>
+			<a class="nav-link" id="nav-seo-tab" data-bs-toggle="tab" href="#nav-seo" role="tab" aria-controls="seo"><?php $L->p('SEO') ?></a>
 		</div>
 	</nav>
 

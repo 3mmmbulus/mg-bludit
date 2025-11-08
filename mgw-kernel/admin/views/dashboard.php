@@ -41,7 +41,7 @@
 
                 <div class="row">
                     <div class="col p-0">
-                        <div class="form-group">
+                        <div class="mb-3">
                             <select id="jsclippy" class="clippy" name="state"></select>
                         </div>
                     </div>

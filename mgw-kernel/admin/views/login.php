@@ -10,13 +10,13 @@ echo Bootstrap::formInputHidden(array(
 ));
 
 echo '
-	<div class="form-group">
+	<div class="mb-3">
 		<input type="text" dir="auto" value="' . (isset($_POST['username']) ? Sanitize::html($_POST['username']) : '') . '" class="form-control form-control-lg" id="jsusername" name="username" placeholder="' . $L->g('Username') . '" autofocus>
 	</div>
 	';
 
 echo '
-	<div class="form-group">
+	<div class="mb-3">
 		<input type="password" class="form-control form-control-lg" id="jspassword" name="password" placeholder="' . $L->g('Password') . '">
 	</div>
 	';
@@ -27,7 +27,7 @@ echo '
 		<label class="form-check-label" for="jsremember">' . $L->g('Remember me') . '</label>
 	</div>
 
-	<div class="form-group mt-3">
+	<div class="mb-3 mt-3">
 		<button type="submit" class="btn btn-primary btn-lg mr-2 w-100" name="save">' . $L->g('Login') . '</button>
 	</div>
 	';

@@ -99,7 +99,7 @@ function table($type) {
 					echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$page->permalink().'"><i class="fa fa-desktop"></i>'.$L->g('View').'</a>'.PHP_EOL;
 					echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="fa fa-edit"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
 					if (count($page->children())==0) {
-						echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+						echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
 					}
 					echo '</td>';
 
@@ -129,7 +129,7 @@ function table($type) {
 						echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$child->permalink().'"><i class="fa fa-desktop"></i>'.$L->g('View').'</a>'.PHP_EOL;
 						}
 						echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$child->key().'"><i class="fa fa-edit"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
-						echo '<a class="ml-2 text-danger deletePageButton d-block d-sm-inline" href="#" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$child->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+						echo '<a class="ml-2 text-danger deletePageButton d-block d-sm-inline" href="#" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$child->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
 						echo '</td>';
 
 						echo '</tr>';
@@ -167,7 +167,7 @@ function table($type) {
 				}
 				echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="fa fa-edit"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
 				if (count($page->children())==0) {
-					echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+					echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="fa fa-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
 				}
 				echo '</td>';
 
@@ -189,23 +189,23 @@ function table($type) {
 <!-- TABS -->
 <ul class="nav nav-tabs" role="tablist">
 	<li class="nav-item">
-		<a class="nav-link active" id="pages-tab" data-toggle="tab" href="#pages" role="tab"><?php $L->p('Pages') ?></a>
+		<a class="nav-link active" id="pages-tab" data-bs-toggle="tab" href="#pages" role="tab"><?php $L->p('Pages') ?></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" id="static-tab" data-toggle="tab" href="#static" role="tab"><?php $L->p('Static') ?></a>
+		<a class="nav-link" id="static-tab" data-bs-toggle="tab" href="#static" role="tab"><?php $L->p('Static') ?></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" id="sticky-tab" data-toggle="tab" href="#sticky" role="tab"><?php $L->p('Sticky') ?></a>
+		<a class="nav-link" id="sticky-tab" data-bs-toggle="tab" href="#sticky" role="tab"><?php $L->p('Sticky') ?></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" id="scheduled-tab" data-toggle="tab" href="#scheduled" role="tab"><?php $L->p('Scheduled') ?> <?php if (count($scheduled)>0) { echo '<span class="badge badge-danger">'.count($scheduled).'</span>'; } ?></a>
+		<a class="nav-link" id="scheduled-tab" data-bs-toggle="tab" href="#scheduled" role="tab"><?php $L->p('Scheduled') ?> <?php if (count($scheduled)>0) { echo '<span class="badge badge-danger">'.count($scheduled).'</span>'; } ?></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" id="draft-tab" data-toggle="tab" href="#draft" role="tab"><?php $L->p('Draft') ?></a>
+		<a class="nav-link" id="draft-tab" data-bs-toggle="tab" href="#draft" role="tab"><?php $L->p('Draft') ?></a>
 	</li>
 	<?php if (!empty($autosave)): ?>
 	<li class="nav-item">
-		<a class="nav-link" id="autosave-tab" data-toggle="tab" href="#autosave" role="tab"><?php $L->p('Autosave') ?></a>
+		<a class="nav-link" id="autosave-tab" data-bs-toggle="tab" href="#autosave" role="tab"><?php $L->p('Autosave') ?></a>
 	</li>
 	<?php endif; ?>
 </ul>
@@ -323,5 +323,11 @@ $(document).ready(function() {
 <script>
 	// Open the tab defined in the URL
 	const anchor = window.location.hash;
-	$(`a[href="${anchor}"]`).tab('show');
+	if (anchor) {
+		const tabElement = document.querySelector(`a[href="${anchor}"]`);
+		if (tabElement) {
+			const tab = new bootstrap.Tab(tabElement);
+			tab.show();
+		}
+	}
 </script>

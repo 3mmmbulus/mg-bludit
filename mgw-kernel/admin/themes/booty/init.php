@@ -26,7 +26,7 @@ class Bootstrap
 				<p>$modalText</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn $buttonSecondaryClass" data-dismiss="modal">$buttonSecondary</button>
+				<button type="button" class="btn $buttonSecondaryClass" data-bs-dismiss="modal">$buttonSecondary</button>
 				<button type="button" class="btn $buttonPrimaryClass">$buttonPrimary</button>
 			</div>
 		</div>
@@ -119,7 +119,7 @@ EOF;
 			$tip = '<small class="form-text text-muted">' . $args['tip'] . '</small>';
 		}
 
-		$class = 'form-group m-0';
+		$class = 'mb-3';
 		if (isset($args['class'])) {
 			$class = $args['class'];
 		}
@@ -155,14 +155,14 @@ EOF;
 			$id = $args['id'];
 		}
 
-		$class = 'custom-file';
+		$class = 'mb-3';
 		if (isset($args['class'])) {
 			$class = $class . ' ' . $args['class'];
 		}
 
 		$html  = '<div class="' . $class . '">';
-		$html .= '<input type="file" class="custom-file-input" id="' . $id . '">';
-		$html .= '<label class="custom-file-label" for="' . $id . '">' . $args['label'] . '</label>';
+		$html .= '<label for="' . $id . '" class="form-label">' . $args['label'] . '</label>';
+		$html .= '<input type="file" class="form-control" id="' . $id . '" name="' . $args['name'] . '">';
 		$html .= '</div>';
 
 		return $html;
@@ -180,7 +180,7 @@ EOF;
 			$class = $class . ' ' . $args['class'];
 		}
 
-		$html = '<div class="form-group row">';
+		$html = '<div class="mb-3 row">';
 
 		if (!empty($args['label'])) {
 			$html .= '<label for="' . $id . '" class="col-sm-2 col-form-label">' . $args['label'] . '</label>';
@@ -209,7 +209,7 @@ EOF;
 			$class = $class . ' ' . $args['class'];
 		}
 
-		$html = '<div class="form-group m-0">';
+		$html = '<div class="mb-3">';
 		if (!empty($args['label'])) {
 			$html .= '<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100" for="' . $id . '">' . $args['label'] . '</label>';
 		}
@@ -257,7 +257,7 @@ EOF;
 		}
 
 		return <<<EOF
-<div class="form-group row">
+<div class="mb-3 row">
 	$label
 	<div class="col-sm-10">
 		<input class="$class" id="$id" name="$name" value="$value" placeholder="$placeholder" type="$type" dir="auto" $disabled $readonly>
@@ -280,7 +280,7 @@ EOF;
 		}
 		$disabled = isset($args['disabled']) ? 'disabled' : '';
 
-		$class = 'form-group m-0';
+		$class = 'mb-3';
 		if (isset($args['class'])) {
 			$class = $args['class'];
 		}
@@ -322,12 +322,12 @@ EOF;
 			$id = $args['id'];
 		}
 
-		$class = 'custom-select';
+		$class = 'form-select';
 		if (isset($args['class'])) {
 			$class = $class . ' ' . $args['class'];
 		}
 
-		$html = '<div class="form-group row">';
+		$html = '<div class="mb-3 row">';
 
 		if (isset($args['label'])) {
 			$html .= '<label for="' . $id . '" class="col-sm-2 col-form-label">' . $args['label'] . '</label>';
@@ -355,12 +355,12 @@ EOF;
 			$id = $args['id'];
 		}
 
-		$class = 'custom-select';
+		$class = 'form-select';
 		if (!empty($args['class'])) {
 			$class = $class . ' ' . $args['class'];
 		}
 
-		$html = '<div class="form-group m-0">';
+		$html = '<div class="mb-3">';
 
 		if (!empty($args['label'])) {
 			$html .= '<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100" for="' . $id . '">' . $args['label'] . '</label>';
