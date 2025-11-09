@@ -75,6 +75,9 @@ maigewan-backup-*.tar.gz
 # Test files
 php83_compatibility_test.php
 
+# Tabler files (UI framework)
+tabler/
+
 # Temporary files
 *.tmp
 *.temp
