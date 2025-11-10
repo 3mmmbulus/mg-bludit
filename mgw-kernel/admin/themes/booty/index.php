@@ -26,7 +26,8 @@
 			'maigewan-dom.js',
 			'maigewan-datetime.js',
 			'maigewan-select.js',
-			'maigewan-sortable.js'
+			'maigewan-sortable.js',
+			'spa-enhancer.js'
 		), DOMAIN_CORE_JS, null);
 		echo Theme::jsBootstrap();
 		echo Theme::js('functions.js', DOMAIN_CORE_JS, null);
@@ -71,7 +72,7 @@
 		</div>
 
 		<!-- RIGHT MAIN -->
-		<div class="col-lg-10 pt-3 pb-1 h-100">
+		<div id="maigewan-main-content" class="col-lg-10 pt-3 pb-1 h-100">
 		<?php
 			if (Sanitize::pathFile(PATH_ADMIN_VIEWS, $layout['view'].'.php')) {
 				include(PATH_ADMIN_VIEWS.$layout['view'].'.php');

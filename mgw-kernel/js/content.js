@@ -76,6 +76,11 @@
 	function init() {
 		initDeletePage();
 		initTabNavigation();
+		
+		// Apply content enhancer if available
+		if (window.ContentEnhancer) {
+			window.ContentEnhancer.init();
+		}
 	}
 
 	// Initialize when DOM is ready
