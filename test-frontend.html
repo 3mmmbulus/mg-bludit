@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maigewan 前端库测试</title>
+    <link rel="stylesheet" href="mgw-kernel/css/bootstrap.min.css">
+    <link rel="stylesheet" href="mgw-kernel/css/bootstrap-icons/bootstrap-icons.css">
+    <style>
+        body { padding: 20px; }
+        .test-section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .test-section h3 { color: #0078d4; }
+        .success { color: green; }
+        .error { color: red; }
+        #testResults { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="bi bi-lightning-charge"></i> Maigewan 前端现代化测试</h1>
+        <p class="lead">测试 Font Awesome → Bootstrap Icons 和 jQuery → 原生JS库</p>
+
+        <div class="test-section">
+            <h3><i class="bi bi-palette"></i> Bootstrap Icons 测试</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <p><i class="bi bi-speedometer2"></i> Dashboard</p>
+                    <p><i class="bi bi-house"></i> Home</p>
+                    <p><i class="bi bi-plus-circle"></i> Add</p>
+                    <p><i class="bi bi-person"></i> User</p>
+                </div>
+                <div class="col-md-3">
+                    <p><i class="bi bi-folder"></i> Folder</p>
+                    <p><i class="bi bi-bookmark"></i> Bookmark</p>
+                    <p><i class="bi bi-people"></i> Users</p>
+                    <p><i class="bi bi-gear"></i> Settings</p>
+                </div>
+                <div class="col-md-3">
+                    <p><i class="bi bi-puzzle"></i> Plugins</p>
+                    <p><i class="bi bi-display"></i> Display</p>
+                    <p><i class="bi bi-image"></i> Image</p>
+                    <p><i class="bi bi-pencil"></i> Edit</p>
+                </div>
+                <div class="col-md-3">
+                    <p><i class="bi bi-trash"></i> Delete</p>
+                    <p><i class="bi bi-sun"></i> Sun</p>
+                    <p><i class="bi bi-moon"></i> Moon</p>
+                    <p><i class="bi bi-heart-fill"></i> Heart</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3><i class="bi bi-code-square"></i> Maigewan DOM 库测试</h3>
+            
+            <button id="testBtn" class="btn btn-primary">点击测试</button>
+            <button id="fadeBtn" class="btn btn-secondary">淡入淡出测试</button>
+            <div id="testBox" style="width: 200px; height: 100px; background: #f0f0f0; margin-top: 10px; padding: 10px;">
+                测试区域
+            </div>
+            
+            <div class="mt-3">
+                <input type="text" id="testInput" class="form-control" placeholder="输入测试...">
+            </div>
+
+            <div id="testResults" class="alert alert-info mt-3" style="display: none;">
+                <h5>测试结果:</h5>
+                <ul id="resultList"></ul>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3><i class="bi bi-calendar"></i> DateTime 组件测试</h3>
+            <input type="text" id="dateTest" class="form-control" placeholder="选择日期时间">
+        </div>
+
+        <div class="test-section">
+            <h3><i class="bi bi-list-ul"></i> Select 组件测试</h3>
+            <select id="selectTest" class="form-select">
+                <option value="">请选择...</option>
+                <option value="1">选项 1</option>
+                <option value="2">选项 2</option>
+                <option value="3">选项 3</option>
+            </select>
+        </div>
+
+        <div class="test-section">
+            <h3><i class="bi bi-arrows-vertical"></i> Sortable 测试</h3>
+            <ul class="list-group" id="sortableTest">
+                <li class="list-group-item" draggable="true">
+                    <i class="bi bi-grip-vertical"></i> 拖动我 - 项目 1
+                </li>
+                <li class="list-group-item" draggable="true">
+                    <i class="bi bi-grip-vertical"></i> 拖动我 - 项目 2
+                </li>
+                <li class="list-group-item" draggable="true">
+                    <i class="bi bi-grip-vertical"></i> 拖动我 - 项目 3
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 加载我们的新库 -->
+    <script src="mgw-kernel/js/maigewan-dom.js"></script>
+    <script src="mgw-kernel/js/maigewan-datetime.js"></script>
+    <script src="mgw-kernel/js/maigewan-select.js"></script>
+    <script src="mgw-kernel/js/maigewan-sortable.js"></script>
+    <script src="mgw-kernel/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 测试代码
+        $(document).ready(function() {
+            const results = [];
+            
+            // 测试1: 选择器
+            try {
+                const btn = $('#testBtn');
+                if (btn.length > 0) {
+                    results.push('<li class="success">✓ 选择器测试通过</li>');
+                }
+            } catch(e) {
+                results.push('<li class="error">✗ 选择器测试失败: ' + e.message + '</li>');
+            }
+
+            // 测试2: 事件绑定
+            $('#testBtn').on('click', function() {
+                $('#testBox').html('按钮被点击了!').addClass('border border-success');
+                results.push('<li class="success">✓ 事件绑定测试通过</li>');
+                showResults();
+            });
+
+            // 测试3: 淡入淡出
+            $('#fadeBtn').on('click', function() {
+                $('#testBox').fadeOut(300, function() {
+                    $(this).html('淡入淡出动画完成!').fadeIn(300);
+                });
+            });
+
+            // 测试4: 输入框
+            $('#testInput').on('input', function() {
+                const val = $(this).val();
+                $('#testBox').text('输入内容: ' + val);
+            });
+
+            // 测试5: DateTimePicker
+            try {
+                $('#dateTest').datetimepicker({
+                    format: 'Y-m-d H:i:s'
+                });
+                results.push('<li class="success">✓ DateTimePicker 初始化成功</li>');
+            } catch(e) {
+                results.push('<li class="error">✗ DateTimePicker 失败: ' + e.message + '</li>');
+            }
+
+            // 测试6: Select2
+            try {
+                $('#selectTest').select2({
+                    placeholder: '请选择选项',
+                    allowClear: true
+                });
+                results.push('<li class="success">✓ Select2 初始化成功</li>');
+            } catch(e) {
+                results.push('<li class="error">✗ Select2 失败: ' + e.message + '</li>');
+            }
+
+            // 测试7: Sortable
+            try {
+                $('#sortableTest').sortable({
+                    update: function(e, ui) {
+                        console.log('排序已更新');
+                    }
+                });
+                results.push('<li class="success">✓ Sortable 初始化成功</li>');
+            } catch(e) {
+                results.push('<li class="error">✗ Sortable 失败: ' + e.message + '</li>');
+            }
+
+            // 测试8: AJAX (模拟)
+            try {
+                // 测试API存在性
+                if (typeof MGW.ajax === 'function') {
+                    results.push('<li class="success">✓ AJAX API 可用</li>');
+                }
+            } catch(e) {
+                results.push('<li class="error">✗ AJAX 测试失败</li>');
+            }
+
+            function showResults() {
+                $('#testResults').show();
+                $('#resultList').html(results.join(''));
+            }
+
+            // 自动显示结果
+            setTimeout(showResults, 500);
+
+            console.log('✓ Maigewan 前端库测试完成');
+            console.log('MGW对象:', MGW);
+            console.log('$ === MGW:', $ === MGW);
+        });
+    </script>
+</body>
+</html>

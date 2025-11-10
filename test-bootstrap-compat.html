@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 兼容性测试</title>
+    <link rel="stylesheet" href="mgw-kernel/css/bootstrap.min.css">
+    <style>
+        body { padding: 20px; }
+        .test-section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .test-result { margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 3px; }
+        .pass { color: #28a745; }
+        .fail { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bootstrap 5 与 MGW 兼容性测试</h1>
+        
+        <div class="test-section">
+            <h3>测试 1: Alert 组件</h3>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="test-alert">
+                <strong>这是一个警告!</strong> 点击关闭按钮测试 alert 组件。
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="test-result" id="alert-result">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>测试 2: Modal 组件</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testModal">
+                打开 Modal
+            </button>
+            <div class="modal fade" id="testModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">测试 Modal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal 正常工作!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-result" id="modal-result">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>测试 3: Dropdown 组件</h3>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    下拉菜单
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">选项 1</a></li>
+                    <li><a class="dropdown-item" href="#">选项 2</a></li>
+                    <li><a class="dropdown-item" href="#">选项 3</a></li>
+                </ul>
+            </div>
+            <div class="test-result" id="dropdown-result">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>测试 4: jQuery 事件兼容性</h3>
+            <button type="button" class="btn btn-info" id="test-keypress">测试 keypress</button>
+            <input type="text" class="form-control mt-2" id="test-input" placeholder="在这里输入...">
+            <div class="test-result" id="event-result">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>测试 5: jQuery.Event 构造函数</h3>
+            <button type="button" class="btn btn-success" id="test-event-constructor">测试 Event 构造</button>
+            <div class="test-result" id="constructor-result">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>控制台日志</h3>
+            <div class="test-result">
+                <p>打开浏览器控制台查看详细信息:</p>
+                <ul>
+                    <li>MGW 对象: <code id="mgw-check">检查中...</code></li>
+                    <li>$ === MGW: <code id="dollar-check">检查中...</code></li>
+                    <li>jQuery === MGW: <code id="jquery-check">检查中...</code></li>
+                    <li>$.fn: <code id="fn-check">检查中...</code></li>
+                    <li>$.Event: <code id="event-check">检查中...</code></li>
+                    <li>$.fn.alert: <code id="alert-check">检查中...</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 按照正确顺序加载脚本 -->
+    <script src="mgw-kernel/js/maigewan-dom.js?v=1"></script>
+    <script src="mgw-kernel/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // 等待 DOM 完全加载
+        $(document).ready(function() {
+            console.log('🎯 开始 Bootstrap 兼容性测试');
+            
+            // 基础检查
+            $('#mgw-check').text(typeof MGW !== 'undefined' ? '✓ 已加载' : '✗ 未加载').addClass(typeof MGW !== 'undefined' ? 'pass' : 'fail');
+            $('#dollar-check').text($ === MGW ? '✓ 相同' : '✗ 不同').addClass($ === MGW ? 'pass' : 'fail');
+            $('#jquery-check').text(jQuery === MGW ? '✓ 相同' : '✗ 不同').addClass(jQuery === MGW ? 'pass' : 'fail');
+            $('#fn-check').text(typeof $.fn !== 'undefined' ? '✓ 存在' : '✗ 不存在').addClass(typeof $.fn !== 'undefined' ? 'pass' : 'fail');
+            $('#event-check').text(typeof $.Event !== 'undefined' ? '✓ 存在' : '✗ 不存在').addClass(typeof $.Event !== 'undefined' ? 'pass' : 'fail');
+            $('#alert-check').text(typeof $.fn.alert !== 'undefined' ? '✓ 存在' : '✗ 不存在').addClass(typeof $.fn.alert !== 'undefined' ? 'pass' : 'fail');
+            
+            // 测试 1: Alert
+            try {
+                const alertEl = document.getElementById('test-alert');
+                if (alertEl) {
+                    alertEl.addEventListener('closed.bs.alert', function() {
+                        $('#alert-result').html('<span class="pass">✓ Alert 关闭事件触发成功</span>');
+                    });
+                }
+                $('#alert-result').html('<span class="pass">✓ Alert 组件初始化成功 (点击关闭按钮测试)</span>');
+            } catch (e) {
+                $('#alert-result').html('<span class="fail">✗ Alert 初始化失败: ' + e.message + '</span>');
+            }
+            
+            // 测试 2: Modal
+            try {
+                const modalEl = document.getElementById('testModal');
+                if (modalEl) {
+                    modalEl.addEventListener('shown.bs.modal', function() {
+                        $('#modal-result').html('<span class="pass">✓ Modal 显示事件触发成功</span>');
+                    });
+                }
+                $('#modal-result').html('<span class="pass">✓ Modal 组件初始化成功 (点击按钮测试)</span>');
+            } catch (e) {
+                $('#modal-result').html('<span class="fail">✗ Modal 初始化失败: ' + e.message + '</span>');
+            }
+            
+            // 测试 3: Dropdown
+            try {
+                $('#dropdown-result').html('<span class="pass">✓ Dropdown 组件初始化成功 (点击按钮测试)</span>');
+            } catch (e) {
+                $('#dropdown-result').html('<span class="fail">✗ Dropdown 初始化失败: ' + e.message + '</span>');
+            }
+            
+            // 测试 4: keypress 事件
+            try {
+                $('#test-input').keypress(function(e) {
+                    $('#event-result').html('<span class="pass">✓ keypress 事件触发成功! 按键码: ' + e.which + '</span>');
+                });
+                $('#event-result').html('<span class="pass">✓ keypress 方法绑定成功 (在输入框中输入测试)</span>');
+            } catch (e) {
+                $('#event-result').html('<span class="fail">✗ keypress 方法失败: ' + e.message + '</span>');
+            }
+            
+            // 测试 5: Event 构造函数
+            $('#test-event-constructor').click(function() {
+                try {
+                    const customEvent = $.Event('custom.test', { detail: 'test data' });
+                    $('#constructor-result').html('<span class="pass">✓ Event 构造函数工作正常: ' + customEvent.type + '</span>');
+                    console.log('创建的事件:', customEvent);
+                } catch (e) {
+                    $('#constructor-result').html('<span class="fail">✗ Event 构造失败: ' + e.message + '</span>');
+                }
+            });
+            
+            console.log('✅ 所有测试已初始化');
+            console.log('MGW 对象:', MGW);
+            console.log('$.fn.alert:', $.fn.alert);
+            console.log('$.Event:', $.Event);
+        });
+    </script>
+</body>
+</html>

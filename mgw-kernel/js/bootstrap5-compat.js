@@ -1,11 +1,18 @@
 /**
  * Bootstrap 5 JavaScript 兼容性补丁
  * 自动将 Bootstrap 4 的 data-toggle 属性转换为 Bootstrap 5 的 data-bs-toggle
+ * 提供 Bootstrap 5 所需的 jQuery 兼容性 API
  */
 
 (function() {
 	'use strict';
 	
+	// 确保 MGW/$ 已加载
+	if (typeof window.$ === 'undefined') {
+		console.error('Bootstrap 5 兼容性补丁: MGW 库未加载');
+		return;
+	}
+
 	// 页面加载完成后执行
 	document.addEventListener('DOMContentLoaded', function() {
 		

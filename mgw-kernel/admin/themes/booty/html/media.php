@@ -23,7 +23,7 @@ $numberOfPages = count($listOfFilesByPage);
 	<!--
 		UPLOAD INPUT
 	-->
-		<h3 class="mt-2 mb-3"><i class="fa fa-image"></i> <?php $L->p('Images'); ?></h3>
+		<h3 class="mt-2 mb-3"><i class="bi bi-image"></i> <?php $L->p('Images'); ?></h3>
 
 		<div id="jsalertMedia" class="alert alert-warning d-none" role="alert"></div>
 
@@ -107,11 +107,11 @@ function displayFiles(files, numberOfPages = <?= $numberOfPages ?>) {
 					'<td class="information">'+
 						'<div class="text-secondary pb-2">'+filename+'<\/div>'+
 						'<div>'+
-							'<a href="#" class="mr-3 text-primary" onClick="editorInsertMedia(\''+image+'\'); closeMediaManager();"><i class="fa fa-plus-circle"></i><?php $L->p('Insert') ?><\/a>'+
-							'<a href="#" class="mr-3 text-primary" onClick="editorInsertMedia(\''+thumbnail+'\'); closeMediaManager();"><i class="fa fa-image"></i><?php $L->p('Insert thumbnail') ?><\/a>'+
-							'<a href="#" class="mr-3 text-primary" onClick="editorInsertLinkedMedia(\''+thumbnail+'\',\''+image+'\'); closeMediaManager();"><i class="fa fa-link"></i><?php $L->p('Insert linked thumbnail') ?><\/a>'+
-							'<a href="#" class="text-primary" onClick="setCoverImage(\''+filename+'\'); closeMediaManager();"><i class="fa fa-desktop"></i><?php $L->p('Set as cover image') ?><\/button>'+
-							'<a href="#" class="float-right text-danger" onClick="deleteMedia(\''+filename+'\')"><i class="fa fa-trash-o"></i><?php $L->p('Delete') ?><\/a>'+
+							'<a href="#" class="mr-3 text-primary" onClick="editorInsertMedia(\''+image+'\'); closeMediaManager();"><i class="bi bi-plus-circle"></i><?php $L->p('Insert') ?><\/a>'+
+							'<a href="#" class="mr-3 text-primary" onClick="editorInsertMedia(\''+thumbnail+'\'); closeMediaManager();"><i class="bi bi-image"></i><?php $L->p('Insert thumbnail') ?><\/a>'+
+							'<a href="#" class="mr-3 text-primary" onClick="editorInsertLinkedMedia(\''+thumbnail+'\',\''+image+'\'); closeMediaManager();"><i class="bi bi-link-45deg"></i><?php $L->p('Insert linked thumbnail') ?><\/a>'+
+							'<a href="#" class="text-primary" onClick="setCoverImage(\''+filename+'\'); closeMediaManager();"><i class="bi bi-display"></i><?php $L->p('Set as cover image') ?><\/button>'+
+							'<a href="#" class="float-right text-danger" onClick="deleteMedia(\''+filename+'\')"><i class="bi bi-trash"></i><?php $L->p('Delete') ?><\/a>'+
 						'<\/div>'+
 					'<\/td>'+
 				'<\/tr>';

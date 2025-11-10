@@ -15,7 +15,7 @@
                         $name = $user->firstName();
                     }
                     ?>
-                    <span class="fa fa-hand-spock-o"></span><span><?php echo $L->g('welcome') ?></span>
+                    <span class="bi bi-hand-thumbs-up"></span><span><?php echo $L->g('welcome') ?></span>
                 </h2>
                 <script>
                     $(document).ready(function() {
@@ -23,13 +23,13 @@
                             var date = new Date()
                             var hours = date.getHours()
                             if (hours >= 6 && hours < 12) {
-                                $(this).html('<span class="fa fa-sun-o"></span><?php echo $L->g('good-morning') . ', ' . $name ?>');
+                                $(this).html('<span class="bi bi-sun"></span><?php echo $L->g('good-morning') . ', ' . $name ?>');
                             } else if (hours >= 12 && hours < 18) {
-                                $(this).html('<span class="fa fa-sun-o"></span><?php echo $L->g('good-afternoon') . ', ' . $name ?>');
+                                $(this).html('<span class="bi bi-sun"></span><?php echo $L->g('good-afternoon') . ', ' . $name ?>');
                             } else if (hours >= 18 && hours < 22) {
-                                $(this).html('<span class="fa fa-moon-o"></span><?php echo $L->g('good-evening') . ', ' . $name ?>');
+                                $(this).html('<span class="bi bi-moon"></span><?php echo $L->g('good-evening') . ', ' . $name ?>');
                             } else {
-                                $(this).html('<span class="fa fa-moon-o"></span><span><?php echo $L->g('good-night') . ', ' . $name ?></span>');
+                                $(this).html('<span class="bi bi-moon"></span><span><?php echo $L->g('good-night') . ', ' . $name ?></span>');
                             }
                         }).fadeIn(1000);
                     });
@@ -79,7 +79,7 @@
                                 var html = '';
                                 if (data.type == 'menu') {
                                     html += '<a href="' + data.url + '"><div class="search-suggestion">';
-                                    html += '<span class="fa fa-' + data.icon + '"></span>' + data.text + '</div></a>';
+                                    html += '<span class="bi bi-' + data.icon + '"></span>' + data.text + '</div></a>';
                                 } else {
                                     if (typeof data.id === 'undefined') {
                                         return '';

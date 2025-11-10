@@ -10,7 +10,7 @@ echo '
 echo '<tr>';
 echo '<td>Maigewan Edition</td>';
 if (defined('MAIGEWAN_PRO')) {
-	echo '<td>PRO - '.$L->g('Thanks for supporting Maigewan').' <span class="fa fa-heart" style="color: #ffc107"></span></td>';
+	echo '<td>PRO - '.$L->g('Thanks for supporting Maigewan').' <span class="bi bi-heart-fill" style="color: #ffc107"></span></td>';
 } else {
 	echo '<td>Standard - <a target="_blank" href="https://pro.maigewan.com">'.$L->g('Upgrade to Maigewan PRO').'</a></td>';
 }

@@ -43,14 +43,14 @@ echo Bootstrap::formInputHidden(array(
 <!-- TOOLBAR -->
 <div id="jseditorToolbar" class="mb-1">
 	<div id="jseditorToolbarRight" class="btn-group btn-group-sm float-right" role="group" aria-label="Toolbar right">
-		<button type="button" class="btn btn-light" id="jsmediaManagerOpenModal" data-bs-toggle="modal" data-bs-target="#jsmediaManagerModal"><span class="fa fa-image"></span> <?php $L->p('Images') ?></button>
-		<button type="button" class="btn btn-light" id="jsoptionsSidebar" style="z-index:30"><span class="fa fa-cog"></span> <?php $L->p('Options') ?></button>
+		<button type="button" class="btn btn-light" id="jsmediaManagerOpenModal" data-bs-toggle="modal" data-bs-target="#jsmediaManagerModal"><span class="bi bi-image"></span> <?php $L->p('Images') ?></button>
+		<button type="button" class="btn btn-light" id="jsoptionsSidebar" style="z-index:30"><span class="bi bi-gear"></span> <?php $L->p('Options') ?></button>
 	</div>
 
 	<div id="jseditorToolbarLeft">
 		<button id="jsbuttonSave" type="button" class="btn btn-sm btn-primary"><?php $L->p('Save') ?></button>
 		<button id="jsbuttonPreview" type="button" class="btn btn-sm btn-secondary"><?php $L->p('Preview') ?></button>
-		<span id="jsbuttonSwitch" data-switch="publish" class="ml-2 text-secondary switch-button"><i class="fa fa-square switch-icon-publish"></i> <?php $L->p('Publish') ?></span>
+		<span id="jsbuttonSwitch" data-switch="publish" class="ml-2 text-secondary switch-button"><i class="bi bi-square switch-icon-publish"></i> <?php $L->p('Publish') ?></span>
 	</div>
 </div>
 <script>
@@ -445,10 +445,10 @@ foreach ($customFields as $field => $options) {
 		// Button switch
 		$("#jsbuttonSwitch").on("click", function() {
 			if ($(this).data("switch") == "publish") {
-				$(this).html('<i class="fa fa-square switch-icon-draft"></i> <?php $L->p('Draft') ?>');
+				$(this).html('<i class="bi bi-square switch-icon-draft"></i> <?php $L->p('Draft') ?>');
 				$(this).data("switch", "draft");
 			} else {
-				$(this).html('<i class="fa fa-square switch-icon-publish"></i> <?php $L->p('Publish') ?>');
+				$(this).html('<i class="bi bi-square switch-icon-publish"></i> <?php $L->p('Publish') ?>');
 				$(this).data("switch", "publish");
 			}
 		});

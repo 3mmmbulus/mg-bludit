@@ -562,7 +562,7 @@ echo Bootstrap::formInputHidden(array(
 					<label for="jssiteLogoInputFile" class="form-label"><?php $L->p('Upload image'); ?></label>
 					<input id="jssiteLogoInputFile" class="form-control" type="file" name="inputFile">
 				</div>
-				<button id="jsbuttonRemoveLogo" type="button" class="btn btn-primary w-100 mt-4 mb-4"><i class="fa fa-trash"></i><?php $L->p('Remove logo') ?></button>
+				<button id="jsbuttonRemoveLogo" type="button" class="btn btn-primary w-100 mt-4 mb-4"><i class="bi bi-trash"></i><?php $L->p('Remove logo') ?></button>
 			</div>
 			<div class="col-lg-8 col-sm-12 p-0 text-center">
 				<img id="jssiteLogoPreview" class="img-fluid img-thumbnail" alt="Site logo preview" src="<?php echo ($site->logo() ? DOMAIN_UPLOADS . $site->logo(false) . '?version=' . time() : HTML_PATH_CORE_IMG . 'default.svg') ?>" />

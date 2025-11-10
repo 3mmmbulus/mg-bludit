@@ -20,22 +20,19 @@
 			'maigewan.css',
 			'maigewan.bootstrap.css'
 		), DOMAIN_ADMIN_THEME_CSS);
-		echo Theme::css(array(
-			'jquery.datetimepicker.min.css',
-			'select2.min.css',
-			'select2-bootstrap5.min.css'
-		), DOMAIN_CORE_CSS);
 	?>
 
 	<!-- Javascript -->
 	<?php
-		echo Theme::jquery();
+		echo Theme::js(array(
+			'maigewan-dom.js',
+			'maigewan-datetime.js',
+			'maigewan-select.js',
+			'maigewan-sortable.js'
+		), DOMAIN_CORE_JS, null);
 		echo Theme::jsBootstrap();
-		echo Theme::jsSortable();
 		echo Theme::js(array(
 			'bootstrap5-compat.js',
-			'jquery.datetimepicker.full.min.js',
-			'select2.full.min.js',
 			'functions.js'
 		), DOMAIN_CORE_JS, null);
 	?>
