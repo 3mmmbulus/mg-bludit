@@ -101,7 +101,7 @@
 
 		// Datepicker initialization
 		var dateElement = $('#jsdate');
-		if (dateElement.length && typeof $.fn.datetimepicker !== 'undefined') {
+		if (dateElement.length && window.jQuery && typeof window.jQuery.fn.datetimepicker !== 'undefined') {
 			dateElement.datetimepicker({
 				format: DB_DATE_FORMAT
 			});

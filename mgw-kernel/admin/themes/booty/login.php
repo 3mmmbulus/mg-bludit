@@ -22,7 +22,6 @@
 
   <!-- Javascript -->
   <?php
-  echo Theme::jquery();
   echo Theme::jsBootstrap();
   ?>
 

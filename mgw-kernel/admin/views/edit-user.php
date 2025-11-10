@@ -126,19 +126,23 @@ echo Bootstrap::formInputHidden(array(
 				formData.append('tokenCSRF', tokenCSRF);
 				formData.append('profilePictureInputFile', $(this)[0].files[0]);
 				formData.append('username', $("#jsusername").val());
-				$.ajax({
-					url: HTML_PATH_ADMIN_ROOT + "ajax/profile-picture-upload",
-					type: "POST",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false
-				}).done(function(data) {
+
+				fetch(HTML_PATH_ADMIN_ROOT + "ajax/profile-picture-upload", {
+					method: "POST",
+					body: formData,
+					credentials: 'same-origin'
+				})
+				.then(response => response.json())
+				.then(data => {
 					if (data.status == 0) {
 						$("#jsprofilePicturePreview").attr('src', data.absoluteURL + "?time=" + Math.random());
 					} else {
 						showAlert(data.message);
 					}
+				})
+				.catch(err => {
+					console.error("Profile picture upload failed:", err);
+					showAlert("Upload failed");
 				});
 			});
 		</script>

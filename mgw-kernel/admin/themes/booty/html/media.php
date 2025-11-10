@@ -212,35 +212,44 @@ function uploadImages() {
 	formData.append("uuid", "<?php echo PAGE_IMAGES_KEY ?>");
 	formData.append("tokenCSRF", tokenCSRF);
 
-	$.ajax({
-		url: HTML_PATH_ADMIN_ROOT+"ajax/upload-images",
-		type: "POST",
-		data: formData,
-		cache: false,
-		contentType: false,
-		processData: false,
-		xhr: function() {
-			var xhr = $.ajaxSettings.xhr();
-			if (xhr.upload) {
-				xhr.upload.addEventListener("progress", function(e) {
-					if (e.lengthComputable) {
-						var percentComplete = (e.loaded / e.total)*100;
-						$("#jsmaigewanProgressBar").width(percentComplete+"%");
-					}
-				}, false);
-			}
-			return xhr;
+	// Upload with fetch API and progress tracking
+	var xhr = new XMLHttpRequest();
+	xhr.upload.addEventListener("progress", function(e) {
+		if (e.lengthComputable) {
+			var percentComplete = (e.loaded / e.total) * 100;
+			$("#jsmaigewanProgressBar").width(percentComplete + "%");
 		}
-	}).done(function(data) {
-		if (data.status==0) {
-			$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-success");
-			// Get the files for the first page, this include the files uploaded
-			getFiles(1);
+	}, false);
+
+	xhr.addEventListener("load", function() {
+		if (xhr.status === 200) {
+			try {
+				var data = JSON.parse(xhr.responseText);
+				if (data.status == 0) {
+					$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-success");
+					// Get the files for the first page, this include the files uploaded
+					getFiles(1);
+				} else {
+					$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+					showMediaAlert(data.message);
+				}
+			} catch(e) {
+				$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+				showMediaAlert("Upload failed");
+			}
 		} else {
 			$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
-			showMediaAlert(data.message);
+			showMediaAlert("Upload failed");
 		}
 	});
+
+	xhr.addEventListener("error", function() {
+		$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+		showMediaAlert("Upload failed");
+	});
+
+	xhr.open("POST", HTML_PATH_ADMIN_ROOT + "ajax/upload-images");
+	xhr.send(formData);
 }
 
 $(document).ready(function() {

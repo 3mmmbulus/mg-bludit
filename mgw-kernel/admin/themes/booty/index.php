@@ -47,11 +47,10 @@
 	echo '<script charset="utf-8">'.PHP_EOL;
 	include(PATH_CORE_JS.'variables.php');
 	echo '</script>'.PHP_EOL;
-
-	echo '<script charset="utf-8">'.PHP_EOL;
-	include(PATH_CORE_JS.'bludit-ajax.php');
-	echo '</script>'.PHP_EOL;
 ?>
+
+<!-- AJAX utilities -->
+<script src="<?php echo DOMAIN_CORE_JS ?>maigewan-ajax.js?version=<?php echo MAIGEWAN_VERSION ?>"></script>
 
 <!-- Overlay background -->
 <div id="jsshadow"></div>
