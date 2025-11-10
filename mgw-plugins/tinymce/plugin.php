@@ -129,7 +129,7 @@ class pluginTinymce extends Plugin
 		skin: "oxide",
 		schema: "html5",
 		statusbar: false,
-		menubar:false,
+		menubar: false,
 		branding: false,
 		browser_spellcheck: true,
 		pagebreak_separator: PAGE_BREAK,
@@ -139,13 +139,14 @@ class pluginTinymce extends Plugin
 		relative_urls: false,
 		valid_elements: "*[*]",
 		cache_suffix: "?version=$version",
+		promotion: false,
+		license_key: "gpl",
 		$document_base_url
-		plugins: ["$plugins"],
-		toolbar1: "$toolbar1",
-		toolbar2: "$toolbar2",
+		plugins: "$plugins",
+		toolbar: "$toolbar1" + (("$toolbar2".length > 0) ? " | $toolbar2" : ""),
 		language: "$lang",
 		content_css: "$content_css",
-		codesample_languages: [$codesampleConfig],
+		codesample_languages: [$codesampleConfig]
 	});
 
 </script>
