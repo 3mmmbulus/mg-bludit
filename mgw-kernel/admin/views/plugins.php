@@ -13,25 +13,11 @@ echo Bootstrap::formTitle(array('title' => $L->g('Search plugins')));
 ?>
 
 <input type="text" dir="auto" class="form-control" id="search" placeholder="<?php $L->p('Search') ?>">
-<script>
-	$(document).ready(function() {
-		$("#search").on("keyup", function() {
-			var textToSearch = $(this).val().toLowerCase();
-			$(".searchItem").each(function() {
-				var item = $(this);
-				item.hide();
-				item.find(".searchText").each(function() {
-					var element = $(this).text().toLowerCase();
-					if (element.indexOf(textToSearch) != -1) {
-						item.show();
-					}
-				});
-			});
-		});
-	});
-</script>
 
 <?php
+
+// Load plugins page JavaScript
+echo '<script src="'.DOMAIN_CORE_JS.'plugins.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
 
 echo Bootstrap::formTitle(array('title' => $L->g('Enabled plugins')));
 

@@ -54,28 +54,15 @@ echo Bootstrap::formInputHidden(array(
 	</div>
 
 	<div id="jseditorToolbarLeft">
-		<button type="button" class="btn btn-sm btn-primary" id="jsbuttonSave"><?php echo $L->g('Save') ?></button>
-		<button id="jsbuttonPreview" type="button" class="btn btn-sm btn-secondary"><?php $L->p('Preview') ?></button>
-		<span id="jsswitchButton" data-switch="<?php echo ($page->draft() ? 'draft' : 'publish') ?>" class="ml-2 text-secondary switch-button"><i class="bi bi-square switch-icon-<?php echo ($page->draft() ? 'draft' : 'publish') ?>"></i> <?php echo ($page->draft() ? $L->g('Draft') : $L->g('Publish')) ?></span>
+		<button type="button" class="btn btn-sm btn-primary" id="jsbuttonSave" data-autosave-label="<?php $L->p('Autosave') ?>"><?php echo $L->g('Save') ?></button>
+		<button id="jsbuttonPreview" type="button" class="btn btn-sm btn-secondary" data-preview-url="<?php echo $page->permalink() ?>"><?php $L->p('Preview') ?></button>
+		<span id="jsswitchButton" data-switch="<?php echo ($page->draft() ? 'draft' : 'publish') ?>" class="ml-2 text-secondary switch-button" data-publish-text="<?php $L->p('Publish') ?>" data-draft-text="<?php $L->p('Draft') ?>" data-publish-icon='<i class="bi bi-square switch-icon-publish"></i>' data-draft-icon='<i class="bi bi-square switch-icon-draft"></i>'><i class="bi bi-square switch-icon-<?php echo ($page->draft() ? 'draft' : 'publish') ?>"></i> <?php echo ($page->draft() ? $L->g('Draft') : $L->g('Publish')) ?></span>
 	</div>
 
 	<?php if ($page->scheduled()) : ?>
 		<div class="alert alert-warning p-1 mt-1 mb-0"><?php $L->p('scheduled') ?>: <?php echo $page->date(SCHEDULED_DATE_FORMAT) ?></div>
 	<?php endif; ?>
 </div>
-<script>
-	$(document).ready(function() {
-		$("#jsoptionsSidebar").on("click", function() {
-			$("#jseditorSidebar").toggle();
-			$("#jsshadow").toggle();
-		});
-
-		$("#jsshadow").on("click", function() {
-			$("#jseditorSidebar").toggle();
-			$("#jsshadow").toggle();
-		});
-	});
-</script>
 
 <!-- SIDEBAR OPTIONS -->
 <div id="jseditorSidebar">
@@ -132,22 +119,6 @@ echo Bootstrap::formInputHidden(array(
 				<button type="button" id="jsbuttonSelectCoverImage" class="btn btn-primary btn-sm"><?php echo $L->g('Select cover image') ?></button>
 				<button type="button" id="jsbuttonRemoveCoverImage" class="btn btn-secondary btn-sm"><?php echo $L->g('Remove cover image') ?></button>
 			</div>
-			<script>
-				$(document).ready(function() {
-					$("#jscoverImagePreview").on("click", function() {
-						openMediaManager();
-					});
-
-					$("#jsbuttonSelectCoverImage").on("click", function() {
-						openMediaManager();
-					});
-
-					$("#jsbuttonRemoveCoverImage").on("click", function() {
-						$("#jscoverImage").val('');
-						$("#jscoverImagePreview").attr('src', HTML_PATH_CORE_IMG + 'default.svg');
-					});
-				});
-			</script>
 		</div>
 		<div id="nav-advanced" class="tab-pane fade" role="tabpanel" aria-labelledby="advanced-tab">
 			<?php
@@ -208,43 +179,10 @@ echo Bootstrap::formInputHidden(array(
 				'selected' => false,
 				'class' => '',
 				'tip' => $L->g('Start typing a page title to see a list of suggestions.'),
+				'data' => array('current-key' => $page->key())
 			));
 
 			?>
-
-			<script>
-				$(document).ready(function() {
-					var parent = $("#jsparent").select2({
-						placeholder: "",
-						allowClear: true,
-						theme: "bootstrap5",
-						minimumInputLength: 2,
-						ajax: {
-							url: HTML_PATH_ADMIN_ROOT + "ajax/get-published",
-							data: function(params) {
-								var query = {
-									checkIsParent: true,
-									query: params.term
-								}
-								return query;
-							},
-							processResults: function(data) {
-								return data;
-							}
-						},
-						escapeMarkup: function(markup) {
-							return markup;
-						},
-						templateResult: function(data) {
-							var html = data.text
-							if (data.type == "static") {
-								html += '<span class="badge badge-pill badge-light">' + data.type + '</span>';
-							}
-							return html;
-						}
-					});
-				});
-			</script>
 
 			<?php
 
@@ -275,19 +213,6 @@ echo Bootstrap::formInputHidden(array(
 				'disabled' => true
 			));
 			?>
-			<script>
-				$(document).ready(function() {
-					// Changes in External cover image input
-					$("#jsexternalCoverImage").change(function() {
-						$("#jscoverImage").val($(this).val());
-					});
-
-					// Datepicker
-					$("#jsdate").datetimepicker({
-						format: DB_DATE_FORMAT
-					});
-				});
-			</script>
 		</div>
 
 		<?php if (!empty($site->customFields())) : ?>
@@ -451,113 +376,10 @@ foreach ($customFields as $field => $options) {
 			</div>
 		</div>
 	</div>
-	<script>
-		$(document).ready(function() {
-			$("#jsbuttonDeleteAccept").on("click", function() {
-				$("#jstype").val("delete");
-				$("#jscontent").val("");
-				$("#jsform").submit();
-			});
-		});
-	</script>
 </div>
 
 <!-- Modal for Media Manager -->
-<?php include(PATH_ADMIN_THEMES . 'booty/html/media.php'); ?>
-
-<script>
-	$(document).ready(function() {
-
-		// Define function if they doesn't exist
-		// This helps if the user doesn't activate any plugin as editor
-		if (typeof editorGetContent != "function") {
-			window.editorGetContent = function() {
-				return $("#jseditor").val();
-			};
-		}
-		if (typeof editorInsertMedia != "function") {
-			window.editorInsertMedia = function(filename) {
-				$("#jseditor").val($('#jseditor').val() + '<img src="' + filename + '" alt="">');
-			};
-		}
-		if (typeof editorInsertLinkedMedia != "function") {
-			window.editorInsertLinkedMedia = function(filename, link) {
-				$("#jseditor").val($('#jseditor').val() + '<a href="' + link + '"><img src="' + filename + '" alt=""></a>');
-			};
-		}
-
-		// Button switch
-		$("#jsswitchButton").on("click", function() {
-			if ($(this).data("switch") == "publish") {
-				$(this).html('<i class="bi bi-square switch-icon-draft"></i> <?php $L->p('Draft') ?>');
-				$(this).data("switch", "draft");
-			} else {
-				$(this).html('<i class="bi bi-square switch-icon-publish"></i> <?php $L->p('Publish') ?>');
-				$(this).data("switch", "publish");
-			}
-		});
-
-		// Button preview
-		$("#jsbuttonPreview").on("click", function() {
-			var uuid = $("#jsuuid").val();
-			var title = $("#jstitle").val();
-			var content = editorGetContent();
-			var ajax = new maigewanAjax();
-			maigewanAjax.saveAsDraft(uuid, title, content).then(function(data) {
-				var preview = window.open("<?php echo DOMAIN_PAGES . 'autosave-' . $page->uuid() . '?preview=' . md5('autosave-' . $page->uuid()) ?>", "maigewan-preview");
-				preview.focus();
-			});
-		});
-
-		// Button Save
-		$("#jsbuttonSave").on("click", function() {
-			// If the switch is setted to "published", get the value from the selector
-			if ($("#jsswitchButton").data("switch") == "publish") {
-				var value = $("#jstypeSelector option:selected").val();
-				$("#jstype").val(value);
-			} else {
-				$("#jstype").val("draft");
-			}
-
-			// Get the content
-			$("#jscontent").val(editorGetContent());
-
-			// Submit the form
-			$("#jsform").submit();
-		});
-
-		// Button Save as draft
-		$("#jsbuttonDraft").on("click", function() {
-			// Set the type as draft
-			$("#jstype").val("draft");
-
-			// Get the content
-			$("#jscontent").val(editorGetContent());
-
-			// Submit the form
-			$("#jsform").submit();
-		});
-
-		// Autosave
-		var currentContent = editorGetContent();
-		setInterval(function() {
-			var uuid = $("#jsuuid").val();
-			var title = $("#jstitle").val() + "[<?php $L->p('Autosave') ?>]";
-			var content = editorGetContent();
-			// Autosave when content has at least 100 characters
-			if (content.length < 100) {
-				return false;
-			}
-			// Autosave only when the user change the content
-			if (currentContent != content) {
-				currentContent = content;
-				maigewanAjax.saveAsDraft(uuid, title, content).then(function(data) {
-					if (data.status == 0) {
-						showAlert("<?php $L->p('Autosave') ?>");
-					}
-				});
-			}
-		}, 1000 * 60 * AUTOSAVE_INTERVAL);
-
-	});
-</script>
+<?php 
+	include(PATH_ADMIN_THEMES . 'booty/html/media.php');
+	echo '<script src="'.DOMAIN_CORE_JS.'edit-content.js?version='.MAIGEWAN_VERSION.'"></script>';
+?>

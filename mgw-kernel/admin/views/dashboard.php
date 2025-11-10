@@ -4,7 +4,12 @@
 
             <!-- Good message -->
             <div>
-                <h2 id="hello-message" class="pt-0">
+                <h2 id="hello-message" class="pt-0"
+                    data-username="<?php echo $name ?>"
+                    data-morning="<?php echo $L->g('good-morning') ?>"
+                    data-afternoon="<?php echo $L->g('good-afternoon') ?>"
+                    data-evening="<?php echo $L->g('good-evening') ?>"
+                    data-night="<?php echo $L->g('good-night') ?>">
                     <?php
                     $username = $login->username();
                     $user = new User($username);
@@ -17,23 +22,6 @@
                     ?>
                     <span class="bi bi-hand-thumbs-up"></span><span><?php echo $L->g('welcome') ?></span>
                 </h2>
-                <script>
-                    $(document).ready(function() {
-                        $("#hello-message").fadeOut(2400, function() {
-                            var date = new Date()
-                            var hours = date.getHours()
-                            if (hours >= 6 && hours < 12) {
-                                $(this).html('<span class="bi bi-sun"></span><?php echo $L->g('good-morning') . ', ' . $name ?>');
-                            } else if (hours >= 12 && hours < 18) {
-                                $(this).html('<span class="bi bi-sun"></span><?php echo $L->g('good-afternoon') . ', ' . $name ?>');
-                            } else if (hours >= 18 && hours < 22) {
-                                $(this).html('<span class="bi bi-moon"></span><?php echo $L->g('good-evening') . ', ' . $name ?>');
-                            } else {
-                                $(this).html('<span class="bi bi-moon"></span><span><?php echo $L->g('good-night') . ', ' . $name ?></span>');
-                            }
-                        }).fadeIn(1000);
-                    });
-                </script>
             </div>
 
             <!-- Quick Links -->
@@ -42,70 +30,14 @@
                 <div class="row">
                     <div class="col p-0">
                         <div class="mb-3">
-                            <select id="jsclippy" class="clippy" name="state"></select>
+                            <select id="jsclippy" class="clippy" name="state"
+                                    data-placeholder="<?php $L->p('Start typing to see a list of suggestions') ?>"
+                                    data-view-label="<?php $L->p('view') ?>"
+                                    data-edit-label="<?php $L->p('edit') ?>"></select>
                         </div>
                     </div>
                 </div>
 
-                <script>
-                    $(document).ready(function() {
-
-                        var clippy = $("#jsclippy").select2({
-                            placeholder: "<?php $L->p('Start typing to see a list of suggestions') ?>",
-                            allowClear: true,
-                            width: "100%",
-                            theme: "bootstrap5",
-                            minimumInputLength: 2,
-                            dropdownParent: "#jsclippyContainer",
-                            language: {
-                                inputTooShort: function() {
-                                    return '';
-                                }
-                            },
-                            ajax: {
-                                url: HTML_PATH_ADMIN_ROOT + "ajax/clippy",
-                                data: function(params) {
-                                    var query = {
-                                        query: params.term
-                                    }
-                                    return query;
-                                },
-                                processResults: function(data) {
-                                    return data;
-                                }
-                            },
-                            templateResult: function(data) {
-                                // console.log(data);
-                                var html = '';
-                                if (data.type == 'menu') {
-                                    html += '<a href="' + data.url + '"><div class="search-suggestion">';
-                                    html += '<span class="bi bi-' + data.icon + '"></span>' + data.text + '</div></a>';
-                                } else {
-                                    if (typeof data.id === 'undefined') {
-                                        return '';
-                                    }
-                                    html += '<div class="search-suggestion">';
-                                    html += '<div class="search-suggestion-item">' + data.text + ' <span class="badge badge-pill badge-light">' + data.type + '</span></div>';
-                                    html += '<div class="search-suggestion-options">';
-                                    html += '<a target="_blank" href="' + DOMAIN_PAGES + data.id + '"><?php $L->p('view') ?></a>';
-                                    html += '<a class="ml-2" href="' + DOMAIN_ADMIN + 'edit-content/' + data.id + '"><?php $L->p('edit') ?></a>';
-                                    html += '</div></div>';
-                                }
-
-                                return html;
-                            },
-                            escapeMarkup: function(markup) {
-                                return markup;
-                            }
-                        }).on("select2:closing", function(e) {
-                            e.preventDefault();
-                        }).on("select2:closed", function(e) {
-                            clippy.select2("open");
-                        });
-                        clippy.select2("open");
-
-                    });
-                </script>
             </div>
 
             <?php Theme::plugins('dashboard') ?>
@@ -138,3 +70,5 @@
         </div>
     </div>
 </div>
+
+<?php echo '<script src="'.DOMAIN_CORE_JS.'dashboard.js?version='.MAIGEWAN_VERSION.'"></script>'; ?>

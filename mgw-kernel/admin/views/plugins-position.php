@@ -33,19 +33,7 @@
 
 <?php echo Bootstrap::formClose(); ?>
 
-<script>
-$(document).ready(function() {
-	$('.list-group-sortable').sortable({
-		placeholderClass: 'list-group-item'
-	});
-
-	$(".jsbuttonSave").on("click", function() {
-		var tmp = [];
-		$("li.list-group-item").each(function() {
-			tmp.push( $(this).attr("data-plugin") );
-		});
-		$("#jsplugin-list").attr("value", tmp.join(",") );
-		$("#jsform").submit();
-	});
-});
-</script>
+<?php
+	// Load plugins position JavaScript
+	echo '<script src="'.DOMAIN_CORE_JS.'plugins-position.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
+?>

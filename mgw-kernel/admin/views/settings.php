@@ -118,36 +118,10 @@ echo Bootstrap::formInputHidden(array(
 		'options' => $options,
 		'selected' => false,
 		'class' => '',
-		'tip' => $L->g('Returning page for the main page')
+		'tip' => $L->g('Returning page for the main page'),
+		'placeholder' => $L->g('Start typing to see a list of suggestions.')
 	));
-	?>
-	<script>
-		$(document).ready(function() {
-			var homepage = $("#jshomepage").select2({
-				placeholder: "<?php $L->p('Start typing to see a list of suggestions.') ?>",
-				allowClear: true,
-				theme: "bootstrap5",
-				minimumInputLength: 2,
-				ajax: {
-					url: HTML_PATH_ADMIN_ROOT + "ajax/get-published",
-					data: function(params) {
-						var query = {
-							query: params.term
-						}
-						return query;
-					},
-					processResults: function(data) {
-						return data;
-					}
-				},
-				escapeMarkup: function(markup) {
-					return markup;
-				}
-			});
-		});
-	</script>
 
-	<?php
 	// Page not found 404
 	try {
 		$options = array();
@@ -168,32 +142,6 @@ echo Bootstrap::formInputHidden(array(
 		'tip' => $L->g('Returning page when the page doesnt exist')
 	));
 	?>
-
-	<script>
-		$(document).ready(function() {
-			var homepage = $("#jspageNotFound").select2({
-				placeholder: "<?php $L->p('Start typing to see a list of suggestions.') ?>",
-				allowClear: true,
-				theme: "bootstrap5",
-				minimumInputLength: 2,
-				ajax: {
-					url: HTML_PATH_ADMIN_ROOT + "ajax/get-published",
-					data: function(params) {
-						var query = {
-							query: params.term
-						}
-						return query;
-					},
-					processResults: function(data) {
-						return data;
-					}
-				},
-				escapeMarkup: function(markup) {
-					return markup;
-				}
-			});
-		});
-	</script>
 
 	<?php
 	echo Bootstrap::formTitle(array('title' => $L->g('Email account settings')));
@@ -569,54 +517,9 @@ echo Bootstrap::formInputHidden(array(
 			</div>
 		</div>
 	</div>
-	<script>
-		$("#jsbuttonRemoveLogo").on("click", function() {
-			maigewanAjax.removeLogo();
-			$("#jssiteLogoPreview").attr("src", "<?php echo HTML_PATH_CORE_IMG . 'default.svg' ?>");
-		});
-
-		$("#jssiteLogoInputFile").on("change", function() {
-			var formData = new FormData();
-			formData.append('tokenCSRF', tokenCSRF);
-			formData.append('inputFile', $(this)[0].files[0]);
-			$.ajax({
-				url: HTML_PATH_ADMIN_ROOT + "ajax/logo-upload",
-				type: "POST",
-				data: formData,
-				cache: false,
-				contentType: false,
-				processData: false
-			}).done(function(data) {
-				if (data.status == 0) {
-					$("#jssiteLogoPreview").attr('src', data.absoluteURL + "?time=" + Math.random());
-				} else {
-					showAlert(data.message);
-				}
-			});
-		});
-	</script>
 </div>
 
-<?php echo Bootstrap::formClose(); ?>
-
-<script>
-	// Open current tab after refresh page
-	document.addEventListener('DOMContentLoaded', function() {
-		// Save active tab on click
-		document.querySelectorAll('a[data-bs-toggle="tab"]').forEach(function(tabEl) {
-			tabEl.addEventListener('click', function(e) {
-				window.localStorage.setItem('activeTab', e.target.getAttribute('href'));
-			});
-		});
-		
-		// Restore active tab on page load
-		var activeTab = window.localStorage.getItem('activeTab');
-		if (activeTab) {
-			var tabElement = document.querySelector('#nav-tab a[href="' + activeTab + '"]');
-			if (tabElement) {
-				var tab = new bootstrap.Tab(tabElement);
-				tab.show();
-			}
-		}
-	});
-</script>
+<?php 
+	echo Bootstrap::formClose();
+	echo '<script src="'.DOMAIN_CORE_JS.'settings.js?version='.MAIGEWAN_VERSION.'"></script>';
+?>
