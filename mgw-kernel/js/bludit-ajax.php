@@ -49,61 +49,52 @@ class maigewanAjax {
 	}
 
 	// Alert the user when the user is not logged
-	userLogged(callBack) {
-		var ajaxRequest;
-		if (ajaxRequest) {
-			ajaxRequest.abort();
-		}
-
+	async userLogged(callBack) {
 		console.log("[INFO] [MAIGEWAN AJAX] [userLogged()] Checking if the user is logged.");
 
-		ajaxRequest = $.ajax({
-			type: "GET",
-			url: HTML_PATH_ADMIN_ROOT+"ajax/user-logged"
-		});
+		try {
+			const response = await fetch(HTML_PATH_ADMIN_ROOT + "ajax/user-logged", {
+				credentials: 'same-origin',
+				method: "GET"
+			});
 
-		ajaxRequest.done(function (response, textStatus, jqXHR) {
-			console.log("[INFO] [MAIGEWAN AJAX] [userLogged()] The user is logged.");
-		});
-
-		ajaxRequest.fail(function (jqXHR, textStatus, errorThrown) {
-			// The fail is produced by admin.php when the user is not logged the ajax request is not possible and returns 401
-			console.log("[INFO] [MAIGEWAN AJAX] [userLogged()] The user is NOT logged.");
-			if (jqXHR.status==401) {
+			if (response.ok) {
+				console.log("[INFO] [MAIGEWAN AJAX] [userLogged()] The user is logged.");
+			} else if (response.status === 401) {
+				console.log("[INFO] [MAIGEWAN AJAX] [userLogged()] The user is NOT logged.");
 				callBack("You are not logged in anymore, so Maigewan can't save your settings and content.");
 			}
-		});
+		} catch (err) {
+			console.log("[ERROR] [MAIGEWAN AJAX] [userLogged()] Request failed:", err);
+		}
 	}
 
-	generateSlug(text, parentKey, currentKey, callBack) {
-		var ajaxRequest;
-		if (ajaxRequest) {
-			ajaxRequest.abort();
+	async generateSlug(text, parentKey, currentKey, callBack) {
+		try {
+			const response = await fetch(HTML_PATH_ADMIN_ROOT + "ajax/generate-slug", {
+				credentials: 'same-origin',
+				method: "POST",
+				headers: new Headers({
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				}),
+				body: new URLSearchParams({
+					'tokenCSRF': tokenCSRF,
+					'text': text,
+					'parentKey': parentKey,
+					'currentKey': currentKey
+				})
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				console.log("Maigewan AJAX: generateSlug(): success");
+				callBack.val(data.slug);
+			} else {
+				console.log("Maigewan AJAX: generateSlug(): fail");
+			}
+		} catch (err) {
+			console.log("Maigewan AJAX: generateSlug(): error", err);
 		}
-
-		ajaxRequest = $.ajax({
-		    type: "POST",
-		    data: {
-			tokenCSRF: tokenCSRF,
-			text: text,
-			parentKey: parentKey,
-			currentKey: currentKey
-		    },
-		    url: HTML_PATH_ADMIN_ROOT+"ajax/generate-slug"
-		});
-
-		ajaxRequest.done(function (response, textStatus, jqXHR) {
-			console.log("Maigewan AJAX: generateSlug(): done handler");
-			callBack.val(response["slug"]);
-		});
-
-		ajaxRequest.fail(function (jqXHR, textStatus, errorThrown) {
-			console.log("Maigewan AJAX: generateSlug(): fail handler");
-		});
-
-		ajaxRequest.always(function () {
-			console.log("Maigewan AJAX: generateSlug(): always handler");
-		});
-	    }
+	}
 
 }

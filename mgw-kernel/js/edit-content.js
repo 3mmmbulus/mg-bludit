@@ -177,7 +177,7 @@
 
 			// Determine type based on switch state
 			if ($('#jsswitchButton').data('switch') === 'publish') {
-				var value = $('#jstypeSelector option:selected').val();
+				var value = $('#jstypeSelector').val();
 				$('#jstype').val(value);
 				actionParameters = '#' + value;
 			} else {
