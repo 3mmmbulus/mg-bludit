@@ -284,50 +284,7 @@ function table($type) {
 		'modalText'=>$L->g('Are you sure you want to delete this page'),
 		'modalId'=>'jsdeletePageModal'
 	));
+
+	// Load content page JavaScript
+	echo '<script src="'.DOMAIN_CORE_JS.'content.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
 ?>
-<script>
-$(document).ready(function() {
-	var key = false;
-
-	// Button for delete a page in the table
-	$(".deletePageButton").on("click", function() {
-		key = $(this).data('key');
-	});
-
-	// Event from button accept from the modal
-	$(".deletePageModalAcceptButton").on("click", function() {
-
-		var form = jQuery('<form>', {
-			'action': HTML_PATH_ADMIN_ROOT+'edit-content/'+key,
-			'method': 'post',
-			'target': '_top'
-		}).append(jQuery('<input>', {
-			'type': 'hidden',
-			'name': 'tokenCSRF',
-			'value': tokenCSRF
-		}).append(jQuery('<input>', {
-			'type': 'hidden',
-			'name': 'key',
-			'value': key
-		}).append(jQuery('<input>', {
-			'type': 'hidden',
-			'name': 'type',
-			'value': 'delete'
-		}))));
-
-		form.hide().appendTo("body").submit();
-	});
-});
-</script>
-
-<script>
-	// Open the tab defined in the URL
-	const anchor = window.location.hash;
-	if (anchor) {
-		const tabElement = document.querySelector(`a[href="${anchor}"]`);
-		if (tabElement) {
-			const tab = new bootstrap.Tab(tabElement);
-			tab.show();
-		}
-	}
-</script>
