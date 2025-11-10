@@ -132,7 +132,7 @@
             return this;
         }
 
-        // Bootstrap 5 兼容性:键盘事件快捷方法
+        // 键盘事件快捷方法
         keypress(handler) {
             return this.on('keypress', handler);
         }
@@ -145,7 +145,7 @@
             return this.on('keyup', handler);
         }
         
-        // Bootstrap 5 兼容性:其他常用事件快捷方法
+        // 其他常用事件快捷方法
         click(handler) {
             return handler ? this.on('click', handler) : this.trigger('click');
         }
@@ -587,7 +587,7 @@
     };
 
     /**
-     * Bootstrap 5 兼容性: Event 构造函数
+     * Event 构造函数 - 用于创建自定义事件
      */
     MGW.Event = function(type, props) {
         // 创建原生事件
@@ -637,49 +637,12 @@
     window.MGW = window.$ = MGW;
     window.MGWCollection = MGWCollection;
 
-    // Bootstrap 5 兼容性: fn 别名指向原型
+    // Bootstrap 5 原生 API 支持
+    // Bootstrap 5 使用原生 JavaScript API (new bootstrap.Modal等)
+    // 不再需要 jQuery 插件方式,保持 $.fn 只是为了向后兼容
     MGW.fn = MGWCollection.prototype;
     
-    // Bootstrap 5 会在 $.fn 上注册组件,为其预留占位符
-    // 这样 Bootstrap 加载时就能找到 $.fn.alert, $.fn.modal 等
-    if (!MGW.fn.alert) {
-        MGW.fn.alert = function() { return this; };
-    }
-    if (!MGW.fn.button) {
-        MGW.fn.button = function() { return this; };
-    }
-    if (!MGW.fn.carousel) {
-        MGW.fn.carousel = function() { return this; };
-    }
-    if (!MGW.fn.collapse) {
-        MGW.fn.collapse = function() { return this; };
-    }
-    if (!MGW.fn.dropdown) {
-        MGW.fn.dropdown = function() { return this; };
-    }
-    if (!MGW.fn.modal) {
-        MGW.fn.modal = function() { return this; };
-    }
-    if (!MGW.fn.offcanvas) {
-        MGW.fn.offcanvas = function() { return this; };
-    }
-    if (!MGW.fn.popover) {
-        MGW.fn.popover = function() { return this; };
-    }
-    if (!MGW.fn.scrollspy) {
-        MGW.fn.scrollspy = function() { return this; };
-    }
-    if (!MGW.fn.tab) {
-        MGW.fn.tab = function() { return this; };
-    }
-    if (!MGW.fn.toast) {
-        MGW.fn.toast = function() { return this; };
-    }
-    if (!MGW.fn.tooltip) {
-        MGW.fn.tooltip = function() { return this; };
-    }
-
-    // 兼容性别名
+    // jQuery 兼容性别名
     window.jQuery = MGW;
 
 })(window);

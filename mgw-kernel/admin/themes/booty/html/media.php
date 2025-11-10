@@ -66,12 +66,21 @@ $numberOfPages = count($listOfFilesByPage);
 echo 'var preLoadFiles = '.json_encode($preLoadFiles).';';
 ?>
 
+// Media Manager Modal instance
+var mediaManagerModal = null;
+
 function openMediaManager() {
-	$('#jsmediaManagerModal').modal('show');
+	if (!mediaManagerModal) {
+		var modalElement = document.getElementById('jsmediaManagerModal');
+		mediaManagerModal = new bootstrap.Modal(modalElement);
+	}
+	mediaManagerModal.show();
 }
 
 function closeMediaManager() {
-	$('#jsmediaManagerModal').modal('hide');
+	if (mediaManagerModal) {
+		mediaManagerModal.hide();
+	}
 }
 
 // Remove all files from the table

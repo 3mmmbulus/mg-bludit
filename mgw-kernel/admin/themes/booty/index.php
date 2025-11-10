@@ -15,7 +15,6 @@
 		echo Theme::cssBootstrap();
 		echo Theme::cssBootstrapIcons();
 		echo Theme::css(array(
-			'bootstrap5-compat.css',
 			'maigewan.css',
 			'maigewan.bootstrap.css'
 		), DOMAIN_ADMIN_THEME_CSS);
@@ -30,10 +29,7 @@
 			'maigewan-sortable.js'
 		), DOMAIN_CORE_JS, null);
 		echo Theme::jsBootstrap();
-		echo Theme::js(array(
-			'bootstrap5-compat.js',
-			'functions.js'
-		), DOMAIN_CORE_JS, null);
+		echo Theme::js('functions.js', DOMAIN_CORE_JS, null);
 	?>
 
 	<!-- Plugins -->

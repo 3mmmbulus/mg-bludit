@@ -289,7 +289,7 @@ foreach ($customFields as $field => $options) {
 
 
 <!-- Title -->
-<div id="jseditorTitle" class="form-group mb-1">
+<div id="jseditorTitle" class="mb-3">
 	<input id="jstitle" name="title" type="text" dir="auto" class="form-control form-control-lg rounded-0" value="" placeholder="<?php $L->p('Enter title') ?>">
 </div>
 
