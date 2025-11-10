@@ -188,6 +188,14 @@
             return this;
         }
 
+        // 清空内容 - 替代 .empty()
+        empty() {
+            this.elements.forEach(el => {
+                el.innerHTML = '';
+            });
+            return this;
+        }
+
         // 获取/设置文本 - 替代 .text()
         text(content) {
             if (content === undefined) {
@@ -438,6 +446,47 @@
         // 获取第一个元素的MGW对象
         eq(index) {
             return new MGWCollection([this.elements[index]]);
+        }
+
+        // 遍历元素 - 替代 .each()
+        each(callback) {
+            this.elements.forEach((el, index) => {
+                callback.call(el, index, el);
+            });
+            return this;
+        }
+
+        // 获取/设置属性 - 替代 .prop()
+        prop(name, value) {
+            if (value === undefined) {
+                return this.elements[0] ? this.elements[0][name] : undefined;
+            }
+            this.elements.forEach(el => {
+                el[name] = value;
+            });
+            return this;
+        }
+
+        // 获取/设置宽度 - 替代 .width()
+        width(value) {
+            if (value === undefined) {
+                return this.elements[0] ? this.elements[0].offsetWidth : 0;
+            }
+            this.elements.forEach(el => {
+                el.style.width = typeof value === 'number' ? value + 'px' : value;
+            });
+            return this;
+        }
+
+        // 获取/设置高度 - 替代 .height()
+        height(value) {
+            if (value === undefined) {
+                return this.elements[0] ? this.elements[0].offsetHeight : 0;
+            }
+            this.elements.forEach(el => {
+                el.style.height = typeof value === 'number' ? value + 'px' : value;
+            });
+            return this;
         }
 
         // Document ready - 支持 $(document).ready()

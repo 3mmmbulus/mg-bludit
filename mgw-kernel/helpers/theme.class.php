@@ -270,11 +270,6 @@ class Theme
 		return '<link rel="stylesheet" type="text/css" href="' . DOMAIN_CORE_CSS . 'bootstrap-icons/bootstrap-icons.css?version=' . MAIGEWAN_VERSION . '">' . PHP_EOL;
 	}
 
-	public static function cssLineAwesome()
-	{
-		return '<link rel="stylesheet" type="text/css" href="' . DOMAIN_CORE_CSS . 'line-awesome/css/line-awesome-font-awesome.min.css?version=' . MAIGEWAN_VERSION . '">' . PHP_EOL;
-	}
-
 	public static function jsSortable($attributes = '')
 	{
 		// https://github.com/psfpro/bootstrap-html5sortable

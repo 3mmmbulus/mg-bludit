@@ -14,7 +14,6 @@
 	<?php
 		echo Theme::cssBootstrap();
 		echo Theme::cssBootstrapIcons();
-		echo Theme::cssLineAwesome();
 		echo Theme::css(array(
 			'bootstrap5-compat.css',
 			'maigewan.css',

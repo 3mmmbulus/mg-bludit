@@ -81,6 +81,7 @@ class plugineasyMDE extends Plugin
 	// Insert an image in the editor at the cursor position
 	// Function required for Maigewan
 	function editorInsertMedia(filename) {
+		if (!easymde) return;
 		var text = easymde.value();
 		easymde.value(text + "![$langImage]("+filename+")" + "\\n");
 		easymde.codemirror.refresh();
@@ -89,6 +90,11 @@ class plugineasyMDE extends Plugin
 	// Returns the content of the editor
 	// Function required for Maigewan
 	function editorGetContent() {
+		if (!easymde) {
+			// 如果 EasyMDE 未初始化,返回原始 textarea 的值
+			var editor = document.getElementById("jseditor");
+			return editor ? editor.value : "";
+		}
 		return easymde.value();
 	}
 
