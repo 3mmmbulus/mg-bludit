@@ -213,16 +213,33 @@
 		var autosaveLabel = $('#jsbuttonSave').data('autosave-label') || 'Autosave';
 		var minContentLength = 100;
 
-		// Store initial content
-		currentContent = editorGetContent();
+		// Store initial content (safely)
+		try {
+			currentContent = editorGetContent();
+		} catch (e) {
+			currentContent = '';
+			console.log('Editor not ready yet, will start autosave when content is available');
+		}
 
 		setInterval(function() {
+			// Safety check: ensure editorGetContent exists and works
+			if (typeof editorGetContent !== 'function') {
+				return;
+			}
+
 			var uuid = $('#jsuuid').val();
 			var title = $('#jstitle').val() + '[' + autosaveLabel + ']';
-			var content = editorGetContent();
+			var content;
+			
+			try {
+				content = editorGetContent();
+			} catch (e) {
+				// Editor not ready yet, skip this autosave cycle
+				return;
+			}
 
 			// Only autosave if content is long enough
-			if (content.length < minContentLength) {
+			if (!content || content.length < minContentLength) {
 				return false;
 			}
 
