@@ -15,7 +15,7 @@ header('Content-Type: application/json');
 // (string) $_GET['query']
 $query = isset($_GET['query']) ? Text::lowercase($_GET['query']) : false;
 // (boolean) $_GET['checkIsParent']
-$checkIsParent = empty($_GET['checkIsParent']) ? false : true;
+$checkIsParent = $_GET['checkIsParent'] ?? false;
 // ----------------------------------------------------------------------------
 if ($query===false) {
 	ajaxResponse(1, 'Invalid query.');

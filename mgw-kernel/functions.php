@@ -633,7 +633,7 @@ function editSettings($args)
 
   if (isset($args['customFields'])) {
     // Custom fields need to be JSON format valid, also the empty JSON need to be "{}"
-    json_decode($args['customFields']);
+    $decodedFields = json_decode($args['customFields']);
     if (json_last_error() != JSON_ERROR_NONE) {
       return false;
     }

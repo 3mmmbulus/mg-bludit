@@ -227,6 +227,10 @@ EOF;
 	{
 		// Read the cache file
 		$json = file_get_contents($this->cacheFile());
+		if ($json === false) {
+			Log::set('search/plugin.php - Error reading cache file: '.$this->cacheFile());
+			return array();
+		}
 		$cache = json_decode($json, true);
 
 		// Inlcude Fuzz algorithm

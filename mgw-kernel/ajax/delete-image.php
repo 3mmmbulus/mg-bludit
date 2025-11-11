@@ -12,8 +12,8 @@ header('Content-Type: application/json');
 
 // $_POST
 // ----------------------------------------------------------------------------
-$filename = isset($_POST['filename']) ? $_POST['filename'] : false;
-$uuid = empty($_POST['uuid']) ? false : $_POST['uuid'];
+$filename = $_POST['filename'] ?? false;
+$uuid = $_POST['uuid'] ?? false;
 // ----------------------------------------------------------------------------
 
 if ($filename===false) {

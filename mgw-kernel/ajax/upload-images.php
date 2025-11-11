@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 
 // $_POST
 // ----------------------------------------------------------------------------
-$uuid = empty($_POST['uuid']) ? false : $_POST['uuid'];
+$uuid = $_POST['uuid'] ?? false;
 // ----------------------------------------------------------------------------
 
 // Check path traversal on $uuid

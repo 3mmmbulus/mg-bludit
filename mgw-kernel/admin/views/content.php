@@ -95,15 +95,14 @@ function table($type) {
 					echo '<td class="d-none d-lg-table-cell"><a target="_blank" href="'.$page->permalink().'">'.$friendlyURL.'</a></td>';
 					}
 
-					echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
-					echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$page->permalink().'"><i class="bi bi-display"></i>'.$L->g('View').'</a>'.PHP_EOL;
-					echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="bi bi-pencil"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
-					if (count($page->children())==0) {
-						echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="bi bi-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
-					}
-					echo '</td>';
-
-					echo '</tr>';
+				echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
+				echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$page->permalink().'"><i class="bi bi-display"></i>'.$L->g('View').'</a>'.PHP_EOL;
+				echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="bi bi-pencil"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
+				$children = $page->children();
+				if (is_array($children) && count($children)==0) {
+					echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="bi bi-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+				}
+				echo '</td>';					echo '</tr>';
 
 					foreach ($page->children() as $child) {
 						//if ($child->published()) {
@@ -161,17 +160,16 @@ function table($type) {
 				echo '<td class="pt-3 d-none d-lg-table-cell"><a target="_blank" href="'.$page->permalink().'">'.$friendlyURL.'</a></td>';
 				}
 
-				echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
-				if ($type=='published' || $type=='static' || $type=='sticky') {
-				echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$page->permalink().'"><i class="bi bi-display"></i>'.$L->g('View').'</a>'.PHP_EOL;
-				}
-				echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="bi bi-pencil"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
-				if (count($page->children())==0) {
-					echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="bi bi-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
-				}
-				echo '</td>';
-
-				echo '</tr>';
+			echo '<td class="contentTools pt-3 text-center d-sm-table-cell">'.PHP_EOL;
+			if ($type=='published' || $type=='static' || $type=='sticky') {
+			echo '<a class="text-secondary d-none d-md-inline" target="_blank" href="'.$page->permalink().'"><i class="bi bi-display"></i>'.$L->g('View').'</a>'.PHP_EOL;
+			}
+			echo '<a class="text-secondary d-none d-md-inline ml-2" href="'.HTML_PATH_ADMIN_ROOT.'edit-content/'.$page->key().'"><i class="bi bi-pencil"></i>'.$L->g('Edit').'</a>'.PHP_EOL;
+			$children = $page->children();
+			if (is_array($children) && count($children)==0) {
+				echo '<a href="#" class="ml-2 text-danger deletePageButton d-block d-sm-inline" data-bs-toggle="modal" data-bs-target="#jsdeletePageModal" data-key="'.$page->key().'"><i class="bi bi-trash"></i>'.$L->g('Delete').'</a>'.PHP_EOL;
+			}
+			echo '</td>';				echo '</tr>';
 			} catch (Exception $e) {
 				// Continue
 			}

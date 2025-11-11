@@ -55,6 +55,11 @@ class Page
 		$key = $this->key();
 		$filePath = PATH_PAGES . $key . DS . FILENAME;
 		$contentRaw = file_get_contents($filePath);
+		
+		if ($contentRaw === false) {
+			Log::set('pagex.class.php - contentRaw() - Error reading file: '.$filePath);
+			return '';
+		}
 
 		if ($sanitize) {
 			return Sanitize::html($contentRaw);

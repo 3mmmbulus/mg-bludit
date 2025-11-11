@@ -14,11 +14,11 @@ header('Content-Type: application/json');
 // $_POST
 // ----------------------------------------------------------------------------
 // $_POST['pageNumber'] > 0
-$pageNumber = empty($_POST['pageNumber']) ? 1 : (int)$_POST['pageNumber'];
-$pageNumber = $pageNumber - 1;
+$pageNumber = $_POST['pageNumber'] ?? 1;
+$pageNumber = (int)$pageNumber - 1;
 
-$path = empty($_POST['path']) ? false : $_POST['path'];
-$uuid = empty($_POST['uuid']) ? false : $_POST['uuid'];
+$path = $_POST['path'] ?? false;
+$uuid = $_POST['uuid'] ?? false;
 // ----------------------------------------------------------------------------
 
 // Set the path to get the file list

@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 // $_POST
 // ----------------------------------------------------------------------------
 // (string) $_POST['username']
-$username = empty($_POST['username']) ? false : $_POST['username'];
+$username = $_POST['username'] ?? false;
 // ----------------------------------------------------------------------------
 
 if ($username===false) {

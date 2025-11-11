@@ -16,11 +16,11 @@ header('Content-Type: application/json');
 
 // $_GET
 // ----------------------------------------------------------------------------
-$published = empty($_GET['published']) ? false:true;
-$static = empty($_GET['static']) ? false:true;
-$sticky = empty($_GET['sticky']) ? false:true;
-$scheduled = empty($_GET['scheduled']) ? false:true;
-$draft = empty($_GET['draft']) ? false:true;
+$published = $_GET['published'] ?? false;
+$static = $_GET['static'] ?? false;
+$sticky = $_GET['sticky'] ?? false;
+$scheduled = $_GET['scheduled'] ?? false;
+$draft = $_GET['draft'] ?? false;
 $query = isset($_GET['query']) ? Text::lowercase($_GET['query']) : false;
 // ----------------------------------------------------------------------------
 
