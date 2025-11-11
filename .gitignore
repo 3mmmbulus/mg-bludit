@@ -10,7 +10,7 @@ Thumbs.db
 .vscode/
 
 # Content and user data (keep structure, ignore content)
-mgw-content/databases/*.php
+# mgw-content/databases/*.php  # Commented out - allow database files to be tracked
 mgw-content/pages/*
 mgw-content/tmp/*
 mgw-content/uploads/*
