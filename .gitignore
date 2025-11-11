@@ -49,6 +49,7 @@ mgw-themes/social-network
 # Debug and logs
 mgw-content/debug.txt
 *.log
+!mgw-content/workspaces/**/*.log
 error_log
 
 # Backup files
