@@ -1,2 +1,11 @@
 <?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
-[{"date":"2025-11-11 08:05:18","dictionaryKey":"settings-changes","notes":"","idExecution":"6913186e161ca","method":"POST","username":"admin"}]
+[
+    {
+        "date": "2025-11-11 21:03:51",
+        "dictionaryKey": "welcome-to-bludit",
+        "notes": "",
+        "idExecution": "69134247b9a4e",
+        "method": "POST",
+        "username": "admin"
+    }
+]
