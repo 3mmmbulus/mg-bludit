@@ -1,0 +1,280 @@
+<?php
+// Preload the first 10 files to not call via AJAX when the user open the first time the media manager
+$listOfFilesByPage = Filesystem::listFiles(PAGE_THUMBNAILS_DIRECTORY, '*', '*', MEDIA_MANAGER_SORT_BY_DATE, MEDIA_MANAGER_NUMBER_OF_FILES);
+$preLoadFiles = array();
+if (!empty($listOfFilesByPage[0])) {
+	foreach ($listOfFilesByPage[0] as $file) {
+		$filename = Filesystem::filename($file);
+		array_push($preLoadFiles, $filename);
+	}
+}
+
+// Amount of pages for the paginator
+$numberOfPages = count($listOfFilesByPage);
+?>
+
+<div id="jsmediaManagerModal" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="container-fluid">
+<div class="row">
+	<div class="col p-3">
+
+	<!--
+		UPLOAD INPUT
+	-->
+		<h3 class="mt-2 mb-3"><i class="bi bi-image"></i> <?php $L->p('Images'); ?></h3>
+
+		<div id="jsalertMedia" class="alert alert-warning d-none" role="alert"></div>
+
+		<!-- Form and Input file -->
+		<form name="maigewanFormUpload" id="jsmaigewanFormUpload" enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="jsimages" class="form-label"><?php $L->p('Choose images to upload'); ?></label>
+				<input type="file" class="form-control" id="jsimages" name="images[]" multiple>
+			</div>
+		</form>
+
+		<!-- Progress bar -->
+		<div class="progress mt-3">
+			<div id="jsmaigewanProgressBar" class="progress-bar bg-primary" role="progressbar" style="width:0%"></div>
+		</div>
+
+	<!--
+		IMAGES LIST
+	-->
+		<!-- Table for list files -->
+		<table id="jsmaigewanMediaTable" class="table mt-3">
+			<tr>
+				<td><?php $L->p('There are no images'); ?></td>
+			</tr>
+		</table>
+
+		<!-- Paginator -->
+		<nav id="jsmaigewanMediaTablePagination"></nav>
+
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+
+<?php
+echo 'var preLoadFiles = '.json_encode($preLoadFiles).';';
+?>
+
+// Media Manager Modal instance
+var mediaManagerModal = null;
+
+function openMediaManager() {
+	if (!mediaManagerModal) {
+		var modalElement = document.getElementById('jsmediaManagerModal');
+		mediaManagerModal = new bootstrap.Modal(modalElement);
+	}
+	mediaManagerModal.show();
+}
+
+function closeMediaManager() {
+	if (mediaManagerModal) {
+		mediaManagerModal.hide();
+	}
+}
+
+// Remove all files from the table
+function cleanTable() {
+	$('#jsmaigewanMediaTable').empty();
+}
+
+function showMediaAlert(message) {
+	$("#jsalertMedia").html(message).removeClass('d-none');
+}
+
+function hideMediaAlert() {
+	$("#jsalertMedia").addClass('d-none');
+}
+
+// Show the files in the table
+function displayFiles(files, numberOfPages = <?= $numberOfPages ?>) {
+	if (!Array.isArray(files)) {
+		return false;
+	}
+
+	// Clean table
+	cleanTable();
+
+	// Regenerate the table
+	if (files.length > 0) {
+		$.each(files, function(key, filename) {
+			var thumbnail = "<?php echo PAGE_THUMBNAILS_URL; ?>"+filename;
+			var image = "<?php echo PAGE_IMAGES_URL; ?>"+filename;
+
+			tableRow = '<tr id="js'+filename+'">'+
+					'<td style="width:80px"><img class="img-thumbnail" alt="200x200" src="'+thumbnail+'" style="width: 50px; height: 50px;"><\/td>'+
+					'<td class="information">'+
+						'<div class="text-secondary pb-2">'+filename+'<\/div>'+
+						'<div>'+
+							'<a href="#" class="mr-3 text-primary" onClick="editorInsertMedia(\''+image+'\'); closeMediaManager();"><i class="bi bi-plus-circle"></i><?php $L->p('Insert') ?><\/a>'+
+							'<a href="#" class="mr-3 text-primary" onClick="editorInsertMedia(\''+thumbnail+'\'); closeMediaManager();"><i class="bi bi-image"></i><?php $L->p('Insert thumbnail') ?><\/a>'+
+							'<a href="#" class="mr-3 text-primary" onClick="editorInsertLinkedMedia(\''+thumbnail+'\',\''+image+'\'); closeMediaManager();"><i class="bi bi-link-45deg"></i><?php $L->p('Insert linked thumbnail') ?><\/a>'+
+							'<a href="#" class="text-primary" onClick="setCoverImage(\''+filename+'\'); closeMediaManager();"><i class="bi bi-display"></i><?php $L->p('Set as cover image') ?><\/button>'+
+							'<a href="#" class="float-right text-danger" onClick="deleteMedia(\''+filename+'\')"><i class="bi bi-trash"></i><?php $L->p('Delete') ?><\/a>'+
+						'<\/div>'+
+					'<\/td>'+
+				'<\/tr>';
+			$('#jsmaigewanMediaTable').append(tableRow);
+		});
+
+		mediaPagination = '<ul class="pagination justify-content-center flex-wrap">';
+		for (var i = 1; i <= numberOfPages; i++) {
+			mediaPagination += '<li class="page-item"><button type="button" class="btn btn-link page-link" onClick="getFiles('+i+')">'+i+'</button></li>';
+		}
+		mediaPagination += '</ul>';
+		$('#jsmaigewanMediaTablePagination').html(mediaPagination);
+
+	}
+
+	if (files.length == 0) {
+		$('#jsmaigewanMediaTable').html("<p><?php (IMAGE_RESTRICT ? $L->p('There are no images for the page') : $L->p('There are no images')) ?></p>");
+		$('#jsmaigewanMediaTablePagination').html('');
+	}
+}
+
+// Get the list of files via AJAX, filter by the page number
+function getFiles(pageNumber) {
+	$.post(HTML_PATH_ADMIN_ROOT+"ajax/list-images",
+		{ 	tokenCSRF: tokenCSRF,
+			pageNumber: pageNumber,
+			uuid: "<?php echo PAGE_IMAGES_KEY ?>",
+			path: "thumbnails" // the paths are defined in ajax/list-images
+		},
+		function(data) { // success function
+			if (data.status==0) {
+				displayFiles(data.files, data.numberOfPages);
+			} else {
+				console.log(data.message);
+			}
+		}
+	);
+}
+
+// Delete the file and the thumbnail if exist
+function deleteMedia(filename) {
+	$.post(HTML_PATH_ADMIN_ROOT+"ajax/delete-image",
+		{ 	tokenCSRF: tokenCSRF,
+			filename: filename,
+			uuid: "<?php echo PAGE_IMAGES_KEY; ?>"
+		},
+		function(data) { // success function
+			if (data.status==0) {
+				getFiles(1);
+			} else {
+				console.log(data.message);
+			}
+		}
+	);
+}
+
+function setCoverImage(filename) {
+	var image = "<?php echo PAGE_IMAGES_URL; ?>"+filename;
+	$("#jscoverImage").val(filename);
+	$("#jscoverImagePreview").attr("src", image);
+}
+
+function uploadImages() {
+	// Remove current alerts
+	hideMediaAlert();
+
+	var images = $("#jsimages")[0].files;
+	for (var i=0; i < images.length; i++) {
+		// Check file type/extension
+		const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
+		if (!validImageTypes.includes(images[i].type)) {
+			showMediaAlert("<?php echo $L->g('File type is not supported. Allowed types:').' '.implode(', ',$GLOBALS['ALLOWED_IMG_EXTENSION']) ?>");
+			return false;
+		}
+
+		// Check file size and compare with PHP upload_max_filesize
+		if (images[i].size > UPLOAD_MAX_FILESIZE) {
+			showMediaAlert("<?php echo $L->g('Maximum load file size allowed:').' '.ini_get('upload_max_filesize') ?>");
+			return false;
+		}
+	};
+
+	// Clean progress bar
+	$("#jsmaigewanProgressBar").removeClass().addClass("progress-bar bg-primary");
+	$("#jsmaigewanProgressBar").width("0");
+
+	// Data to send via AJAX
+	var formData = new FormData($("#jsmaigewanFormUpload")[0]);
+	formData.append("uuid", "<?php echo PAGE_IMAGES_KEY ?>");
+	formData.append("tokenCSRF", tokenCSRF);
+
+	// Upload with fetch API and progress tracking
+	var xhr = new XMLHttpRequest();
+	xhr.upload.addEventListener("progress", function(e) {
+		if (e.lengthComputable) {
+			var percentComplete = (e.loaded / e.total) * 100;
+			$("#jsmaigewanProgressBar").width(percentComplete + "%");
+		}
+	}, false);
+
+	xhr.addEventListener("load", function() {
+		if (xhr.status === 200) {
+			try {
+				var data = JSON.parse(xhr.responseText);
+				if (data.status == 0) {
+					$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-success");
+					// Get the files for the first page, this include the files uploaded
+					getFiles(1);
+				} else {
+					$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+					showMediaAlert(data.message);
+				}
+			} catch(e) {
+				$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+				showMediaAlert("Upload failed");
+			}
+		} else {
+			$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+			showMediaAlert("Upload failed");
+		}
+	});
+
+	xhr.addEventListener("error", function() {
+		$("#jsmaigewanProgressBar").removeClass("bg-primary").addClass("bg-danger");
+		showMediaAlert("Upload failed");
+	});
+
+	xhr.open("POST", HTML_PATH_ADMIN_ROOT + "ajax/upload-images");
+	xhr.send(formData);
+}
+
+$(document).ready(function() {
+	// Display the files preloaded for the first time
+	displayFiles(preLoadFiles);
+
+	// Select image event
+	$("#jsimages").on("change", function(e) {
+		uploadImages();
+	});
+
+	// Drag and drop image
+	$(window).on("dragover dragenter", function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		openMediaManager();
+	});
+
+	// Drag and drop image
+	$(window).on("drop", function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$("#jsimages").prop("files", e.originalEvent.dataTransfer.files);
+		uploadImages();
+	});
+});
+
+</script>
