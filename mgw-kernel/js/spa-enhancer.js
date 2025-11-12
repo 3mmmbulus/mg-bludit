@@ -9,15 +9,18 @@
 	const config = {
 		enablePageTransitions: true,      // 启用页面过渡动画
 		enableAjaxForms: true,             // 启用AJAX表单提交
+		enableAjaxNavigation: true,        // 启用AJAX导航
 		enableProgressBar: true,           // 启用顶部进度条
 		transitionDuration: 300,           // 过渡动画时长(ms)
 		progressBarColor: '#0078D4',       // 进度条颜色
 		excludeSelectors: [                // 排除选择器
 			'a[target="_blank"]',
 			'a[href^="http"]',
+			'a[href^="https"]',
 			'a[href^="mailto:"]',
 			'a[href^="tel:"]',
-			'a[download]'
+			'a[download]',
+			'a[data-no-spa]'
 		]
 	};
 
@@ -174,12 +177,141 @@
 	}
 
 	/**
-	 * AJAX导航(可选,需要后端支持)
+	 * AJAX导航
 	 */
 	function handleLinkClick(event, link) {
-		// 暂时禁用AJAX导航,保持传统页面跳转
-		// 未来如果需要可以启用
-		return false;
+		if (!config.enableAjaxNavigation) return false;
+
+		// 检查是否排除
+		for (let selector of config.excludeSelectors) {
+			if (link.matches(selector)) return false;
+		}
+
+		// 只处理侧边栏导航链接
+		if (!link.closest('.sidebar')) return false;
+
+		// 检查是否指向同一域名
+		const linkUrl = new URL(link.href);
+		if (linkUrl.origin !== window.location.origin) return false;
+
+		event.preventDefault();
+		
+		if (isNavigating) return true;
+		isNavigating = true;
+
+		const targetUrl = link.href;
+		const contentContainer = document.querySelector('#maigewan-main-content');
+
+		if (!contentContainer) {
+			window.location.href = targetUrl;
+			return true;
+		}
+
+		showProgress();
+
+		// 淡出当前内容
+		contentContainer.style.opacity = '0.5';
+		contentContainer.style.pointerEvents = 'none';
+
+		// 加载新页面
+		fetch(targetUrl, {
+			method: 'GET',
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest',
+				'X-SPA-Request': 'true'
+			},
+			credentials: 'same-origin'
+		})
+		.then(response => {
+			if (!response.ok) throw new Error('Network response was not ok');
+			return response.text();
+		})
+		.then(html => {
+			// 解析HTML
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(html, 'text/html');
+			const newContent = doc.querySelector('#maigewan-main-content');
+
+			if (newContent) {
+				// 更新内容
+				contentContainer.innerHTML = newContent.innerHTML;
+
+				// 更新浏览器历史
+				history.pushState({ url: targetUrl }, '', targetUrl);
+
+				// 更新激活状态
+				updateActiveLinks(targetUrl);
+
+				// 滚动到顶部
+				contentContainer.scrollTop = 0;
+
+				// 淡入新内容
+				setTimeout(() => {
+					contentContainer.style.opacity = '1';
+					contentContainer.style.pointerEvents = 'auto';
+					completeProgress();
+					isNavigating = false;
+
+					// 重新执行页面脚本
+					executeScripts(newContent);
+
+					// 触发自定义事件
+					const customEvent = new CustomEvent('spa:loaded', {
+						detail: { url: targetUrl }
+					});
+					document.dispatchEvent(customEvent);
+				}, 150);
+			} else {
+				// 无法提取内容，执行正常跳转
+				window.location.href = targetUrl;
+			}
+		})
+		.catch(error => {
+			console.error('AJAX导航失败:', error);
+			contentContainer.style.opacity = '1';
+			contentContainer.style.pointerEvents = 'auto';
+			completeProgress();
+			isNavigating = false;
+			// 出错时跳转
+			window.location.href = targetUrl;
+		});
+
+		return true;
+	}
+
+	/**
+	 * 更新激活状态的链接
+	 */
+	function updateActiveLinks(url) {
+		const links = document.querySelectorAll('.sidebar .nav-link');
+		const currentPath = new URL(url).pathname;
+
+		links.forEach(link => {
+			const linkPath = new URL(link.href).pathname;
+			if (linkPath === currentPath) {
+				link.classList.add('active');
+			} else {
+				link.classList.remove('active');
+			}
+		});
+	}
+
+	/**
+	 * 执行新内容中的脚本
+	 */
+	function executeScripts(container) {
+		const scripts = container.querySelectorAll('script');
+
+		scripts.forEach(oldScript => {
+			// 只执行内联脚本，避免重复加载外部脚本
+			if (!oldScript.src && oldScript.textContent.trim()) {
+				try {
+					eval(oldScript.textContent);
+				} catch (e) {
+					console.error('脚本执行错误:', e);
+				}
+			}
+		});
 	}
 
 	/**
@@ -337,14 +469,37 @@
 			});
 		}
 
+		// 监听链接点击
+		if (config.enableAjaxNavigation) {
+			document.addEventListener('click', function(e) {
+				const link = e.target.closest('a');
+				if (link && link.href) {
+					handleLinkClick(e, link);
+				}
+			});
+
+			// 处理浏览器前进/后退
+			window.addEventListener('popstate', function(e) {
+				if (e.state && e.state.url) {
+					isNavigating = false; // 重置状态
+					const fakeLink = document.createElement('a');
+					fakeLink.href = e.state.url;
+					handleLinkClick(new Event('click'), fakeLink);
+				}
+			});
+		}
+
 		// 暴露到全局以便外部调用
 		window.SPAEnhancer = {
 			showProgress,
 			completeProgress,
 			showAlert,
 			fadeOut,
-			fadeIn
+			fadeIn,
+			updateActiveLinks
 		};
+
+		console.log('[SPA Enhancer] Initialized with AJAX navigation enabled');
 	}
 
 	// 当DOM加载完成后初始化

@@ -82,8 +82,6 @@
 	echo JSLoader::loadAdminCore();
 	// 加载 AJAX 工具
 	echo JSLoader::loadAjaxUtilities();
-	// 加载 SPA 导航模块
-	echo Theme::script('spa-navigation.js');
 	
 	// 根据当前页面加载特定的 JS
 	$view = isset($layout['view']) ? $layout['view'] : '';
