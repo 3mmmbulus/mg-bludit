@@ -13,14 +13,30 @@ if (!empty($_SERVER['HTTP_HOST'])) {
 	$host = $_SERVER['HTTP_HOST'];
 	$host = preg_replace('/:\d+$/', '', $host);
 	
+	// 1. 尝试精确匹配完整域名
 	$siteDir = __DIR__ . DIRECTORY_SEPARATOR . 'mgw-content' . DIRECTORY_SEPARATOR . $host;
 	if (is_dir($siteDir)) {
 		$siteIdentifier = $host;
-	} else if (strpos($host, 'www.') === 0) {
-		$hostWithoutWww = substr($host, 4);
-		$siteDir = __DIR__ . DIRECTORY_SEPARATOR . 'mgw-content' . DIRECTORY_SEPARATOR . $hostWithoutWww;
-		if (is_dir($siteDir)) {
-			$siteIdentifier = $hostWithoutWww;
+	} else {
+		// 2. 尝试匹配主域名(支持子域名)
+		$parts = explode('.', $host);
+		$partsCount = count($parts);
+		
+		if ($partsCount >= 3) {
+			// 取最后两部分作为主域名
+			$mainDomain = $parts[$partsCount - 2] . '.' . $parts[$partsCount - 1];
+			$siteDir = __DIR__ . DIRECTORY_SEPARATOR . 'mgw-content' . DIRECTORY_SEPARATOR . $mainDomain;
+			if (is_dir($siteDir)) {
+				$siteIdentifier = $mainDomain;
+			}
+		}
+		// 如果是 www 开头且未匹配,尝试去掉 www 前缀
+		elseif (strpos($host, 'www.') === 0) {
+			$hostWithoutWww = substr($host, 4);
+			$siteDir = __DIR__ . DIRECTORY_SEPARATOR . 'mgw-content' . DIRECTORY_SEPARATOR . $hostWithoutWww;
+			if (is_dir($siteDir)) {
+				$siteIdentifier = $hostWithoutWww;
+			}
 		}
 	}
 }

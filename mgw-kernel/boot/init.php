@@ -37,13 +37,29 @@ if (!empty($_SERVER['HTTP_HOST'])) {
 	// 移除端口号
 	$host = preg_replace('/:\d+$/', '', $host);
 	
-	// 尝试精确匹配域名目录
+	// 1. 尝试精确匹配完整域名
 	$siteDir = PATH_ROOT . 'mgw-content' . DS . $host;
 	if (is_dir($siteDir)) {
 		$siteIdentifier = $host;
 	} else {
-		// 如果是 www 开头,尝试去掉 www 前缀
-		if (strpos($host, 'www.') === 0) {
+		// 2. 尝试匹配主域名(支持子域名)
+		// 例如: download.1dun.co -> 尝试 1dun.co
+		//       www.1dun.co -> 尝试 1dun.co
+		//       sub.domain.com -> 尝试 domain.com
+		$parts = explode('.', $host);
+		$partsCount = count($parts);
+		
+		// 如果有3个或以上部分,尝试主域名匹配
+		if ($partsCount >= 3) {
+			// 取最后两部分作为主域名
+			$mainDomain = $parts[$partsCount - 2] . '.' . $parts[$partsCount - 1];
+			$siteDir = PATH_ROOT . 'mgw-content' . DS . $mainDomain;
+			if (is_dir($siteDir)) {
+				$siteIdentifier = $mainDomain;
+			}
+		}
+		// 如果是 www 开头且未匹配,尝试去掉 www 前缀
+		elseif (strpos($host, 'www.') === 0) {
 			$hostWithoutWww = substr($host, 4);
 			$siteDir = PATH_ROOT . 'mgw-content' . DS . $hostWithoutWww;
 			if (is_dir($siteDir)) {
@@ -71,7 +87,7 @@ define('PATH_CORE_JS',			PATH_KERNEL . 'js' . DS);
 
 define('PATH_PAGES',			PATH_CONTENT . 'pages' . DS);
 define('PATH_DATABASES',		PATH_CONTENT . 'databases' . DS);
-define('PATH_PLUGINS_DATABASES',	PATH_CONTENT . 'databases' . DS . 'plugins' . DS);
+define('PATH_PLUGINS_DATABASES',	PATH_CONFIG . 'plugins' . DS . SITE_IDENTIFIER . DS);
 define('PATH_TMP',			PATH_CONTENT . 'tmp' . DS);
 define('PATH_UPLOADS',			PATH_CONTENT . 'uploads' . DS);
 define('PATH_WORKSPACES',		PATH_CONTENT . 'workspaces' . DS);
