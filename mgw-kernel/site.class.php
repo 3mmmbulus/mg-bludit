@@ -2,6 +2,8 @@
 
 class Site extends dbJSON
 {
+	private $systemConfig; // 系统配置对象，存储在 mgw-config/system.php
+	
 	public $dbFields = array(
 		'title' =>		'I am Guybrush Threepwood, mighty developer',
 		'slogan' =>		'',
@@ -57,6 +59,18 @@ class Site extends dbJSON
 	{
 		parent::__construct(DB_SITE);
 
+		// 初始化系统配置对象
+		$this->systemConfig = new dbJSON(DB_SYSTEM_CONFIG);
+		
+		// 合并系统配置到当前对象（优先使用系统配置）
+		$systemFields = array('language', 'locale', 'timezone', 'adminTheme', 'dateFormat', 
+		                      'extremeFriendly', 'autosaveInterval', 'imageRestrict', 'imageRelativeToAbsolute');
+		foreach ($systemFields as $field) {
+			if (isset($this->systemConfig->db[$field])) {
+				$this->db[$field] = $this->systemConfig->db[$field];
+			}
+		}
+
 		// Set timezone
 		$this->setTimezone($this->timezone());
 
@@ -72,20 +86,84 @@ class Site extends dbJSON
 
 	public function set($args)
 	{
-		// Check values on args or set default values
-		foreach ($this->dbFields as $field => $value) {
-			if (isset($args[$field])) {
-				$finalValue = Sanitize::html($args[$field]);
+		// 系统配置字段列表
+		$systemFields = array('language', 'locale', 'timezone', 'adminTheme', 'dateFormat', 
+		                      'extremeFriendly', 'autosaveInterval', 'imageRestrict', 'imageRelativeToAbsolute');
+		
+		// 分离系统配置和内容配置
+		$systemArgs = array();
+		$contentArgs = array();
+		
+		foreach ($args as $field => $value) {
+			if (in_array($field, $systemFields)) {
+				$systemArgs[$field] = $value;
+			} else {
+				$contentArgs[$field] = $value;
+			}
+		}
+		
+		// 处理系统配置
+		foreach ($systemArgs as $field => $value) {
+			if (isset($this->dbFields[$field])) {
+				$finalValue = Sanitize::html($value);
 				if ($finalValue === 'false') {
 					$finalValue = false;
 				} elseif ($finalValue === 'true') {
 					$finalValue = true;
 				}
-				settype($finalValue, gettype($value));
+				settype($finalValue, gettype($this->dbFields[$field]));
+				$this->systemConfig->db[$field] = $finalValue;
+				$this->db[$field] = $finalValue; // 同步到主数据库
+			}
+		}
+		
+		// 处理内容配置
+		foreach ($contentArgs as $field => $value) {
+			if (isset($this->dbFields[$field])) {
+				$finalValue = Sanitize::html($value);
+				if ($finalValue === 'false') {
+					$finalValue = false;
+				} elseif ($finalValue === 'true') {
+					$finalValue = true;
+				}
+				settype($finalValue, gettype($this->dbFields[$field]));
 				$this->db[$field] = $finalValue;
 			}
 		}
+		
+		// 保存系统配置
+		if (!empty($systemArgs)) {
+			$this->systemConfig->save();
+		}
+		
+		// 保存内容配置
 		return $this->save();
+	}
+
+	// 重写 save 方法，确保 site.php 中不包含系统配置字段
+	public function save()
+	{
+		// 系统配置字段列表
+		$systemFields = array('language', 'locale', 'timezone', 'adminTheme', 'dateFormat', 
+		                      'extremeFriendly', 'autosaveInterval', 'imageRestrict', 'imageRelativeToAbsolute');
+		
+		// 备份完整数据
+		$fullData = $this->db;
+		
+		// 从 db 中移除系统配置字段（仅用于保存到 site.php）
+		foreach ($systemFields as $field) {
+			if (isset($this->db[$field])) {
+				unset($this->db[$field]);
+			}
+		}
+		
+		// 保存到 site.php（不包含系统配置）
+		$result = parent::save();
+		
+		// 恢复完整数据（包含系统配置，用于运行时使用）
+		$this->db = $fullData;
+		
+		return $result;
 	}
 
 	// Returns an array with the URL filters

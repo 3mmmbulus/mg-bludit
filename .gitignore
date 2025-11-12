@@ -1,6 +1,7 @@
-# Maigewan CMS - Git Ignore File
+# Maigewan CMS - Git 忽略文件
 
-# System files
+
+# 系统文件
 .DS_Store
 Thumbs.db
 *.swp
@@ -9,11 +10,11 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Development tools
+# 开发工具
 dbgenerator.php
 mgw-content-migrator
 
-# Unused plugins
+# 未使用的插件
 mgw-plugins/timemachine
 mgw-plugins/timemachine-x
 mgw-plugins/discovery
@@ -24,10 +25,10 @@ mgw-plugins/yandex-metrica/
 mgw-plugins/domain-migrator/
 mgw-plugins/tail-writer/
 
-# Pro version
+# 专业版
 mgw-kernel/maigewan.pro.php
 
-# Unused themes
+# 未使用的主题
 mgw-kernel/admin/themes/gris
 mgw-themes/docs
 mgw-themes/typerite
@@ -46,28 +47,28 @@ mgw-themes/small
 mgw-themes/future-imperfect
 mgw-themes/social-network
 
-# Debug and logs
+# 调试和日志
 mgw-content/debug.txt
 *.log
 !mgw-content/workspaces/**/*.log
 error_log
 
-# Backup files
+# 备份文件
 *.bak
 *.backup
 *.old
 
-# Backup directory
+# 备份目录
 maigewan-3.0/
 maigewan-backup-*.tar.gz
 
-# Test files
+# 测试文件
 php83_compatibility_test.php
 
-# Tabler files (UI framework)
+# Tabler 文件（UI框架）
 tabler/
 
-# Temporary files
+# 临时文件
 *.tmp
 *.temp
 *~

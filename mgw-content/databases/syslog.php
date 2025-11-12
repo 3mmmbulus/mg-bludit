@@ -1,11 +1,2 @@
 <?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
-[
-    {
-        "date": "2025-11-11 21:03:51",
-        "dictionaryKey": "welcome-to-bludit",
-        "notes": "",
-        "idExecution": "69134247b9a4e",
-        "method": "POST",
-        "username": "admin"
-    }
-]
+[{"date":"2025-11-12 20:41:24","dictionaryKey":"settings-changes","notes":"","idExecution":"69148e84db8ec","method":"POST","username":"admin"},{"date":"2025-11-12 20:41:17","dictionaryKey":"settings-changes","notes":"","idExecution":"69148e7d10cdc","method":"POST","username":"admin"},{"date":"2025-11-12 20:41:13","dictionaryKey":"settings-changes","notes":"","idExecution":"69148e79db432","method":"POST","username":"admin"},{"date":"2025-11-12 20:41:10","dictionaryKey":"settings-changes","notes":"","idExecution":"69148e76e60b4","method":"POST","username":"admin"},{"date":"2025-11-11 21:03:51","dictionaryKey":"welcome-to-bludit","notes":"","idExecution":"69134247b9a4e","method":"POST","username":"admin"}]

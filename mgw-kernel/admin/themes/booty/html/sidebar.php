@@ -8,9 +8,6 @@
 	<li class="nav-item">
 		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'dashboard' ?>"><span class="bi bi-speedometer2"></span><?php $L->p('Dashboard') ?></a>
 	</li>
-	<li class="nav-item">
-		<a class="nav-link" target="_blank" href="<?php echo HTML_PATH_ROOT ?>"><span class="bi bi-house"></span><?php $L->p('Website') ?></a>
-	</li>
 
 	<li class="nav-item mt-3">
 		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'new-content' ?>"><span style="color: #0078D4;" class="bi bi-plus-circle"></span><?php $L->p('New content') ?></a>

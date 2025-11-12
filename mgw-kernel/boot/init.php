@@ -36,6 +36,7 @@ define('PATH_THEMES',			PATH_ROOT . 'mgw-themes' . DS);
 define('PATH_PLUGINS',			PATH_ROOT . 'mgw-plugins' . DS);
 define('PATH_KERNEL',			PATH_ROOT . 'mgw-kernel' . DS);
 define('PATH_CONTENT',			PATH_ROOT . 'mgw-content' . DS);
+define('PATH_CONFIG',			PATH_ROOT . 'mgw-config' . DS);
 
 define('PATH_ABSTRACT',			PATH_KERNEL . 'abstract' . DS);
 define('PATH_RULES',			PATH_KERNEL . 'boot' . DS . 'rules' . DS);
@@ -67,8 +68,9 @@ define('DB_SITE', PATH_DATABASES . 'site.php');
 define('DB_CATEGORIES', PATH_DATABASES . 'categories.php');
 define('DB_TAGS', PATH_DATABASES . 'tags.php');
 define('DB_SYSLOG', PATH_DATABASES . 'syslog.php');
-define('DB_USERS', PATH_DATABASES . 'users.php');
+define('DB_USERS', PATH_CONFIG . 'users.php');
 define('DB_SECURITY', PATH_DATABASES . 'security.php');
+define('DB_SYSTEM_CONFIG', PATH_CONFIG . 'system.php');
 
 // User environment variables
 include(PATH_KERNEL . 'boot' . DS . 'variables.php');
