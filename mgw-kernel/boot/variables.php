@@ -79,7 +79,23 @@ define('CHARSET', 'UTF-8');
 define('DIR_PERMISSIONS', 0755);
 
 // Admin URI filter to access to the admin panel
-define('ADMIN_URI_FILTER', 'admin');
+// 从系统配置读取,默认为 'admin'
+$adminUriFilter = 'admin';
+$systemConfigPath = PATH_ROOT . 'mgw-config' . DS . 'system.php';
+if (file_exists($systemConfigPath)) {
+	$systemConfigContent = file_get_contents($systemConfigPath);
+	// 移除第一行 PHP 标签
+	$lines = explode("\n", $systemConfigContent);
+	if (count($lines) > 1) {
+		array_shift($lines);
+		$systemConfigContent = implode("\n", $lines);
+	}
+	$systemConfig = json_decode($systemConfigContent, true);
+	if (isset($systemConfig['adminUriFilter']) && !empty($systemConfig['adminUriFilter'])) {
+		$adminUriFilter = $systemConfig['adminUriFilter'];
+	}
+}
+define('ADMIN_URI_FILTER', $adminUriFilter);
 
 // Default language file, in this case is English
 define('DEFAULT_LANGUAGE_FILE', 'en.json');

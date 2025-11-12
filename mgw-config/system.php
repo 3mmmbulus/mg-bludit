@@ -1,2 +1,2 @@
 <?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
-{"language":"zh_CN","locale":"zh_CN","timezone":"Asia\/Bangkok","adminTheme":"booty","dateFormat":"F j, Y","extremeFriendly":true,"autosaveInterval":2,"imageRestrict":true,"imageRelativeToAbsolute":false}
+{"language":"zh_CN","locale":"zh_CN","timezone":"Asia\/Bangkok","adminTheme":"booty","dateFormat":"F j, Y","extremeFriendly":true,"autosaveInterval":2,"imageRestrict":true,"imageRelativeToAbsolute":false,"adminUriFilter":"admin"}
