@@ -49,6 +49,11 @@
 	echo '</script>'.PHP_EOL;
 ?>
 
+<!-- Admin Panel JS Bundle -->
+<script src="<?php echo HTML_PATH_ROOT ?>mgw-kernel/admin/js/alert.js?version=<?php echo MAIGEWAN_VERSION ?>"></script>
+<script src="<?php echo HTML_PATH_ROOT ?>mgw-kernel/admin/js/sidebar-collapse.js?version=<?php echo MAIGEWAN_VERSION ?>"></script>
+<script src="<?php echo HTML_PATH_ROOT ?>mgw-kernel/admin/js/admin-init.js?version=<?php echo MAIGEWAN_VERSION ?>"></script>
+
 <!-- AJAX utilities -->
 <script src="<?php echo DOMAIN_CORE_JS ?>maigewan-ajax.js?version=<?php echo MAIGEWAN_VERSION ?>"></script>
 
@@ -62,16 +67,16 @@
 <?php include('html/navbar.php'); ?>
 
 <div class="container h-100">
-	<!-- 25%/75% split on large devices, small, medium devices hide -->
+	<!-- Sidebar and main content layout -->
 	<div class="row h-100">
 
 		<!-- LEFT SIDEBAR - Display only on large devices -->
-		<div class="sidebar col-lg-2 d-none d-lg-block">
+		<div class="sidebar col-lg-2 col-xl-2 d-none d-lg-block" style="max-width: 200px;">
 		<?php include('html/sidebar.php'); ?>
 		</div>
 
 		<!-- RIGHT MAIN -->
-		<div id="maigewan-main-content" class="col-lg-10 pt-3 pb-1 h-100">
+		<div id="maigewan-main-content" class="col-lg-10 col-xl-10 pt-3 pb-1 h-100" style="flex: 1;">
 		<?php
 			if (Sanitize::pathFile(PATH_ADMIN_VIEWS, $layout['view'].'.php')) {
 				include(PATH_ADMIN_VIEWS.$layout['view'].'.php');
