@@ -98,6 +98,11 @@ div.sidebar .nav-item a {
 	margin-left: -8px;
 }
 
+div.sidebar .nav-item a .bi {
+	margin-right: 10px;
+	font-size: 1em;
+}
+
 div.sidebar .nav-item a:hover {
 	color: #0078D4;
 	background: rgba(0, 120, 212, 0.08);
@@ -117,6 +122,14 @@ div.sidebar .nav-item h4 {
 	margin-top: 10px;
 	color: #333;
 	letter-spacing: 0.5px;
+}
+
+/* 为标题添加图标样式 */
+div.sidebar .nav-item h4 .section-icon {
+	margin-right: 10px;
+	font-size: 0.95em;
+	color: #0078D4;
+	vertical-align: middle;
 }
 
 /* 侧边栏折叠功能样式 */

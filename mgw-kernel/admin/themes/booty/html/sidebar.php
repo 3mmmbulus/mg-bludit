@@ -31,6 +31,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="website-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-globe2 section-icon"></span>
 			<?php echo $sidebarLang->get('website_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="website-management" style="display: none;">
@@ -44,6 +45,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="seo-optimization">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-search section-icon"></span>
 			<?php echo $sidebarLang->get('seo_optimization') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="seo-optimization" style="display: none;">
@@ -69,6 +71,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="content-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-folder section-icon"></span>
 			<?php echo $sidebarLang->get('content_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="content-management" style="display: none;">
@@ -97,6 +100,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="plugin-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-puzzle section-icon"></span>
 			<?php echo $sidebarLang->get('plugin_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="plugin-management" style="display: none;">
@@ -110,6 +114,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="theme-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-palette section-icon"></span>
 			<?php echo $sidebarLang->get('theme_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="theme-management" style="display: none;">
@@ -123,6 +128,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="spider-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-bug section-icon"></span>
 			<?php echo $sidebarLang->get('spider_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="spider-management" style="display: none;">
@@ -145,6 +151,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="cache-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-lightning section-icon"></span>
 			<?php echo $sidebarLang->get('cache_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="cache-management" style="display: none;">
@@ -164,6 +171,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="security-settings">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-shield-check section-icon"></span>
 			<?php echo $sidebarLang->get('security_settings') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="security-settings" style="display: none;">
@@ -180,6 +188,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="system-settings">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-gear section-icon"></span>
 			<?php echo $sidebarLang->get('system_settings') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="system-settings" style="display: none;">
@@ -199,6 +208,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="log-management">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-journal-text section-icon"></span>
 			<?php echo $sidebarLang->get('log_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="log-management" style="display: none;">
@@ -215,6 +225,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="monitoring-reports">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-graph-up section-icon"></span>
 			<?php echo $sidebarLang->get('monitoring_reports') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="monitoring-reports" style="display: none;">
@@ -231,6 +242,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="developer-center">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-code-slash section-icon"></span>
 			<?php echo $sidebarLang->get('developer_center') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="developer-center" style="display: none;">
@@ -244,6 +256,7 @@ if (file_exists($sidebarLangFile)) {
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="devops-tools">
 			<span class="bi bi-chevron-right toggle-icon"></span>
+			<span class="bi bi-tools section-icon"></span>
 			<?php echo $sidebarLang->get('devops_tools') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="devops-tools" style="display: none;">
