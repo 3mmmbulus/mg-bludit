@@ -37,33 +37,30 @@ if (!empty($_SERVER['HTTP_HOST'])) {
 	// 移除端口号
 	$host = preg_replace('/:\d+$/', '', $host);
 	
-	// 1. 尝试精确匹配完整域名
+	// 1. 精确匹配: 优先查找完整域名目录
+	// 例如: www.1dun.net -> mgw-content/www.1dun.net
 	$siteDir = PATH_ROOT . 'mgw-content' . DS . $host;
 	if (is_dir($siteDir)) {
 		$siteIdentifier = $host;
 	} else {
-		// 2. 尝试匹配主域名(支持子域名)
-		// 例如: download.1dun.co -> 尝试 1dun.co
-		//       www.1dun.co -> 尝试 1dun.co
-		//       sub.domain.com -> 尝试 domain.com
+		// 2. 主域匹配: 去掉最左边的子域名
+		// 只有当域名有3个或以上部分时才去掉最左子域
+		// 例如: www.1dun.net -> 1dun.net (3部分,去掉www)
+		//       download.1dun.co -> 1dun.co (3部分,去掉download)
+		//       1dun.net -> 保持不变 (2部分,不处理)
 		$parts = explode('.', $host);
 		$partsCount = count($parts);
 		
-		// 如果有3个或以上部分,尝试主域名匹配
 		if ($partsCount >= 3) {
-			// 取最后两部分作为主域名
-			$mainDomain = $parts[$partsCount - 2] . '.' . $parts[$partsCount - 1];
-			$siteDir = PATH_ROOT . 'mgw-content' . DS . $mainDomain;
-			if (is_dir($siteDir)) {
-				$siteIdentifier = $mainDomain;
-			}
-		}
-		// 如果是 www 开头且未匹配,尝试去掉 www 前缀
-		elseif (strpos($host, 'www.') === 0) {
-			$hostWithoutWww = substr($host, 4);
-			$siteDir = PATH_ROOT . 'mgw-content' . DS . $hostWithoutWww;
-			if (is_dir($siteDir)) {
-				$siteIdentifier = $hostWithoutWww;
+			// 去掉第一个部分,剩余部分组成主域名
+			array_shift($parts);
+			$mainDomain = implode('.', $parts);
+			
+			if (!empty($mainDomain)) {
+				$siteDir = PATH_ROOT . 'mgw-content' . DS . $mainDomain;
+				if (is_dir($siteDir)) {
+					$siteIdentifier = $mainDomain;
+				}
 			}
 		}
 	}
