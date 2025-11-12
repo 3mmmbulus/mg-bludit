@@ -1,2 +1,2 @@
-<?php defined("MAIGEWAN") or die("Maigewan CMS."); ?>
-{}
+<?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
+[{"date":"2025-11-13 00:57:20","dictionaryKey":"plugin-configured","notes":"About","idExecution":"6914ca8095aac","method":"POST","username":"admin"},{"date":"2025-11-13 00:56:26","dictionaryKey":"plugin-configured","notes":"About","idExecution":"6914ca4a71717","method":"POST","username":"admin"},{"date":"2025-11-13 00:56:25","dictionaryKey":"plugin-activated","notes":"About","idExecution":"6914ca4900c8f","method":"GET","username":"admin"}]
