@@ -287,5 +287,3 @@ function table($type) {
 	echo '<script src="'.DOMAIN_CORE_JS.'content-enhancer.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
 	echo '<script src="'.DOMAIN_CORE_JS.'content.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
 ?>
-
-?>

@@ -400,28 +400,30 @@ class Site extends dbJSON
 	// For example, http://www.domain.com
 	public function domain()
 	{
+		// 多站点模式：优先使用当前请求的域名，避免跨域问题
+		// 例如：访问 www.1dun.co 时，即使配置是 1dun.co，也使用 www.1dun.co
+		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+			$protocol = 'https://';
+		} else {
+			$protocol = 'http://';
+		}
+		
+		if (!empty($_SERVER['HTTP_HOST'])) {
+			$domain = trim($_SERVER['HTTP_HOST'], '/');
+			// 移除端口号（如果有）
+			$domain = preg_replace('/:\d+$/', '', $domain);
+			return $protocol . $domain;
+		}
+		
+		// 回退：如果无法获取 HTTP_HOST，使用配置的 URL
 		$url = $this->getField('url');
 		
-		// If the URL field is not set, try detect the domain.
 		if (Text::isEmpty($url)) {
-			if (!empty($_SERVER['HTTPS'])) {
-				$protocol = 'https://';
-			} else {
-				$protocol = 'http://';
-			}
-
-			$domain = trim($_SERVER['HTTP_HOST'], '/');
-			return $protocol . $domain;
+			return $protocol . 'localhost';
 		}
 
 		// 如果 URL 不包含协议(如: 1dun.co), 自动添加协议
 		if (strpos($url, '://') === false) {
-			// 检测当前请求的协议
-			if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
-				$protocol = 'https://';
-			} else {
-				$protocol = 'http://';
-			}
 			return $protocol . rtrim($url, '/');
 		}
 
