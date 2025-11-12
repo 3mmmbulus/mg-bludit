@@ -1,0 +1,2 @@
+<?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
+{"label":"About","text":"\u8303\u5fb7\u8428\u8303\u5fb7\u8428\u8303\u5fb7\u8428\u53d1\u53d1\u53cd\u53cd\u590d\u590d\u53cd\u53cd\u590d\u590d\u53cd\u53cd\u590d\u590d","position":1}

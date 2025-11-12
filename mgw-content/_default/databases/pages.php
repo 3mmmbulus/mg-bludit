@@ -1,2 +1,21 @@
 <?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
-{"create-your-own-content":{"title":"Create your own content","description":"","username":"admin","tags":[],"type":"published","date":"2025-11-11 21:02:51","dateModified":"","allowComments":true,"position":1,"coverImage":"","md5file":"","category":"general","uuid":"33f354d739e9cfb1b8fe96d6e2e5d19b","parent":"","template":"","noindex":false,"nofollow":false,"noarchive":false},"set-up-your-new-site":{"title":"Set up your new site","description":"","username":"admin","tags":[],"type":"published","date":"2025-11-11 21:01:51","dateModified":"","allowComments":true,"position":1,"coverImage":"","md5file":"","category":"general","uuid":"b858bcc18f2f9f1342a847bc0eb851ac","parent":"","template":"","noindex":false,"nofollow":false,"noarchive":false},"follow-bludit":{"title":"Follow Bludit","description":"","username":"admin","tags":[],"type":"published","date":"2025-11-11 21:00:51","dateModified":"","allowComments":true,"position":1,"coverImage":"","md5file":"","category":"general","uuid":"a53f271ea8eca9b40247b48832019102","parent":"","template":"","noindex":false,"nofollow":false,"noarchive":false},"about":{"title":"About","description":"","username":"admin","tags":[],"type":"static","date":"2025-11-11 20:59:51","dateModified":"","allowComments":true,"position":1,"coverImage":"","md5file":"","category":"general","uuid":"3a559878ef687f4335122aa73d3003dd","parent":"","template":"","noindex":false,"nofollow":false,"noarchive":false}}
+{
+    "default": {
+        "title": "域名未配置",
+        "content": "\n\n这是 Maigewan CMS 多站点系统的默认展示页面。如果您看到此页面,说明您访"域名未配置",--------配置。\n\n",
+        "description": "域名未配置提",
+        "username": "admin",
+        "tags": [],
+        "type": "published",
+        "date": "2025-11-12 23:00:00",
+        "dateModified": "",
+        "position": 1,
+        "coverImage": "",
+        "category": "",
+        "template": "",
+        "noindex": true,
+        "nofollow": true,
+        "noarchive": true,
+        "key": "default"
+    }
+}
