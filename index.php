@@ -7,8 +7,27 @@
  * Maigewan is opensource software licensed under the MIT license.
 */
 
+// 多站点模式检查 - 识别站点目录
+$siteIdentifier = '_default';
+if (!empty($_SERVER['HTTP_HOST'])) {
+	$host = $_SERVER['HTTP_HOST'];
+	$host = preg_replace('/:\d+$/', '', $host);
+	
+	$siteDir = __DIR__ . DIRECTORY_SEPARATOR . 'mgw-content' . DIRECTORY_SEPARATOR . $host;
+	if (is_dir($siteDir)) {
+		$siteIdentifier = $host;
+	} else if (strpos($host, 'www.') === 0) {
+		$hostWithoutWww = substr($host, 4);
+		$siteDir = __DIR__ . DIRECTORY_SEPARATOR . 'mgw-content' . DIRECTORY_SEPARATOR . $hostWithoutWww;
+		if (is_dir($siteDir)) {
+			$siteIdentifier = $hostWithoutWww;
+		}
+	}
+}
+
 // Check if Maigewan is installed
-if (!file_exists('mgw-content/databases/site.php')) {
+$siteConfigPath = 'mgw-content' . DIRECTORY_SEPARATOR . $siteIdentifier . DIRECTORY_SEPARATOR . 'databases' . DIRECTORY_SEPARATOR . 'site.php';
+if (!file_exists($siteConfigPath)) {
 	$base = dirname($_SERVER['SCRIPT_NAME']);
 	$base = rtrim($base, '/');
 	$base = rtrim($base, '\\'); // Workaround for Windows Servers
