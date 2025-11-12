@@ -29,13 +29,38 @@ if (DEBUG_MODE) {
 	error_reporting(E_ERROR);
 }
 
+// --- 多站点识别机制 ---
+// 根据访问域名识别站点目录
+$siteIdentifier = '_default'; // 默认站点
+if (!empty($_SERVER['HTTP_HOST'])) {
+	$host = $_SERVER['HTTP_HOST'];
+	// 移除端口号
+	$host = preg_replace('/:\d+$/', '', $host);
+	
+	// 尝试精确匹配域名目录
+	$siteDir = PATH_ROOT . 'mgw-content' . DS . $host;
+	if (is_dir($siteDir)) {
+		$siteIdentifier = $host;
+	} else {
+		// 如果是 www 开头,尝试去掉 www 前缀
+		if (strpos($host, 'www.') === 0) {
+			$hostWithoutWww = substr($host, 4);
+			$siteDir = PATH_ROOT . 'mgw-content' . DS . $hostWithoutWww;
+			if (is_dir($siteDir)) {
+				$siteIdentifier = $hostWithoutWww;
+			}
+		}
+	}
+}
+define('SITE_IDENTIFIER', $siteIdentifier);
+
 // PHP paths
 // PATH_ROOT and PATH_BOOT are defined in index.php
 define('PATH_LANGUAGES',		PATH_ROOT . 'mgw-languages' . DS);
 define('PATH_THEMES',			PATH_ROOT . 'mgw-themes' . DS);
 define('PATH_PLUGINS',			PATH_ROOT . 'mgw-plugins' . DS);
 define('PATH_KERNEL',			PATH_ROOT . 'mgw-kernel' . DS);
-define('PATH_CONTENT',			PATH_ROOT . 'mgw-content' . DS);
+define('PATH_CONTENT',			PATH_ROOT . 'mgw-content' . DS . SITE_IDENTIFIER . DS);
 define('PATH_CONFIG',			PATH_ROOT . 'mgw-config' . DS);
 
 define('PATH_ABSTRACT',			PATH_KERNEL . 'abstract' . DS);
@@ -177,8 +202,8 @@ define('HTML_PATH_ADMIN_THEME_CSS',	HTML_PATH_ADMIN_THEME . 'css/');
 define('HTML_PATH_CORE_JS',		HTML_PATH_ROOT . 'mgw-kernel/js/');
 define('HTML_PATH_CORE_CSS',		HTML_PATH_ROOT . 'mgw-kernel/css/');
 define('HTML_PATH_CORE_IMG',		HTML_PATH_ROOT . 'mgw-kernel/img/');
-define('HTML_PATH_CONTENT',		HTML_PATH_ROOT . 'mgw-content/');
-define('HTML_PATH_UPLOADS',		HTML_PATH_ROOT . 'mgw-content/uploads/');
+define('HTML_PATH_CONTENT',		HTML_PATH_ROOT . 'mgw-content/' . SITE_IDENTIFIER . '/');
+define('HTML_PATH_UPLOADS',		HTML_PATH_CONTENT . 'uploads/');
 define('HTML_PATH_UPLOADS_PAGES',	HTML_PATH_UPLOADS . 'pages/');
 define('HTML_PATH_UPLOADS_PROFILES',	HTML_PATH_UPLOADS . 'profiles/');
 define('HTML_PATH_UPLOADS_THUMBNAILS',	HTML_PATH_UPLOADS . 'thumbnails/');
