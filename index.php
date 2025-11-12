@@ -18,10 +18,14 @@ if (!empty($_SERVER['HTTP_HOST'])) {
 	if (is_dir($siteDir)) {
 		$siteIdentifier = $host;
 	} else {
-		// 2. 主域匹配: 只有3个或以上部分时才去掉最左子域
 		$parts = explode('.', $host);
 		$partsCount = count($parts);
 		
+		// 2. 对于3级及以上域名,去掉最左子域匹配主域
+		// 例如: www.1dun.net -> 1dun.net
+		//       download.1dun.co -> 1dun.co
+		//       a.b.1dun.co -> b.1dun.co -> 1dun.co (递归去子域)
+		// 注意: 2级域名(如 1dun.net)精确匹配失败后不处理,直接走 _default
 		if ($partsCount >= 3) {
 			array_shift($parts);
 			$mainDomain = implode('.', $parts);

@@ -1,6 +1,6 @@
 <?php defined('MAIGEWAN') or die('Maigewan CMS.'); ?>
 {
-    "title": "1Dun - 一盾网络安全",
+    "title": "www.1dun.net",
     "slogan": "专业的网络安全服务",
     "description": "1Dun 提供专业的网络安全解决方案,包括安全评估、渗透测试、应急响应等服务",
     "footer": "Copyright © 2025 1Dun.co - All rights reserved",
@@ -9,7 +9,7 @@
     "logo": "",
     "cover": "",
     "image": "",
-    "url": "1dun.co",
+    "url": "www.1dun.net",
     "twitter": "",
     "facebook": "",
     "codepen": "",

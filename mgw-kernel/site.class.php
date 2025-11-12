@@ -400,8 +400,10 @@ class Site extends dbJSON
 	// For example, http://www.domain.com
 	public function domain()
 	{
+		$url = $this->getField('url');
+		
 		// If the URL field is not set, try detect the domain.
-		if (Text::isEmpty($this->url())) {
+		if (Text::isEmpty($url)) {
 			if (!empty($_SERVER['HTTPS'])) {
 				$protocol = 'https://';
 			} else {
@@ -412,8 +414,19 @@ class Site extends dbJSON
 			return $protocol . $domain;
 		}
 
+		// 如果 URL 不包含协议(如: 1dun.co), 自动添加协议
+		if (strpos($url, '://') === false) {
+			// 检测当前请求的协议
+			if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+				$protocol = 'https://';
+			} else {
+				$protocol = 'http://';
+			}
+			return $protocol . rtrim($url, '/');
+		}
+
 		// Parse the domain from the field url (Settings->Advanced)
-		$parse = parse_url($this->url());
+		$parse = parse_url($url);
 		$domain = rtrim($parse['host'], '/');
 		$port = !empty($parse['port']) ? ':' . $parse['port'] : '';
 		$scheme = !empty($parse['scheme']) ? $parse['scheme'] . '://' : 'http://';
