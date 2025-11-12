@@ -60,6 +60,9 @@ div.sidebar {
 	overflow-y: auto;
 	overflow-x: hidden;
 	z-index: 1000;
+	/* 优化渲染性能 */
+	will-change: scroll-position;
+	contain: layout style paint;
 }
 
 /* 侧边栏滚动条样式优化 */
@@ -92,20 +95,34 @@ div.sidebar .nav-item a {
 	color: #555;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	transition: all 0.2s ease;
+	transition: all 0.15s ease;
 	border-radius: 4px;
 	padding-left: 8px;
 	margin-left: -8px;
+	text-decoration: none;
+	position: relative;
 }
 
 div.sidebar .nav-item a .bi {
 	margin-right: 10px;
 	font-size: 1em;
+	transition: transform 0.15s ease;
 }
 
 div.sidebar .nav-item a:hover {
-	color: #0078D4;
 	background: rgba(0, 120, 212, 0.08);
+	color: #0078D4;
+	text-decoration: none;
+	transform: translateX(2px);
+}
+
+div.sidebar .nav-item a:hover .bi {
+	transform: scale(1.1);
+}
+
+div.sidebar .nav-item a:active {
+	background: rgba(0, 120, 212, 0.15);
+	transform: translateX(1px);
 }
 
 /* 激活状态的链接 */
@@ -164,7 +181,9 @@ div.sidebar .sidebar-section-content {
 	margin-top: 5px;
 	margin-bottom: 0;
 	overflow: hidden;
-	transition: max-height 0.3s ease;
+	max-height: 0;
+	opacity: 0;
+	transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 div.sidebar .sidebar-section-content .nav-item a {
