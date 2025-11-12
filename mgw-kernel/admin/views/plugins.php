@@ -15,10 +15,7 @@ echo Bootstrap::formTitle(array('title' => $L->g('Search plugins')));
 <input type="text" dir="auto" class="form-control" id="search" placeholder="<?php $L->p('Search') ?>">
 
 <?php
-
-// Load plugins page JavaScript
-echo '<script src="'.DOMAIN_CORE_JS.'plugins.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
-
+// JS 由 index.php 统一加载
 echo Bootstrap::formTitle(array('title' => $L->g('Enabled plugins')));
 
 echo '

@@ -177,6 +177,20 @@
 	 * Initialize all settings page features
 	 */
 	function init() {
+		// 检查必要的依赖是否加载
+		if (typeof $ === 'undefined') {
+			console.error('jQuery not loaded, retrying settings initialization...');
+			setTimeout(init, 100);
+			return;
+		}
+		
+		if (typeof $.fn.select2 === 'undefined') {
+			console.error('Select2 not loaded, retrying settings initialization...');
+			setTimeout(init, 100);
+			return;
+		}
+		
+		// 所有依赖已加载，执行初始化
 		initHomepageSelect();
 		initPageNotFoundSelect();
 		initOrderBySelect();

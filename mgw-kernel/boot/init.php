@@ -148,6 +148,7 @@ include(PATH_HELPERS . 'text.class.php');
 include(PATH_HELPERS . 'log.class.php');
 include(PATH_HELPERS . 'date.class.php');
 include(PATH_HELPERS . 'theme.class.php');
+include(PATH_HELPERS . 'jsloader.class.php');
 include(PATH_HELPERS . 'session.class.php');
 include(PATH_HELPERS . 'redirect.class.php');
 include(PATH_HELPERS . 'sanitize.class.php');

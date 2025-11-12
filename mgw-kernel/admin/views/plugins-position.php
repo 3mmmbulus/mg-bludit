@@ -33,7 +33,4 @@
 
 <?php echo Bootstrap::formClose(); ?>
 
-<?php
-	// Load plugins position JavaScript
-	echo '<script src="'.DOMAIN_CORE_JS.'plugins-position.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
-?>
+<?php // JS 由 index.php 统一加载 ?>

@@ -381,5 +381,5 @@ foreach ($customFields as $field => $options) {
 <!-- Modal for Media Manager -->
 <?php 
 	include(PATH_ADMIN_THEMES . 'booty/html/media.php');
-	echo '<script src="'.DOMAIN_CORE_JS.'edit-content.js?version='.MAIGEWAN_VERSION.'"></script>';
+	// JS 由 index.php 统一加载
 ?>

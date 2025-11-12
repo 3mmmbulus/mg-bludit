@@ -20,9 +20,10 @@
   ), DOMAIN_ADMIN_THEME_CSS);
   ?>
 
-  <!-- Javascript -->
+  <!-- 关键 JavaScript 库 - 在 <head> 中加载 -->
   <?php
-  echo Theme::jsBootstrap();
+  echo JSLoader::loadJQuery();
+  echo JSLoader::loadBootstrap();
   ?>
 
   <!-- Plugins -->
@@ -51,6 +52,9 @@
 
   <!-- Plugins -->
   <?php Theme::plugins('loginBodyEnd') ?>
+
+  <!-- 其余 JavaScript - 动态变量等 -->
+  <?php echo JSLoader::loadVariables(); ?>
 
 </body>
 

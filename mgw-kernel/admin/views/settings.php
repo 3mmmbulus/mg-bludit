@@ -521,5 +521,6 @@ echo Bootstrap::formInputHidden(array(
 
 <?php 
 	echo Bootstrap::formClose();
-	echo '<script src="'.DOMAIN_CORE_JS.'settings.js?version='.MAIGEWAN_VERSION.'"></script>';
+	// 不再在这里加载 settings.js，而是在页面底部统一加载
+	// settings.js 会通过 JSLoader 在合适的时机加载
 ?>

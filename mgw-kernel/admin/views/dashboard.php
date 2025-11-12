@@ -71,4 +71,4 @@
     </div>
 </div>
 
-<?php echo '<script src="'.DOMAIN_CORE_JS.'dashboard.js?version='.MAIGEWAN_VERSION.'"></script>'; ?>
+<?php // JS 由 index.php 统一加载 ?>

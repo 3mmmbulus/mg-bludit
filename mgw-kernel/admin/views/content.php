@@ -283,7 +283,5 @@ function table($type) {
 		'modalId'=>'jsdeletePageModal'
 	));
 
-	// Load content page JavaScript
-	echo '<script src="'.DOMAIN_CORE_JS.'content-enhancer.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
-	echo '<script src="'.DOMAIN_CORE_JS.'content.js?version='.MAIGEWAN_VERSION.'"></script>'.PHP_EOL;
+	// JS 由 index.php 统一加载
 ?>
