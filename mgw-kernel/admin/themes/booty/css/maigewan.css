@@ -44,6 +44,42 @@ div.sidebar .nav-item h4 {
 	margin-top: 10px;
 }
 
+/* 侧边栏折叠功能样式 */
+div.sidebar .sidebar-section-toggle {
+	cursor: pointer;
+	user-select: none;
+	transition: color 0.2s ease;
+	position: relative;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+div.sidebar .sidebar-section-toggle:hover {
+	color: #0078D4;
+}
+
+div.sidebar .sidebar-section-toggle .toggle-icon {
+	display: inline-block;
+	margin-right: 8px;
+	font-size: 0.8em;
+	transition: transform 0.2s ease;
+}
+
+div.sidebar .sidebar-section-content {
+	list-style: none;
+	padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease;
+}
+
+div.sidebar .sidebar-section-content .nav-item a {
+	padding-left: 20px;
+}
+
+
+
 /*
 	AUTOCOMPLETE SEARCH
 */
