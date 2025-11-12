@@ -13,11 +13,14 @@ body {
 	max-width: 100% !important;
 	padding-left: 0 !important;
 	padding-right: 0 !important;
+	height: 100vh;
+	overflow: hidden;
 }
 
 .container .row {
 	margin-left: 0 !important;
 	margin-right: 0 !important;
+	height: 100%;
 }
 
 /* Prevent events in iframes */
@@ -44,9 +47,33 @@ div.sidebar {
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 	box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
-	position: relative;
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
 	min-width: 180px;
 	max-width: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	z-index: 1000;
+}
+
+/* 侧边栏滚动条样式优化 */
+div.sidebar::-webkit-scrollbar {
+	width: 6px;
+}
+
+div.sidebar::-webkit-scrollbar-track {
+	background: #f8f9fa;
+}
+
+div.sidebar::-webkit-scrollbar-thumb {
+	background: #ccc;
+	border-radius: 3px;
+}
+
+div.sidebar::-webkit-scrollbar-thumb:hover {
+	background: #999;
 }
 
 /* 侧边栏内部容器 */
@@ -135,18 +162,24 @@ div.sidebar .nav-item.mb-4 {
 	margin-bottom: 15px !important;
 	text-align: center;
 	margin-left: 0 !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
 }
 
 div.sidebar .nav-item.mb-4 img {
 	display: inline-block;
+	vertical-align: middle;
 }
 
 div.sidebar .nav-item.mb-4 span {
-	display: block;
-	margin-top: 5px;
-	font-weight: 500;
-	font-size: 0.9em;
+	display: inline-block;
+	font-weight: 600;
+	font-size: 0.95em;
 	color: #333;
+	vertical-align: middle;
+	letter-spacing: 0.5px;
 }
 
 /* 首页链接特殊样式 */
@@ -164,6 +197,33 @@ div.sidebar .nav-item:has(a[href*="dashboard"]) a {
 	padding-top: 20px !important;
 	padding-left: 30px !important;
 	padding-right: 30px !important;
+	margin-left: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+/* 主内容区域滚动条样式 */
+#maigewan-main-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+#maigewan-main-content::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+#maigewan-main-content::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 4px;
+}
+
+#maigewan-main-content::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
 
 
