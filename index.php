@@ -41,16 +41,6 @@ if (!empty($_SERVER['HTTP_HOST'])) {
 	}
 }
 
-// Check if Maigewan is installed
-$siteConfigPath = 'mgw-content' . DIRECTORY_SEPARATOR . $siteIdentifier . DIRECTORY_SEPARATOR . 'databases' . DIRECTORY_SEPARATOR . 'site.php';
-if (!file_exists($siteConfigPath)) {
-	$base = dirname($_SERVER['SCRIPT_NAME']);
-	$base = rtrim($base, '/');
-	$base = rtrim($base, '\\'); // Workaround for Windows Servers
-	header('Location:'.$base.'/install.php');
-	exit('<a href="./install.php">Install Maigewan first.</a>');
-}
-
 // Load time init
 $loadTime = microtime(true);
 

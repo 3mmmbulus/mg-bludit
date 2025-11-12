@@ -1,5 +1,14 @@
 <?php defined('MAIGEWAN') or die('Maigewan CMS.');
 
+// 如果是默认站点，使用独立的简单页面
+if (SITE_IDENTIFIER === '_default') {
+	$defaultIndexPath = PATH_CONTENT . 'index.php';
+	if (file_exists($defaultIndexPath)) {
+		include($defaultIndexPath);
+		exit;
+	}
+}
+
 // Load plugins rules
 include(PATH_RULES.'60.plugins.php');
 
