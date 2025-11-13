@@ -89,6 +89,9 @@
 		case 'settings':
 			echo JSLoader::loadSettings();
 			break;
+		case 'site-list':
+			echo JSLoader::loadSiteListPage();
+			break;
 		case 'dashboard':
 			echo JSLoader::loadDashboard();
 			break;

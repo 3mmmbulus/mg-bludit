@@ -1,0 +1,17 @@
+{
+  "group_id": "g001",
+  "group_name": "首批上线",
+  "type": "主站群",
+  "mode": "independent",
+  "domains": [
+    "www.1dun.co",
+    "cms.1dun.co"
+  ],
+  "note": "首批核心站点",
+  "status": "active",
+  "created_at": "2025-11-01 09:30:00",
+  "updated_at": "2025-11-12 19:45:00",
+  "created_by": "admin",
+  "site_count": 2,
+  "batch_date": "2025-11-13"
+}

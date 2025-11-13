@@ -124,6 +124,11 @@
 	 */
 	function handleFormSubmit(event, form) {
 		if (!config.enableAjaxForms) return false;
+
+		// 允许通过 data-no-spa 或 attribute 禁用 AJAX 提交
+		if (form.hasAttribute('data-no-spa') || form.closest('[data-no-spa]')) {
+			return false;
+		}
 		
 		// 排除文件上传表单
 		if (form.querySelector('input[type="file"]')) return false;

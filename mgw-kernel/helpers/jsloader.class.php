@@ -219,6 +219,21 @@ class JSLoader
 	}
 
 	/**
+	 * 加载站点分组页面所需的脚本
+	 *
+	 * @return string
+	 */
+	public static function loadSiteListPage()
+	{
+		$output = '';
+		$output .= self::script('modal-helper.js', DOMAIN_CORE_JS);
+		$path = defined('HTML_PATH_ROOT') ? HTML_PATH_ROOT : '/';
+		$version = defined('MAIGEWAN_VERSION') ? MAIGEWAN_VERSION : '1.0.0';
+		$output .= '<script src="' . $path . 'mgw-kernel/admin/js/site-list.js?version=' . $version . '"></script>' . PHP_EOL;
+		return $output;
+	}
+
+	/**
 	 * 加载插件管理相关 JS
 	 * 
 	 * @return string

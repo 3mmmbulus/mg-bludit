@@ -1,0 +1,19 @@
+{
+    "group_id": "g004",
+    "group_name": "撤销局科技基金",
+    "type": "fdkjsafkj",
+    "mode": "independent",
+    "domains": [
+        "fd.com",
+        "1dun.net",
+        "1dun.co",
+        "www.1dun.net"
+    ],
+    "note": "fdasf",
+    "status": "active",
+    "created_at": "2025-11-13 18:54:44",
+    "updated_at": "2025-11-13 18:54:59",
+    "created_by": "admin",
+    "site_count": 4,
+    "batch_date": "2025-11-13"
+}
