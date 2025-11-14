@@ -30,9 +30,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 网站管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="website-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('website_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-globe2 section-icon"></span>
-			<?php echo $sidebarLang->get('website_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="website-management" style="display: none;">
 			<li class="nav-item">
@@ -44,9 +43,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- SEO 优化 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="seo-optimization">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('seo_optimization') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-search section-icon"></span>
-			<?php echo $sidebarLang->get('seo_optimization') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="seo-optimization" style="display: none;">
 			<li class="nav-item">
@@ -70,9 +68,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 内容管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="content-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('content_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-folder section-icon"></span>
-			<?php echo $sidebarLang->get('content_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="content-management" style="display: none;">
 			<li class="nav-item">
@@ -99,9 +96,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 插件管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="plugin-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('plugin_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-puzzle section-icon"></span>
-			<?php echo $sidebarLang->get('plugin_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="plugin-management" style="display: none;">
 			<li class="nav-item">
@@ -113,9 +109,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 模板管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="theme-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('theme_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-palette section-icon"></span>
-			<?php echo $sidebarLang->get('theme_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="theme-management" style="display: none;">
 			<li class="nav-item">
@@ -127,9 +122,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 蜘蛛管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="spider-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('spider_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-bug section-icon"></span>
-			<?php echo $sidebarLang->get('spider_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="spider-management" style="display: none;">
 			<li class="nav-item">
@@ -150,9 +144,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 缓存管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="cache-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('cache_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-lightning section-icon"></span>
-			<?php echo $sidebarLang->get('cache_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="cache-management" style="display: none;">
 			<li class="nav-item">
@@ -170,9 +163,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 安全设置 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="security-settings">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('security_settings') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-shield-check section-icon"></span>
-			<?php echo $sidebarLang->get('security_settings') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="security-settings" style="display: none;">
 			<li class="nav-item">
@@ -187,9 +179,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 系统设置 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="system-settings">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('system_settings') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-gear section-icon"></span>
-			<?php echo $sidebarLang->get('system_settings') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="system-settings" style="display: none;">
 			<li class="nav-item">
@@ -207,9 +198,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 日志管理 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="log-management">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('log_management') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-journal-text section-icon"></span>
-			<?php echo $sidebarLang->get('log_management') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="log-management" style="display: none;">
 			<li class="nav-item">
@@ -224,9 +214,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 监控与报表 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="monitoring-reports">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('monitoring_reports') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-graph-up section-icon"></span>
-			<?php echo $sidebarLang->get('monitoring_reports') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="monitoring-reports" style="display: none;">
 			<li class="nav-item">
@@ -241,9 +230,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 开发者中心 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="developer-center">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('developer_center') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-code-slash section-icon"></span>
-			<?php echo $sidebarLang->get('developer_center') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="developer-center" style="display: none;">
 			<li class="nav-item">
@@ -255,9 +243,8 @@ if (file_exists($sidebarLangFile)) {
 	<!-- 运维工具 -->
 	<li class="nav-item mt-3">
 		<h4 class="sidebar-section-toggle" data-target="devops-tools">
+			<span class="sidebar-section-label"><?php echo $sidebarLang->get('devops_tools') ?></span>
 			<span class="bi bi-chevron-right toggle-icon"></span>
-			<span class="bi bi-tools section-icon"></span>
-			<?php echo $sidebarLang->get('devops_tools') ?>
 		</h4>
 		<ul class="sidebar-section-content" id="devops-tools" style="display: none;">
 			<li class="nav-item">
@@ -274,13 +261,13 @@ if (file_exists($sidebarLangFile)) {
 	<?php if (!checkRole(array('admin'),false)): ?>
 	<!-- 非管理员用户 -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'new-content' ?>"><span style="color: #0078D4;" class="bi bi-plus-circle"></span><?php $L->p('New content') ?></a>
+		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'new-content' ?>"><?php $L->p('New content') ?></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'content' ?>"><span class="bi bi-archive"></span><?php $L->p('Content') ?></a>
+		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'content' ?>"><?php $L->p('Content') ?></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'edit-user/'.$login->username() ?>"><span class="bi bi-person"></span><?php $L->p('Profile') ?></a>
+		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'edit-user/'.$login->username() ?>"><?php $L->p('Profile') ?></a>
 	</li>
 	<?php endif; ?>
 
@@ -297,7 +284,7 @@ if (file_exists($sidebarLangFile)) {
 		?>
 	<?php endif; ?>
 
-	<li class="nav-item mt-5">
+	<li class="nav-item logout-nav">
 		<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'logout' ?>"><span class="bi bi-box-arrow-right"></span><?php echo $sidebarLang->get('logout') ?></a>
 	</li>
 </ul>

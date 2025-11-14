@@ -1,0 +1,23 @@
+{
+    "group_id": "g005",
+    "group_name": "fdsaf",
+    "type": "single",
+    "mode": "enterprise",
+    "category": "enterprise",
+    "redirect_policy": "at_to_www",
+    "image_localization": "on",
+    "image_rename": "off",
+    "article_image_count": 1,
+    "article_thumbnail_first": "off",
+    "domain_templates": [],
+    "domains": [
+        "fdsaf.cc"
+    ],
+    "note": "",
+    "status": "active",
+    "created_at": "2025-11-13 22:15:23",
+    "updated_at": "2025-11-13 22:15:23",
+    "created_by": "admin",
+    "site_count": 1,
+    "batch_date": "2025-11-13"
+}

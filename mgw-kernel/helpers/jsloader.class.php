@@ -234,6 +234,18 @@ class JSLoader
 	}
 
 	/**
+	 * 加载图片素材库页面所需的脚本
+	 *
+	 * @return string
+	 */
+	public static function loadImageLibraryPage()
+	{
+		$path = defined('HTML_PATH_ROOT') ? HTML_PATH_ROOT : '/';
+		$version = defined('MAIGEWAN_VERSION') ? MAIGEWAN_VERSION : '1.0.0';
+		return '<script src="' . $path . 'mgw-kernel/admin/js/image-library.js?version=' . $version . '"></script>' . PHP_EOL;
+	}
+
+	/**
 	 * 加载插件管理相关 JS
 	 * 
 	 * @return string
@@ -375,7 +387,8 @@ class JSLoader
 				'dashboard.js',
 				'settings.js',
 				'plugins.js',
-				'plugins-position.js'
+				'plugins-position.js',
+				'image-library.js'
 			)
 		);
 	}

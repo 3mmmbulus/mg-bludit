@@ -72,3 +72,6 @@ tabler/
 *.tmp
 *.temp
 *~
+
+# 媒体库目录
+mgw-config/image-library/

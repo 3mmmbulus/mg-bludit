@@ -92,6 +92,9 @@
 		case 'site-list':
 			echo JSLoader::loadSiteListPage();
 			break;
+		case 'image-library':
+			echo JSLoader::loadImageLibraryPage();
+			break;
 		case 'dashboard':
 			echo JSLoader::loadDashboard();
 			break;

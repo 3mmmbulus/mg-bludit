@@ -13,6 +13,36 @@ class SiteGroups
     protected $basePath;
 
     /**
+     * @var array
+     */
+    protected $allowedTypes = array('single', 'multi');
+
+    /**
+     * @var array
+     */
+    protected $allowedCategories = array(
+        'enterprise',
+        'blog',
+        'news',
+        'commerce',
+        'community',
+        'directory',
+        'forum',
+        'tools',
+        'video',
+        'image',
+        'download',
+        'document',
+        'qa',
+        'other'
+    );
+
+    /**
+     * @var array
+     */
+    protected $allowedRedirectPolicies = array('at_to_www', 'force_www', 'off');
+
+    /**
      * SiteGroups constructor.
      *
      * @param string|null $basePath 自定义数据目录，默认使用 mgw-config/site-groups/
@@ -23,6 +53,21 @@ class SiteGroups
         if (!is_dir($this->basePath)) {
             @mkdir($this->basePath, DIR_PERMISSIONS, true);
         }
+    }
+
+    public function getAllowedTypes()
+    {
+        return $this->allowedTypes;
+    }
+
+    public function getAllowedCategories()
+    {
+        return $this->allowedCategories;
+    }
+
+    public function getAllowedRedirectPolicies()
+    {
+        return $this->allowedRedirectPolicies;
     }
 
     /**
@@ -106,6 +151,17 @@ class SiteGroups
         $data['batch_date'] = $data['batch_date'] ?? $date;
         $data['domains'] = $this->normalizeDomains($data['domains'] ?? array());
         $data['site_count'] = $this->normalizeCount($data);
+        $data['type'] = $this->sanitizeType($data['type'] ?? 'single');
+        $data['category'] = $this->sanitizeCategory($data['category'] ?? ($data['mode'] ?? 'other'));
+        $data['mode'] = $data['category'];
+        $data['redirect_policy'] = $this->sanitizeRedirectPolicy($data['redirect_policy'] ?? 'off');
+        $data['image_localization'] = $this->sanitizeToggle($data['image_localization'] ?? 'off');
+        $data['image_rename'] = $data['image_localization'] === 'on'
+            ? $this->sanitizeToggle($data['image_rename'] ?? 'off')
+            : 'off';
+        $data['article_image_count'] = $this->sanitizeArticleImageCount($data['article_image_count'] ?? 1);
+        $data['article_thumbnail_first'] = $this->sanitizeToggle($data['article_thumbnail_first'] ?? 'off');
+        $data['domain_templates'] = $this->sanitizeDomainTemplates($data['domains'], $data['domain_templates'] ?? array());
 
         return $data;
     }
@@ -130,12 +186,29 @@ class SiteGroups
         $existing = $this->getGroup($groupId, $date);
 
         $domains = $this->normalizeDomains($data['domains'] ?? array());
+        $type = $this->sanitizeType($data['type'] ?? 'single');
+        $category = $this->sanitizeCategory($data['category'] ?? ($data['mode'] ?? 'other'));
+        $redirectPolicy = $this->sanitizeRedirectPolicy($data['redirect_policy'] ?? 'off');
+        $imageLocalization = $this->sanitizeToggle($data['image_localization'] ?? 'off');
+        $imageRename = $imageLocalization === 'on'
+            ? $this->sanitizeToggle($data['image_rename'] ?? 'off')
+            : 'off';
+        $articleImageCount = $this->sanitizeArticleImageCount($data['article_image_count'] ?? 1);
+        $articleThumbnailFirst = $this->sanitizeToggle($data['article_thumbnail_first'] ?? 'off');
+        $domainTemplates = $this->sanitizeDomainTemplates($domains, $data['domain_templates'] ?? array());
 
         $payload = array(
             'group_id'   => $groupId,
             'group_name' => trim($data['group_name'] ?? ''),
-            'type'       => trim($data['type'] ?? ''),
-            'mode'       => trim($data['mode'] ?? 'independent'),
+            'type'       => $type,
+            'mode'       => $category,
+            'category'   => $category,
+            'redirect_policy' => $redirectPolicy,
+            'image_localization' => $imageLocalization,
+            'image_rename' => $imageRename,
+            'article_image_count' => $articleImageCount,
+            'article_thumbnail_first' => $articleThumbnailFirst,
+            'domain_templates' => $domainTemplates,
             'domains'    => $domains,
             'note'       => trim($data['note'] ?? ''),
             'status'     => trim($data['status'] ?? 'active'),
@@ -265,6 +338,17 @@ class SiteGroups
             $data['batch_date'] = $data['batch_date'] ?? $date;
             $data['domains'] = $this->normalizeDomains($data['domains'] ?? array());
             $data['site_count'] = $this->normalizeCount($data);
+            $data['type'] = $this->sanitizeType($data['type'] ?? 'single');
+            $data['category'] = $this->sanitizeCategory($data['category'] ?? ($data['mode'] ?? 'other'));
+            $data['mode'] = $data['category'];
+            $data['redirect_policy'] = $this->sanitizeRedirectPolicy($data['redirect_policy'] ?? 'off');
+            $data['image_localization'] = $this->sanitizeToggle($data['image_localization'] ?? 'off');
+            $data['image_rename'] = $data['image_localization'] === 'on'
+                ? $this->sanitizeToggle($data['image_rename'] ?? 'off')
+                : 'off';
+            $data['article_image_count'] = $this->sanitizeArticleImageCount($data['article_image_count'] ?? 1);
+            $data['article_thumbnail_first'] = $this->sanitizeToggle($data['article_thumbnail_first'] ?? 'off');
+            $data['domain_templates'] = $this->sanitizeDomainTemplates($data['domains'], $data['domain_templates'] ?? array());
 
             $results[] = $data;
         }
@@ -345,6 +429,67 @@ class SiteGroups
         return $conflicts;
     }
 
+    public function parseDomainInput($domains)
+    {
+        if (is_string($domains)) {
+            $domains = preg_split('/\r\n|\r|\n|,/', $domains);
+        }
+
+        if (!is_array($domains)) {
+            return array(
+                'domains' => array(),
+                'templates' => array()
+            );
+        }
+
+        $rawDomains = array();
+        $templateCandidates = array();
+
+        foreach ($domains as $line) {
+            $line = trim((string)$line);
+            if ($line === '') {
+                continue;
+            }
+
+            $domain = $line;
+            $template = '';
+
+            $parts = explode('-', $line);
+            if (count($parts) > 1) {
+                $candidateTemplate = strtolower((string)array_pop($parts));
+                $candidateDomain = implode('-', $parts);
+                if ($candidateTemplate !== '' && strpos($candidateTemplate, '.') === false && strpos($candidateDomain, '.') !== false) {
+                    $domain = $candidateDomain;
+                    $template = $candidateTemplate;
+                }
+            }
+
+            $rawDomains[] = $domain;
+
+            if ($template !== '') {
+                $templateCandidates[$this->slugifyDomain($domain)] = array(
+                    'domain' => $domain,
+                    'template' => $template
+                );
+            }
+        }
+
+        $domainsList = $this->normalizeDomains($rawDomains);
+
+        $templates = array();
+        foreach ($domainsList as $domain) {
+            $key = $this->slugifyDomain($domain);
+            if (isset($templateCandidates[$key])) {
+                $templates[$domain] = $templateCandidates[$key]['template'];
+            }
+        }
+
+        return array(
+            'domains' => $domainsList,
+            'templates' => $templates
+        );
+    }
+
     protected function normalizeCount($data)
     {
         if (isset($data['site_count']) && is_numeric($data['site_count'])) {
@@ -367,5 +512,74 @@ class SiteGroups
         }
 
         return strtolower($domain);
+    }
+
+    protected function sanitizeType($value)
+    {
+        $value = trim((string)$value);
+        if (in_array($value, $this->allowedTypes, true)) {
+            return $value;
+        }
+        return $this->allowedTypes[0];
+    }
+
+    protected function sanitizeCategory($value)
+    {
+        $value = trim((string)$value);
+        if (in_array($value, $this->allowedCategories, true)) {
+            return $value;
+        }
+        return 'other';
+    }
+
+    protected function sanitizeRedirectPolicy($value)
+    {
+        $value = trim((string)$value);
+        if (in_array($value, $this->allowedRedirectPolicies, true)) {
+            return $value;
+        }
+        return 'off';
+    }
+
+    protected function sanitizeToggle($value)
+    {
+        return trim((string)$value) === 'on' ? 'on' : 'off';
+    }
+
+    protected function sanitizeArticleImageCount($value)
+    {
+        $value = (int)$value;
+        if ($value < 1) {
+            return 1;
+        }
+        if ($value > 100) {
+            return 100;
+        }
+        return $value;
+    }
+
+    protected function sanitizeDomainTemplates(array $domains, $templates)
+    {
+        if (!is_array($templates)) {
+            return array();
+        }
+
+        $sanitized = array();
+        foreach ($domains as $domain) {
+            $lookupKeys = array($domain, $this->slugifyDomain($domain));
+            $templateValue = '';
+            foreach ($lookupKeys as $key) {
+                if (isset($templates[$key]) && is_string($templates[$key])) {
+                    $templateValue = strtolower(trim($templates[$key]));
+                    break;
+                }
+            }
+
+            if ($templateValue !== '' && preg_match('/^[a-z0-9-]+$/', $templateValue)) {
+                $sanitized[$domain] = $templateValue;
+            }
+        }
+
+        return $sanitized;
     }
 }
