@@ -74,4 +74,23 @@ tabler/
 *~
 
 # 媒体库目录
-mgw-config/image-library/
+mgw-config/image-library/*
+!mgw-config/image-library/entities/
+!mgw-config/image-library/links/
+mgw-config/image-library/entities/*
+mgw-config/image-library/links/*
+!mgw-config/image-library/entities/.gitkeep
+!mgw-config/image-library/links/.gitkeep
+!mgw-config/image-library/entities/*/.gitkeep
+!mgw-config/image-library/links/*/.gitkeep
+
+# Logo 库目录
+mgw-config/logo-library/*
+!mgw-config/logo-library/entities/
+!mgw-config/logo-library/links/
+mgw-config/logo-library/entities/*
+mgw-config/logo-library/links/*
+!mgw-config/logo-library/entities/.gitkeep
+!mgw-config/logo-library/links/.gitkeep
+!mgw-config/logo-library/entities/*/.gitkeep
+!mgw-config/logo-library/links/*/.gitkeep

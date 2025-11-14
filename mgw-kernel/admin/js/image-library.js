@@ -109,7 +109,14 @@
 
     function contextHasSelectedUploadType(scope) {
         var context = scope || document;
-        return Boolean(context.querySelector('[data-upload-type]:checked'));
+        var selected = context.querySelector('[data-upload-type]:checked');
+        if (selected) {
+            return true;
+        }
+        if (context !== document) {
+            return Boolean(document.querySelector('[data-upload-type]:checked'));
+        }
+        return false;
     }
 
     function getSelectedIds(type, scope) {
@@ -928,7 +935,19 @@
             syncCategoryHiddenValue();
         }
 
+        var uploadTypeInputs = [];
+        if (uploadForm) {
+            uploadForm.querySelectorAll('[data-upload-type]').forEach(function(input) {
+                uploadTypeInputs.push(input);
+            });
+        }
         page.querySelectorAll('[data-upload-type]').forEach(function(input) {
+            if (uploadTypeInputs.indexOf(input) === -1) {
+                uploadTypeInputs.push(input);
+            }
+        });
+
+        uploadTypeInputs.forEach(function(input) {
             input.addEventListener('change', function() {
                 if (input.checked) {
                     setUploadType(input.getAttribute('data-upload-type'), uploadForm || page);
@@ -1009,6 +1028,13 @@
                 var value = typeField && typeField.value ? typeField.value : '';
                 if (isValidUploadType(value)) {
                     return value;
+                }
+                var selected = (uploadForm || document).querySelector('[data-upload-type]:checked');
+                if (selected) {
+                    var inferred = selected.getAttribute('data-upload-type');
+                    if (isValidUploadType(inferred)) {
+                        return inferred;
+                    }
                 }
                 return '';
             }

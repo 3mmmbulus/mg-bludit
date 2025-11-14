@@ -3,6 +3,8 @@
 class ImageLibrary
 {
     protected $basePath;
+    protected $configDirectoryName = 'image-library';
+    protected $translationPrefix = 'image-library';
 
     protected $types = array(
         'entity' => array(
@@ -37,14 +39,16 @@ class ImageLibrary
     );
 
     protected $categoryCache = array();
+    protected $gitkeepFile = '.gitkeep';
 
     public function __construct($basePath = null)
     {
-        $this->basePath = $basePath ?: PATH_CONFIG . 'image-library' . DS;
+        $this->basePath = $basePath ?: PATH_CONFIG . $this->configDirectoryName . DS;
         $this->ensureDirectory($this->basePath);
 
         foreach ($this->types as $type => $info) {
             $this->ensureDirectory($this->basePath . $info['folder'] . DS);
+            $this->ensureDefaultCategoryDirectories($type);
             $this->migrateLegacyManifest($type);
         }
     }
@@ -448,8 +452,27 @@ class ImageLibrary
 
     protected function ensureDirectory($path)
     {
-        if (!is_dir($path)) {
-            @mkdir($path, DIR_PERMISSIONS, true);
+        $normalized = rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        if (!is_dir($normalized)) {
+            @mkdir($normalized, DIR_PERMISSIONS, true);
+        }
+        if (is_dir($normalized) && $this->gitkeepFile) {
+            $gitkeep = $normalized . $this->gitkeepFile;
+            if (!file_exists($gitkeep)) {
+                @file_put_contents($gitkeep, '');
+            }
+        }
+    }
+
+    protected function ensureDefaultCategoryDirectories($type)
+    {
+        if (!$this->isValidType($type)) {
+            return;
+        }
+
+        foreach ($this->defaultCategories as $category) {
+            $directory = $this->getCategoryDirectory($type, $category);
+            $this->ensureDirectory($directory);
         }
     }
 
@@ -715,9 +738,10 @@ class ImageLibrary
     protected function translateCategory($category)
     {
         global $L;
+        $key = $this->translationPrefix . '-category-' . $category;
         if (isset($L) && is_object($L) && method_exists($L, 'g')) {
-            $translated = $L->g('image-library-category-' . $category);
-            if ($translated !== 'image-library-category-' . $category) {
+            $translated = $L->g($key);
+            if ($translated !== $key) {
                 return $translated;
             }
         }

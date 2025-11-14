@@ -1,6 +1,7 @@
 {
     "image-library-title": "Image Library",
     "image-library-subtitle": "Manage physical assets and remote image links in one place.",
+    "image-library-subtitle-hint": "You can also upload files directly into mgw-config/image-library/entities or links on the server; the system will detect them automatically.",
     "image-library-bulk-delete-entities": "Delete Selected Entities",
     "image-library-bulk-delete-links": "Delete Selected Links",
     "image-library-bulk-delete": "Delete",

@@ -1,6 +1,7 @@
 {
     "image-library-title": "图片素材库",
     "image-library-subtitle": "统一管理实体图片与链接图片资源。",
+    "image-library-subtitle-hint": "也可以直接在服务器 mgw-config/image-library/entities 或 links 目录中手动上传文件，系统会自动识别。",
     "image-library-bulk-delete-entities": "批量删除实体图片",
     "image-library-bulk-delete-links": "批量删除链接图片",
     "image-library-bulk-delete": "删除",

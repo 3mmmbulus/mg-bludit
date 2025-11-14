@@ -93,6 +93,7 @@
 			echo JSLoader::loadSiteListPage();
 			break;
 		case 'image-library':
+		case 'logo-library':
 			echo JSLoader::loadImageLibraryPage();
 			break;
 		case 'dashboard':

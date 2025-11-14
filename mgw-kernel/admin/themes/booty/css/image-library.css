@@ -1,25 +1,25 @@
-.image-library-page .ratio {
+.asset-library-page .ratio {
     background-color: #f8f9fa;
 }
 
-.image-library-page .ratio img,
-.image-library-page .object-fit-cover {
+.asset-library-page .ratio img,
+.asset-library-page .object-fit-cover {
     object-fit: cover;
 }
 
-.image-library-page .table tbody tr td {
+.asset-library-page .table tbody tr td {
     vertical-align: middle;
 }
 
-.image-library-page .table tbody tr td .badge {
+.asset-library-page .table tbody tr td .badge {
     font-size: 0.75rem;
 }
 
-.image-library-page .table tbody tr td .btn-group .btn {
+.asset-library-page .table tbody tr td .btn-group .btn {
     min-width: 36px;
 }
 
-.image-library-page .table thead th {
+.asset-library-page .table thead th {
     font-size: 0.8rem;
     text-transform: uppercase;
 }
@@ -30,17 +30,17 @@
     line-height: 1.4;
 }
 
-.image-library-page .badge.bg-primary-subtle {
+.asset-library-page .badge.bg-primary-subtle {
     background-color: rgba(13, 110, 253, 0.12);
     color: #0d6efd;
 }
 
-.image-library-page .badge.bg-success-subtle {
+.asset-library-page .badge.bg-success-subtle {
     background-color: rgba(25, 135, 84, 0.12);
     color: #198754;
 }
 
-.image-library-page .badge.bg-danger-subtle {
+.asset-library-page .badge.bg-danger-subtle {
     background-color: rgba(220, 53, 69, 0.12);
     color: #dc3545;
 }
