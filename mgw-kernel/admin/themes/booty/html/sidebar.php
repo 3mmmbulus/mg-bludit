@@ -57,9 +57,6 @@ if (file_exists($sidebarLangFile)) {
 				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'seo-external-links' ?>"><span class="bi bi-box-arrow-up-right"></span><?php echo $sidebarLang->get('external_links') ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'domain-dns' ?>"><span class="bi bi-hdd-network"></span><?php echo $sidebarLang->get('domain_dns') ?></a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'scheduled-tasks' ?>"><span class="bi bi-clock-history"></span><?php echo $sidebarLang->get('scheduled_tasks') ?></a>
 			</li>
 		</ul>
@@ -130,12 +127,6 @@ if (file_exists($sidebarLangFile)) {
 				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'spider-log' ?>"><span class="bi bi-bug"></span><?php echo $sidebarLang->get('spider_log') ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'spider-track' ?>"><span class="bi bi-activity"></span><?php echo $sidebarLang->get('track_heatmap') ?></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'spider-limit' ?>"><span class="bi bi-speedometer"></span><?php echo $sidebarLang->get('frequency_limit') ?></a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'spider-anti-scraping' ?>"><span class="bi bi-shield-check"></span><?php echo $sidebarLang->get('anti_scraping') ?></a>
 			</li>
 		</ul>
@@ -150,9 +141,6 @@ if (file_exists($sidebarLangFile)) {
 		<ul class="sidebar-section-content" id="cache-management" style="display: none;">
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'cache-page' ?>"><span class="bi bi-file-earmark-code"></span><?php echo $sidebarLang->get('page_cache') ?></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'cache-preload' ?>"><span class="bi bi-arrow-repeat"></span><?php echo $sidebarLang->get('cache_preload') ?></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'cache-redis' ?>"><span class="bi bi-server"></span><?php echo $sidebarLang->get('redis_cache') ?></a>

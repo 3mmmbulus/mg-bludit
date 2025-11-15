@@ -26,7 +26,7 @@
     "anti_scraping": "反采集 / UA",
     "alert_rules": "告警规则",
     "cache_management": "缓存管理",
-    "page_cache": "页面缓存",
+    "page_cache": "缓存设置",
     "cache_preload": "预热与失效规则",
     "redis_cache": "Redis / 本地缓存",
     "cache_reports": "命中率与性能报表",

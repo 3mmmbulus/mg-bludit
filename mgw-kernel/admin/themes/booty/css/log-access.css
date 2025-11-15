@@ -1,0 +1,107 @@
+.log-access-page h2 .bi {
+    font-size: 1.5rem;
+}
+
+.log-access-filter .form-control {
+    border-radius: 0.65rem;
+}
+
+.log-access-overview {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.02));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.log-access-overview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.08);
+}
+
+.log-access-trend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.log-access-trend-day {
+    padding: 1rem;
+    background: rgba(241, 245, 249, 0.6);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.log-access-trend-bar {
+    position: relative;
+    height: 32px;
+    margin: 0.75rem 0;
+    background: rgba(226, 232, 240, 0.7);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.log-access-trend-bar .pv,
+.log-access-trend-bar .uv {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 999px;
+}
+
+.log-access-trend-bar .pv {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.9), rgba(59, 130, 246, 0.6));
+}
+
+.log-access-trend-bar .uv {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.9), rgba(16, 185, 129, 0.6));
+    opacity: 0.8;
+}
+
+.log-access-ratio li {
+    margin-bottom: 1rem;
+}
+
+.log-access-ratio .badge {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.6rem;
+}
+
+.log-access-page table thead th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.log-access-page table tbody td {
+    font-size: 0.78rem;
+}
+
+.log-access-page .badge {
+    font-size: 0.68rem;
+    border-radius: 999px;
+}
+
+.log-access-page .table-hover tbody tr:hover {
+    background: rgba(226, 232, 240, 0.35);
+}
+
+.log-access-page .list-group-item {
+    border: none;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.log-access-page .list-group-item:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 992px) {
+    .log-access-trend-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .log-access-page .card-header {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+}

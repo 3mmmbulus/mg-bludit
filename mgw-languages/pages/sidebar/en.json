@@ -26,7 +26,7 @@
     "anti_scraping": "Anti-Scraping",
     "alert_rules": "Alert Rules",
     "cache_management": "Cache",
-    "page_cache": "Page Cache",
+    "page_cache": "Cache Settings",
     "cache_preload": "Preload & Purge",
     "redis_cache": "Redis / Local",
     "cache_reports": "Hit Rate Report",

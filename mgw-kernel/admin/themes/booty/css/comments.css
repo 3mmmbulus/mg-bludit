@@ -1,0 +1,85 @@
+/* Comments Library styles aligned with asset library layout */
+.comments-library-page .card {
+    border-radius: 1rem;
+}
+
+.comments-library-page .card.shadow-sm {
+    box-shadow: 0 0.4rem 1.4rem rgba(15, 23, 42, 0.08);
+}
+
+.comments-library-page .table thead th {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #6c757d;
+}
+
+.comments-library-page .table tbody td {
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+.comments-library-page .table tbody tr.table-empty td {
+    border: none;
+}
+
+.comments-library-page .btn-group[data-comments-type-switch] .btn {
+    min-width: 165px;
+    transition: all 0.2s ease;
+}
+
+.comments-library-page .btn-group[data-comments-type-switch] .badge {
+    font-size: 0.75rem;
+}
+
+.comments-library-page .comments-detail-preview {
+    min-height: 260px;
+    max-height: 460px;
+    overflow-y: auto;
+    font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin: 0;
+}
+
+.comments-library-page .badge[data-detail-status] {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+}
+
+.comments-library-page [data-table-summary] {
+    min-height: 1.25rem;
+}
+
+.comments-library-page [data-pagination] .page-link {
+    font-size: 0.85rem;
+}
+
+.comments-library-page [data-comments-filters] .form-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6c757d;
+}
+
+.comments-library-page [data-comments-filters] .list-group-item {
+    border: none;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.comments-library-page [data-comments-filters] .list-group-item:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 992px) {
+    .comments-library-page .btn-group[data-comments-type-switch] {
+        flex-direction: column;
+    }
+
+    .comments-library-page .btn-group[data-comments-type-switch] .btn {
+        width: 100%;
+    }
+}

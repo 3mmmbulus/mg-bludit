@@ -1,0 +1,155 @@
+.spider-log-page h2 .bi {
+    font-size: 1.5rem;
+}
+
+.spider-log-filter .form-control,
+.spider-log-filter .form-select {
+    border-radius: 0.65rem;
+}
+
+.spider-overview {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spider-overview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.08);
+}
+
+.spider-trend-switch .nav-link {
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.spider-trend-range {
+    display: none;
+}
+
+.spider-trend-range.active {
+    display: block;
+}
+
+.spider-trend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.spider-trend-item {
+    padding: 1rem;
+    background: rgba(241, 245, 249, 0.65);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.spider-trend-bar {
+    position: relative;
+    height: 32px;
+    margin: 0.75rem 0;
+    background: rgba(226, 232, 240, 0.7);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.spider-trend-bar .hits,
+.spider-trend-bar .unique {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+}
+
+.spider-trend-bar .hits {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.9), rgba(59, 130, 246, 0.55));
+}
+
+.spider-trend-bar .unique {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.9), rgba(16, 185, 129, 0.55));
+    opacity: 0.85;
+}
+
+.spider-source-list li {
+    transition: transform 0.2s ease;
+}
+
+.spider-source-list li:hover {
+    transform: translateY(-3px);
+}
+
+.spider-site-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.spider-site-card {
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.07), rgba(6, 182, 212, 0.05));
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.spider-site-card.active {
+    border-color: rgba(6, 182, 212, 0.8);
+    box-shadow: 0 1rem 2rem rgba(14, 165, 233, 0.15);
+}
+
+.spider-site-card:hover {
+    transform: translateY(-2px);
+}
+
+.spider-archives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.spider-archive {
+    background: rgba(249, 250, 251, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.spider-rule-pill {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.spider-rule-item:last-child {
+    border-bottom: none;
+}
+
+.spider-log-page table thead th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.spider-log-page table tbody td {
+    font-size: 0.78rem;
+}
+
+.spider-log-page .badge {
+    font-size: 0.68rem;
+    border-radius: 999px;
+}
+
+.spider-log-modal-body {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    .spider-trend-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .spider-log-page .card-header {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+}

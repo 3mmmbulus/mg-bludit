@@ -112,6 +112,12 @@
 		case 'edit-content':
 			echo JSLoader::loadContentEditor('edit');
 			break;
+		case 'comments':
+			echo JSLoader::loadCommentsPage();
+			break;
+		case 'scheduled-tasks':
+			echo JSLoader::loadScheduledTasksPage();
+			break;
 	}
 ?>
 

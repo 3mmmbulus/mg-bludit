@@ -1,0 +1,278 @@
+#maigewan-main-content .mgw-about {
+	display: flex;
+	flex-direction: column;
+	gap: 1.75rem;
+}
+
+#maigewan-main-content .mgw-about-hero {
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(13, 110, 253, 0.12), rgba(111, 66, 193, 0.08));
+}
+
+#maigewan-main-content .mgw-about-hero .card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding: 2rem 2.25rem;
+}
+
+#maigewan-main-content .mgw-about-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.3rem 0.75rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--bs-primary);
+	background: rgba(13, 110, 253, 0.12);
+}
+
+#maigewan-main-content .mgw-about-hero-title {
+	font-size: 1.9rem;
+	font-weight: 600;
+	margin: 0;
+	color: var(--bs-body-color);
+}
+
+#maigewan-main-content .mgw-about-hero-lead {
+	max-width: 44rem;
+	font-size: 0.95rem;
+	color: var(--bs-secondary-color);
+}
+
+#maigewan-main-content .mgw-about-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	width: 100%;
+	max-width: 640px;
+}
+
+#maigewan-main-content .mgw-about-actions .btn {
+	flex: 1 1 100%;
+	min-height: 48px;
+	font-weight: 600;
+}
+
+#maigewan-main-content .mgw-about-actions .btn span {
+	display: inline-flex;
+	align-items: center;
+}
+
+#maigewan-main-content .mgw-about-grid {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+#maigewan-main-content .mgw-about-card .card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	padding: 1.75rem;
+}
+
+#maigewan-main-content .mgw-about-card-header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+#maigewan-main-content .mgw-about-card-label {
+	display: inline-flex;
+	align-items: center;
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+#maigewan-main-content .mgw-about-card-desc {
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+#maigewan-main-content .mgw-about-definition {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	margin: 0;
+}
+
+#maigewan-main-content .mgw-about-definition-item {
+	border: 1px solid var(--bs-border-color);
+	border-radius: 0.9rem;
+	padding: 1rem 1.25rem;
+	background: var(--bs-body-bg);
+}
+
+#maigewan-main-content .mgw-about-definition-item dt {
+	margin: 0 0 0.35rem;
+	font-size: 0.7rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--bs-secondary-color);
+	font-weight: 600;
+}
+
+#maigewan-main-content .mgw-about-definition-item dd {
+	margin: 0;
+	font-size: 0.98rem;
+	font-weight: 600;
+	color: var(--bs-body-color);
+}
+
+#maigewan-main-content .mgw-about-resource-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1.1rem;
+}
+
+#maigewan-main-content .mgw-about-resource-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+#maigewan-main-content .mgw-about-resource-meta {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+#maigewan-main-content .mgw-about-resource-progress {
+	height: 6px;
+	background: rgba(13, 110, 253, 0.12);
+}
+
+#maigewan-main-content .mgw-about-resource-progress .progress-bar {
+	background: var(--bs-primary);
+	border-radius: 999px;
+}
+
+#maigewan-main-content .mgw-about-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+}
+
+#maigewan-main-content .mgw-about-list-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	font-size: 0.95rem;
+}
+
+#maigewan-main-content .mgw-about-list-value {
+	font-weight: 500;
+}
+
+#maigewan-main-content .mgw-about-bullets {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+#maigewan-main-content .mgw-about-bullets li {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	font-size: 0.95rem;
+	color: var(--bs-body-color);
+}
+
+#maigewan-main-content .mgw-about-feed {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#maigewan-main-content .mgw-about-feed-item {
+	border: 1px solid var(--bs-border-color);
+	border-radius: 0.9rem;
+	padding: 0.9rem 1.15rem;
+	background: var(--bs-body-bg);
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+#maigewan-main-content .mgw-about-feed-date {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--bs-secondary-color);
+	font-weight: 600;
+}
+
+#maigewan-main-content .mgw-about-feed-text {
+	font-size: 0.98rem;
+	color: var(--bs-body-color);
+}
+
+#maigewan-main-content .mgw-about-system-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+#maigewan-main-content .mgw-about-system-item {
+	border: 1px solid var(--bs-border-color);
+	border-radius: 0.9rem;
+	padding: 1rem 1.25rem;
+	background: var(--bs-body-bg);
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+#maigewan-main-content .mgw-about-system-value {
+	font-size: 0.95rem;
+	color: var(--bs-body-color);
+}
+
+@media (min-width: 576px) {
+	#maigewan-main-content .mgw-about-actions {
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+
+	#maigewan-main-content .mgw-about-actions .btn {
+		flex: 1 1 auto;
+	}
+}
+
+@media (min-width: 992px) {
+	#maigewan-main-content .mgw-about-hero .card-body {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#maigewan-main-content .mgw-about-hero-meta {
+		max-width: 55%;
+	}
+}
+
+@media (min-width: 1200px) {
+	#maigewan-main-content .mgw-span-2 {
+		grid-column: span 2;
+	}
+
+	#maigewan-main-content .mgw-span-3 {
+		grid-column: span 3;
+	}
+}

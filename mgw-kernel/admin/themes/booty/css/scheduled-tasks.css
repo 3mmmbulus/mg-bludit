@@ -1,0 +1,212 @@
+/* Scheduled Tasks admin view styles */
+.mgw-scheduled {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mgw-scheduled-subtitle {
+    margin: -0.75rem 0 0;
+    color: #6c757d;
+}
+
+.mgw-scheduled-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mgw-scheduled-toolbar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.mgw-scheduled-alerts .alert {
+    margin-bottom: 0.65rem;
+}
+
+.mgw-scheduled-kpis .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.25rem 1.25rem rgba(15, 23, 42, 0.06);
+}
+
+.mgw-scheduled-kpi-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6c757d;
+}
+
+.mgw-scheduled-kpi-delta {
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.mgw-scheduled-filters .form-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6c757d;
+}
+
+.mgw-scheduled-filters .input-group-text {
+    background: #f8f9fa;
+}
+
+.mgw-scheduled-queue-card .metric-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.mgw-scheduled-queue-card .progress {
+    height: 0.35rem;
+}
+
+.mgw-scheduled-category-nav .nav-link {
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.mgw-scheduled-category-nav .nav-link.active {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.mgw-scheduled-table-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.25rem 1.25rem rgba(15, 23, 42, 0.06);
+}
+
+.mgw-scheduled-table thead th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6c757d;
+    border-bottom-width: 1px;
+}
+
+.mgw-scheduled-table td {
+    vertical-align: middle;
+}
+
+.mgw-scheduled-table .task-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.mgw-scheduled-table .task-meta {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.mgw-scheduled-table .badge {
+    font-weight: 600;
+}
+
+.mgw-scheduled-empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.mgw-scheduled-empty-state .bi {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.mgw-scheduled-log-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.25rem 1.25rem rgba(15, 23, 42, 0.06);
+}
+
+.mgw-scheduled-log-table td {
+    vertical-align: middle;
+}
+
+.mgw-scheduled-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.mgw-scheduled-timeline-item {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.mgw-scheduled-timeline-marker {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    margin-top: 0.35rem;
+}
+
+.mgw-scheduled-timeline-content {
+    flex: 1;
+}
+
+.mgw-scheduled-modal .modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.mgw-scheduled-modal-section {
+    border-bottom: 1px solid #f1f3f5;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.mgw-scheduled-modal-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.mgw-scheduled-modal-section h6 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6c757d;
+    margin-bottom: 0.75rem;
+}
+
+.mgw-scheduled-preset-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.mgw-scheduled-preset-group .btn {
+    border-radius: 999px;
+}
+
+.mgw-scheduled-logs-offcanvas .list-group-item {
+    border: none;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.mgw-scheduled-logs-offcanvas .list-group-item:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 992px) {
+    .mgw-scheduled-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

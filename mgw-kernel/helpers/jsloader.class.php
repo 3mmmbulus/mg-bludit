@@ -246,6 +246,30 @@ class JSLoader
 	}
 
 	/**
+	 * 加载计划任务中心页面脚本
+	 *
+	 * @return string
+	 */
+	public static function loadScheduledTasksPage()
+	{
+		$path = defined('HTML_PATH_ROOT') ? HTML_PATH_ROOT : '/';
+		$version = defined('MAIGEWAN_VERSION') ? MAIGEWAN_VERSION : '1.0.0';
+		return '<script src="' . $path . 'mgw-kernel/admin/js/scheduled-tasks.js?version=' . $version . '"></script>' . PHP_EOL;
+	}
+
+	/**
+	 * 加载评论库管理中心脚本
+	 *
+	 * @return string
+	 */
+	public static function loadCommentsPage()
+	{
+		$path = defined('HTML_PATH_ROOT') ? HTML_PATH_ROOT : '/';
+		$version = defined('MAIGEWAN_VERSION') ? MAIGEWAN_VERSION : '1.0.0';
+		return '<script src="' . $path . 'mgw-kernel/admin/js/comments.js?version=' . $version . '"></script>' . PHP_EOL;
+	}
+
+	/**
 	 * 加载插件管理相关 JS
 	 * 
 	 * @return string
@@ -388,7 +412,9 @@ class JSLoader
 				'settings.js',
 				'plugins.js',
 				'plugins-position.js',
-				'image-library.js'
+				'image-library.js',
+				'scheduled-tasks.js',
+				'comments.js'
 			)
 		);
 	}

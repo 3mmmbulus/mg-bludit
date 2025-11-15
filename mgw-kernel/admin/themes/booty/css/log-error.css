@@ -1,0 +1,166 @@
+.log-error-page h2 .bi {
+    font-size: 1.5rem;
+}
+
+.log-error-filter .form-control,
+.log-error-filter .form-select {
+    border-radius: 0.65rem;
+}
+
+.log-error-overview {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.02));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.log-error-overview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.08);
+}
+
+.log-error-trend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    align-items: end;
+    min-height: 220px;
+}
+
+.log-error-trend-bar {
+    position: relative;
+    background: rgba(248, 250, 252, 0.9);
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.5rem 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.log-error-trend-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.log-error-trend-meter {
+    width: 36px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.95), rgba(239, 68, 68, 0.45));
+    transition: height 0.3s ease;
+}
+
+.log-error-trend-value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.log-error-trend-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+}
+
+.log-error-trend-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.log-error-severity li {
+    margin-bottom: 1rem;
+}
+
+.log-error-site-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.log-error-site-card {
+    background: rgba(254, 242, 242, 0.75);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    border-radius: 0.85rem;
+}
+
+.log-error-site-recent {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.log-error-site-recent li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.log-error-channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.log-error-channel {
+    background: rgba(240, 249, 255, 0.85);
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    border-radius: 0.85rem;
+}
+
+.log-error-stack {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    max-height: 420px;
+    overflow: auto;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.log-error-page table thead th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.log-error-page table tbody td {
+    font-size: 0.78rem;
+}
+
+.log-error-page .badge {
+    font-size: 0.7rem;
+    border-radius: 999px;
+}
+
+.log-error-page .nav-pills .nav-link {
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+}
+
+.log-error-page .nav-pills .nav-link.active {
+    background-color: #ef4444;
+}
+
+@media (max-width: 992px) {
+    .log-error-trend-grid {
+        grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .log-error-page .card-header {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .log-error-page h2 {
+        font-size: 1.35rem;
+    }
+}
