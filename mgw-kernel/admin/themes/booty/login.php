@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Maigewan</title>
+  <title><?php echo Sanitize::html($L->g('login-html-title')); ?></title>
   <meta charset="<?php echo CHARSET ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex,nofollow">
@@ -38,17 +38,11 @@
   <!-- Alert -->
   <?php include('html/alert.php'); ?>
 
-  <div class="container">
-    <div class="row justify-content-md-center pt-5">
-      <div class="col-md-4 mt-5 p-5 shadow-sm bg-white rounded border">
-        <?php
-        if (Sanitize::pathFile(PATH_ADMIN_VIEWS, $layout['view'] . '.php')) {
-          include(PATH_ADMIN_VIEWS . $layout['view'] . '.php');
-        }
-        ?>
-      </div>
-    </div>
-  </div>
+  <?php
+  if (Sanitize::pathFile(PATH_ADMIN_VIEWS, $layout['view'] . '.php')) {
+    include(PATH_ADMIN_VIEWS . $layout['view'] . '.php');
+  }
+  ?>
 
   <!-- Plugins -->
   <?php Theme::plugins('loginBodyEnd') ?>

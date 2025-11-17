@@ -60,6 +60,38 @@ function checkRememberMe()
 }
 
 // ============================================================================
+// Page specific language strings
+// ============================================================================
+
+$pageLanguageCodes = array();
+$currentLanguage = (isset($site) && method_exists($site, 'language')) ? $site->language() : 'en';
+if (!empty($currentLanguage) && $currentLanguage !== 'en') {
+	$pageLanguageCodes[] = $currentLanguage;
+}
+$pageLanguageCodes[] = 'en';
+
+foreach (array_reverse($pageLanguageCodes) as $languageCode) {
+	$pageLangFile = PATH_LANGUAGES . 'pages' . DS . 'login' . DS . $languageCode . '.json';
+	if (!file_exists($pageLangFile)) {
+		continue;
+	}
+
+	$pageLangContent = file_get_contents($pageLangFile);
+	if ($pageLangContent === false) {
+		continue;
+	}
+
+	$pageLangData = json_decode($pageLangContent, true);
+	if (!is_array($pageLangData)) {
+		continue;
+	}
+
+	foreach ($pageLangData as $key => $value) {
+		$L->db[$key] = $value;
+	}
+}
+
+// ============================================================================
 // Main before POST
 // ============================================================================
 

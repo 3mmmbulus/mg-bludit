@@ -1,0 +1,18 @@
+{
+    "login-html-title": "Maigewan Admin Login",
+    "login-brand-name": "Maigewan",
+    "login-brand-logo-alt": "Maigewan logo",
+    "login-brand-tagline": "Site cluster CMS for single-site and multi-site operations",
+    "login-username-label": "Username",
+    "login-username-placeholder": "Username",
+    "login-password-label": "Password",
+    "login-password-placeholder": "Password",
+    "login-remember-me": "Remember me",
+    "login-powered-by": "Powered by Maigewan",
+    "login-submit-button": "Login",
+    "login-footer-text": "Copyright {{year}} Maigewan. All rights reserved.",
+    "login-forgot-password-button": "Forgot password?",
+    "login-forgot-password-modal-title": "Reset administrator password",
+    "login-forgot-password-instructions": "Delete mgw-config/users.php on the server, then reload this page to create a new admin password.",
+    "login-forgot-password-close": "Got it"
+}

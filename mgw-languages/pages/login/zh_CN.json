@@ -1,0 +1,18 @@
+{
+    "login-html-title": "MAIGEWAN 管理后台登录",
+    "login-brand-name": "MAIGEWAN",
+    "login-brand-logo-alt": "MAIGEWAN 标志",
+    "login-brand-tagline": "站群 CMS · 单站和泛站运营平台",
+    "login-username-label": "用户名",
+    "login-username-placeholder": "用户名",
+    "login-password-label": "用户密码",
+    "login-password-placeholder": "用户密码",
+    "login-remember-me": "记住我",
+    "login-powered-by": "由 Maigewan 提供支持",
+    "login-submit-button": "登录",
+    "login-footer-text": "© {{year}} Maigewan. 保留所有权利。",
+    "login-forgot-password-button": "忘记密码？",
+    "login-forgot-password-modal-title": "重置管理员密码",
+    "login-forgot-password-instructions": "请在服务器上删除 mgw-config/users.php 文件，然后重新访问此页面设置新密码。",
+    "login-forgot-password-close": "知道了"
+}
